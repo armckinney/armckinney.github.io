@@ -1,6 +1,5 @@
-<!DOCTYPE HTML>
-
 <html>
+<!DOCTYPE HTML>
 	<head>
 		<title>armck-hub.github.io</title>
 		<meta charset="utf-8" />
