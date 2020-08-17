@@ -50,7 +50,7 @@
 					<section id="banner">
 						<div class="inner">
 							<h2>Andrew McKinney</h2>
-							<p>Data Scientist</p>
+							<p>Programmatic Scientist</p>
 						</div>
 						<a href="#projects" class="more scrolly"></a>
 					</section>
@@ -104,10 +104,10 @@
 								<h2  class="color-orange">Mail-To-Me</h2>
 								<p>Mail Handler Web Application for HTML Forms</p>
 								<ul class="actions">
-									<li><a href="#" target="_blank" class="button primary icon solid fa-code disabled">Repository</a></li>
-									<li><a href="https://mailtome.herokuapp.com/" target="_blank" class="button primary icon brands fa-app-store disabled">Application</a></li>
+									<li><a href="https://github.com/ARMcK-hub/Mail-To-Me" target="_blank" class="button primary icon solid fa-code">Repository</a></li>
+									<li><a href="https://mailtome.herokuapp.com/" target="_blank" class="button primary icon brands fa-app-store">Application</a></li>
+									<li><a href="https://armck-hub.github.io/Demo-To-Me/" target="_blank" class="button primary icon solid fa-globe">Demo Form</a></li>
 								</ul>
-								<i style="color: #ED4933;">Currently Under Development</i>
 							</div>
 						</section>
 						<section class="spotlight">
@@ -272,45 +272,33 @@
 						<div class="inner">
 							<section>
 								<h4>Contact</h4>
-								<form method="post" action="https://mailtoarm.herokuapp.com/">
+								<form method="post" action="https://mailtome.herokuapp.com/form_submit/andrewryanmckinney@gmail.com/Name,sender_email,Subject,Message">
 									<div class="row gtr-uniform">
 										<div class="col-6 col-12-xsmall">
-											<input type="text" name="demo-name" id="demo-name" value="" placeholder="Name" />
+											<input type="text" name="Name" id="demo-name" value="" placeholder="Name" />
 										</div>
 										<div class="col-6 col-12-xsmall">
-											<input type="email" name="demo-email" id="demo-email" value="" placeholder="Email" />
+											<input type="email" name="sender_email" id="demo-email" value="" placeholder="Email" />
 										</div>
-										<div class="col-4 col-12-small">
-											<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-											<label for="demo-priority-low">Low</label>
+										<div class="col-12 col-12-xsmall">
+											<input type="text" name="Subject" id="demo-message" value="" placeholder="Subject" />
 										</div>
-										<div class="col-4 col-12-small">
-											<input type="radio" id="demo-priority-normal" name="demo-priority">
-											<label for="demo-priority-normal">Normal</label>
-										</div>
-										<div class="col-4 col-12-small">
-											<input type="radio" id="demo-priority-high" name="demo-priority">
-											<label for="demo-priority-high">High</label>
+										<div class="col-12">
+											<textarea name="Message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
 										</div>
 										<div class="col-6 col-12-small">
-											<input type="checkbox" id="demo-copy" name="demo-copy" checked>
-											<label for="demo-copy">Email me a copy</label>
-										</div>
-										<div class="col-6 col-12-small">
-											<input type="checkbox" id="demo-human" name="demo-human">
+											<input type="checkbox" id="demo-human" name="Human">
 											<label for="demo-human">Not a robot</label>
 										</div>
 										<div class="col-12">
-											<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-										</div>
-										<div class="col-12">
 											<ul class="actions">
-												<li><input type="submit" value="Send Message" class="primary disabled" /></li>
+												<li><input type="submit" value="Send Message" class="primary" /></li>
 												<li><input type="reset" value="Reset" /></li>
 											</ul>
 										</div>
 									</div>
 								</form>
+								<h5 style="color: goldenrod"><a href="https://mailtome.herokuapp.com/"><i>Powered by Mail-To-Me</i></a></h5>
 							</section>
 						</div>
 					</section>
