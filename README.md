@@ -24,7 +24,7 @@ Version Author: Drew McKinney
 <br />
 <p align="center">
   <a href="https://armck-hub.github.io/">
-    <img src="https://media-exp1.licdn.com/dms/image/C4E03AQFYT2N4tID4rg/profile-displayphoto-shrink_200_200/0?e=1594857600&v=beta&t=m5N3AqCtxxkwHpzHfAC2cCqB-PJlZbEZBScn_BgADKo" alt="Logo" width="100" height="100">
+    <img src="https://armck-hub.github.io/images/head_portrait.jpg" alt="Logo" width="100" height="100">
   </a>
 
   <h3 align="center">Drew McKinney's Portfolio</h3>
@@ -119,5 +119,5 @@ Distributed under the MIT License. See `LICENSE` for more information.
 [stars-url]: https://github.com/ARMcK-hub/armck-hub.github.io/stargazers
 [issues-shield]: https://img.shields.io/github/issues/ARMcK-hub/armck-hub.github.io.svg?style=flat
 [issues-url]: https://github.com/ARMcK-hub/armck-hub.github.io/issues
-[product-screenshot]: https://media-exp1.licdn.com/dms/image/C4E16AQEFCZthB9uxEg/profile-displaybackgroundimage-shrink_200_800/0?e=1594857600&v=beta&t=_ld_MJJiuklZjbjlDkyi2r2XqVQWv7hLgJZ9CGa3ayE
+[product-screenshot]: https://armck-hub.github.io/images/website_landing.png
 
