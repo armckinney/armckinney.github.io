@@ -26,8 +26,6 @@
     </p>
     <p>
     <!-- Links -->
-        <a href="#demo">View Demo</a>
-        ·
         <a href="https://github.com/armckinney/armckinney.github.io/issues/new/choose">Report Bug</a>
         ·
         <a href="https://github.com/armckinney/armckinney.github.io/issues/new/choose">Request Feature</a>
