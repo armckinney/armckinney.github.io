@@ -1,1 +1,31 @@
-.vs_code
+# .NET build outputs
+bin/
+obj/
+
+# Visual Studio
+.vs/
+
+# VS Code
+.vscode/
+
+# User-specific files
+*.user
+*.suo
+
+# NuGet packages
+packages/
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+
+# Test results
+TestResults/
+
+# Publish outputs
+publish/
+
+# OS files
+.DS_Store
+Thumbs.db
+
