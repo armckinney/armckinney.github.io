@@ -16,8 +16,9 @@
 				}
 			},
 			"extensions": [
-				"shd101wyy.markdown-preview-enhanced",
-				"ms-dotnettools.csharp"
+				"yzhang.markdown-all-in-one",
+				"ms-dotnettools.csharp",
+				"ms-dotnettools.csdevkit"
 			]
 		}
 	}
