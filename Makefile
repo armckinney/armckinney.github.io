@@ -1,4 +1,4 @@
 .PHONY: watch
 
 watch:
-	dotnet watch run --project Portfolio
+	DOTNET_WATCH_SUPPRESS_BROWSER_REFRESH=true dotnet watch run --project Portfolio

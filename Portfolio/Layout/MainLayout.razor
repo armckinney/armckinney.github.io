@@ -1,16 +1,45 @@
 ﻿@inherits LayoutComponentBase
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
 
-    <main>
-        <div class="top-row px-4">
-            <a href="https://learn.microsoft.com/aspnet/core/" target="_blank">About</a>
-        </div>
+<div id="page-wrapper">
 
-        <article class="content px-4">
-            @Body
-        </article>
-    </main>
+    <!-- Header -->
+    <header id="header" class="alt">
+        <h1 class="color-orange"><a href="/">ARM</a></h1>
+        <nav id="nav">
+            <ul>
+                <li class="special">
+                    <a href="#menu" class="menuToggle"><span class="color-orange">Menu</span></a>
+                    <div id="menu">
+                        <ul class="color-orange">
+                            <li><a href="/">Home</a></li>
+                            <li><a href="#projects">Projects</a></li>
+                            <li><a href="#skills">Skills</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    @Body
+
+    <!-- Footer -->
+    <footer id="footer">
+        <img src="images/head_portrait.jpg" style="width: 10%; min-width: 100px;margin-bottom: 20px; border-radius: 50%;">
+
+        <ul class="icons">
+            <li><a href="https://github.com/armckinney" target="_blank" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+            <li><a href="https://hub.docker.com/u/armck" target="_blank" class="icon brands fa-docker"><span class="label">StackShare</span></a></li>
+            <li><a href="https://stackshare.io/armck" target="_blank" class="icon solid fa-code-branch"><span class="label">DockerHub</span></a></li>
+            <li><a href="https://www.linkedin.com/in/drew-mckinney/" target="_blank" class="icon brands fa-linkedin"><span class="label">Linkedin</span></a></li>
+            <li><a href="https://docs.google.com/document/d/1cxvXRYUx22JToneTeXtjyH7qwi3U7OaX?usp=sharing&ouid=117704527107745799126&rtpof=true&sd=true" target="_blank" class="icon regular fa-file-pdf"><span class="label">Resume</span></a></li>
+            <li><a href="mailto:andrewryanmckinney@gmail.com" target="_blank" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+
+        <ul class="copyright">
+            <li>&copy; Andrew McKinney 2020</li><li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+    </footer>
 </div>
