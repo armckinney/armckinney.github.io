@@ -1,10 +1,10 @@
 {
-	"name": "portfolio",
+	"name": "armckinneygithubio",
 	"dockerComposeFile": [
-		"../docker-compose.yaml"
+		"docker-compose.yaml"
 	],
-	"service": "dev-container",
-	"workspaceFolder": "/workspaces/portfolio",
+	"service": "devcontainer",
+	"workspaceFolder": "/workspaces/armckinneygithubio",
 	"customizations": {
 		"vscode": {
 			"settings": {
@@ -15,8 +15,20 @@
 					}
 				}
 			},
+			"files.exclude": {
+				"**/.git": true,
+				"**/.svn": true,
+				"**/.hg": true,
+				"**/CVS": true,
+				"**/.DS_Store": true,
+				"**/bin": true,
+				"**/obj": true,
+				"**/.vs": true
+			},
 			"extensions": [
+				"ms-azuretools.vscode-docker",
 				"yzhang.markdown-all-in-one",
+				"github.vscode-github-actions",
 				"ms-dotnettools.csharp",
 				"ms-dotnettools.csdevkit"
 			]
