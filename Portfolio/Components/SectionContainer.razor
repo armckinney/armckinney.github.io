@@ -1,0 +1,23 @@
+<div class="section @(IsAlt ? "section-alt" : "")" id="@Id">
+    <div class="container">
+        @if (!string.IsNullOrEmpty(Title))
+        {
+            <h2>@Title</h2>
+        }
+        @ChildContent
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string? Id { get; set; }
+
+    [Parameter]
+    public string? Title { get; set; }
+
+    [Parameter]
+    public bool IsAlt { get; set; } = false;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

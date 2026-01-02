@@ -28,6 +28,7 @@
 			"extensions": [
 				"ms-azuretools.vscode-docker",
 				"yzhang.markdown-all-in-one",
+				"bierner.markdown-mermaid",
 				"github.vscode-github-actions",
 				"ms-dotnettools.csharp",
 				"ms-dotnettools.csdevkit"
