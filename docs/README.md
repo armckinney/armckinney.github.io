@@ -5,7 +5,9 @@ graph TD
     %% Browser / Static Hosting Layer
     subgraph wwwroot ["wwwroot (Public Web Root)"]
         Index["index.html"]
-        Assets["Static Assets<br/>(css, images, js)"]
+        Css["css/"]
+        Images["images/"]
+        Favicon["favicon/"]
         BlazorJS["blazor.webassembly.js"]
     end
 
@@ -47,5 +49,5 @@ graph TD
     class Home,NavBar,Footer,Hero,Section,Card,Skill component;
     class Layout,App core;
     class Program,Runtime main;
-    class Index,Assets,BlazorJS static;
+    class Index,Css,Images,Favicon,BlazorJS static;
 ```
