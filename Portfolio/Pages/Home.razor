@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject PortfolioService PortfolioService
 
 <PageTitle>Andrew McKinney - Lead Software Engineer</PageTitle>
 
@@ -9,141 +10,40 @@
 
 <SectionContainer Title="Projects" IsAlt="true" id="projects">
     <div class="grid grid-cols-2">
-        <ProjectCard 
-            Title="Credit Crunch" 
-            Description="Credit Approval Web Application with Integrated Neural Net Risk Analysis."
-            ImageUrl="images/west-end-financial.png"
-            RepoUrl="https://github.com/armckinney/west-end-financial"
-            DemoUrl="https://westendfinancial.armckinney.dev/" />
-        
-        <ProjectCard 
-            Title="Mail-To-Me" 
-            Description="Mail Handler Web Application For HTML Forms."
-            ImageUrl="images/mail-to-me.png"
-            RepoUrl="https://github.com/armckinney/mail-to-me"
-            DemoUrl="https://mailtome.armckinney.dev/" />
-
-        <ProjectCard 
-            Title="Epicentered" 
-            Description="Website Visualizing Recent Earthquakes."
-            ImageUrl="images/epicentered.png"
-            RepoUrl="https://github.com/armckinney/epicentered"
-            DemoUrl="https://epicentered.armckinney.dev/" />
-
-        <ProjectCard 
-            Title="GeoHops" 
-            Description="Nashville Metro Beer Permits Visualized."
-            ImageUrl="images/geohops.png"
-            RepoUrl="https://github.com/armckinney/geohops"
-            DemoUrl="https://geohops.armckinney.dev/" />
-
-         <ProjectCard 
-            Title="BestBot" 
-            Description="A BestBuy Inventory Tracking Bot."
-            ImageUrl="images/bestbot.png"
-            RepoUrl="https://github.com/armckinney/bestbot" />
-
-        <ProjectCard 
-            Title="Mission To Mars" 
-            Description="Front Page of the Martian Internet."
-            ImageUrl="images/mission-to-mars.png"
-            RepoUrl="https://github.com/armckinney/mission-to-mars" />
-
-         <ProjectCard 
-            Title="Ten Second Tools" 
-            Description="Tools That Save A Second - Or Ten. Collection of useful scripts."
-            ImageUrl="images/nsync.png"
-            RepoUrl="https://github.com/armckinney/ten-second-tools" />
-
-        <ProjectCard 
-            Title="Repository Templates" 
-            Description="GitHub Template Repositories for .NET, Go, Python, Spark, Java and more."
-            ImageUrl="images/template-python.png"
-            RepoUrl="https://github.com/armckinney?tab=repositories&q=template&type=template&language=&sort=name" />
-
-        <ProjectCard 
-            Title="Containers" 
-            Description="Extendable Docker Images."
-            ImageUrl="images/dotnet-base.png"
-            RepoUrl="https://github.com/armckinney/containers"
-            DemoUrl="https://hub.docker.com/u/armck" />
-
-         <ProjectCard 
-            Title="Design Patterns" 
-            Description="Design Patterns From The Gang Of Four Written In Python."
-            ImageUrl="images/design-patterns.png"
-            RepoUrl="https://github.com/armckinney/design-patterns" />
+        @foreach (var project in _projects)
+        {
+            <ProjectCard Project="project" />
+        }
     </div>
 </SectionContainer>
 
 <SectionContainer Title="Skills" id="skills">
     <div class="grid grid-cols-2">
-        <div>
-            <h3>Languages</h3>
+        @foreach (var categoryGroup in _skills.GroupBy(s => s.Category))
+        {
             <div>
-                <SkillTag>C#</SkillTag>
-                <SkillTag>Python</SkillTag>
-                <SkillTag>SQL</SkillTag>
-                <SkillTag>BASH</SkillTag>
-                <SkillTag>PowerShell</SkillTag>
+                <h3>@categoryGroup.Key</h3>
+                <div>
+                    @foreach (var skill in categoryGroup)
+                    {
+                        <SkillTag>@skill.Name</SkillTag>
+                    }
+                </div>
             </div>
-        </div>
-        <div>
-            <h3>Frameworks</h3>
-            <div>
-                <SkillTag>.NET</SkillTag>
-                <SkillTag>FastAPI</SkillTag>
-                <SkillTag>Blazor</SkillTag>
-                <SkillTag>BootStrap</SkillTag>
-                <SkillTag>PySpark</SkillTag>
-            </div>
-        </div>
-        <div>
-            <h3>Databases & Storage</h3>
-            <div>
-                <SkillTag>Blob Storage</SkillTag>
-                <SkillTag>PostgreSql</SkillTag>
-                <SkillTag>Sqlite</SkillTag>
-                <SkillTag>SqlServer</SkillTag>
-            </div>
-        </div>
-        <div>
-            <h3>Machine Learning</h3>
-            <div>
-                <SkillTag>Keras</SkillTag>
-                <SkillTag>Sci-Kit Learn</SkillTag>
-                <SkillTag>TensorFlow</SkillTag>
-            </div>
-        </div>
-        <div>
-            <h3>Visualizations</h3>
-            <div>
-                <SkillTag>Plotly</SkillTag>
-                <SkillTag>Seaborn</SkillTag>
-                <SkillTag>Power BI</SkillTag>
-            </div>
-        </div>
-        <div>
-            <h3>DevOps</h3>
-            <div>
-                <SkillTag>GitLab</SkillTag>
-                <SkillTag>Github</SkillTag>
-                <SkillTag>Terraform</SkillTag>
-            </div>
-        </div>
-        <div>
-            <h3>Other</h3>
-            <div>
-                <SkillTag>Microsoft Azure</SkillTag>
-                <SkillTag>Databricks</SkillTag>
-                <SkillTag>Delta Storage</SkillTag>
-                <SkillTag>Linux</SkillTag>
-                <SkillTag>Obsidian</SkillTag>
-                <SkillTag>VS Code</SkillTag>
-            </div>
-        </div>
+        }
     </div>
 </SectionContainer>
+
+@code {
+    private List<ProjectModel> _projects = new();
+    private List<SkillModel> _skills = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        _projects = await PortfolioService.GetProjectsAsync();
+        _skills = await PortfolioService.GetSkillsAsync();
+    }
+}
 
 <SectionContainer Title="About" IsAlt="true" id="about">
     <div style="text-align: center;">

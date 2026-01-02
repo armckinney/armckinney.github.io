@@ -1,0 +1,118 @@
+[
+    {
+        "category": "Languages",
+        "name": "C#"
+    },
+    {
+        "category": "Languages",
+        "name": "Python"
+    },
+    {
+        "category": "Languages",
+        "name": "SQL"
+    },
+    {
+        "category": "Languages",
+        "name": "BASH"
+    },
+    {
+        "category": "Languages",
+        "name": "PowerShell"
+    },
+    {
+        "category": "Frameworks",
+        "name": ".NET"
+    },
+    {
+        "category": "Frameworks",
+        "name": "FastAPI"
+    },
+    {
+        "category": "Frameworks",
+        "name": "Blazor"
+    },
+    {
+        "category": "Frameworks",
+        "name": "BootStrap"
+    },
+    {
+        "category": "Frameworks",
+        "name": "PySpark"
+    },
+    {
+        "category": "Databases & Storage",
+        "name": "Blob Storage"
+    },
+    {
+        "category": "Databases & Storage",
+        "name": "PostgreSql"
+    },
+    {
+        "category": "Databases & Storage",
+        "name": "Sqlite"
+    },
+    {
+        "category": "Databases & Storage",
+        "name": "SqlServer"
+    },
+    {
+        "category": "Machine Learning",
+        "name": "Keras"
+    },
+    {
+        "category": "Machine Learning",
+        "name": "Sci-Kit Learn"
+    },
+    {
+        "category": "Machine Learning",
+        "name": "TensorFlow"
+    },
+    {
+        "category": "Visualizations",
+        "name": "Plotly"
+    },
+    {
+        "category": "Visualizations",
+        "name": "Seaborn"
+    },
+    {
+        "category": "Visualizations",
+        "name": "Power BI"
+    },
+    {
+        "category": "DevOps",
+        "name": "GitLab"
+    },
+    {
+        "category": "DevOps",
+        "name": "Github"
+    },
+    {
+        "category": "DevOps",
+        "name": "Terraform"
+    },
+    {
+        "category": "Other",
+        "name": "Microsoft Azure"
+    },
+    {
+        "category": "Other",
+        "name": "Databricks"
+    },
+    {
+        "category": "Other",
+        "name": "Delta Storage"
+    },
+    {
+        "category": "Other",
+        "name": "Linux"
+    },
+    {
+        "category": "Other",
+        "name": "Obsidian"
+    },
+    {
+        "category": "Other",
+        "name": "VS Code"
+    }
+]

@@ -1,0 +1,67 @@
+[
+    {
+        "title": "Credit Crunch",
+        "description": "Credit Approval Web Application with Integrated Neural Net Risk Analysis.",
+        "imageUrl": "images/west-end-financial.png",
+        "repoUrl": "https://github.com/armckinney/west-end-financial",
+        "demoUrl": "https://westendfinancial.armckinney.dev/"
+    },
+    {
+        "title": "Mail-To-Me",
+        "description": "Mail Handler Web Application For HTML Forms.",
+        "imageUrl": "images/mail-to-me.png",
+        "repoUrl": "https://github.com/armckinney/mail-to-me",
+        "demoUrl": "https://mailtome.armckinney.dev/"
+    },
+    {
+        "title": "Epicentered",
+        "description": "Website Visualizing Recent Earthquakes.",
+        "imageUrl": "images/epicentered.png",
+        "repoUrl": "https://github.com/armckinney/epicentered",
+        "demoUrl": "https://epicentered.armckinney.dev/"
+    },
+    {
+        "title": "GeoHops",
+        "description": "Nashville Metro Beer Permits Visualized.",
+        "imageUrl": "images/geohops.png",
+        "repoUrl": "https://github.com/armckinney/geohops",
+        "demoUrl": "https://geohops.armckinney.dev/"
+    },
+    {
+        "title": "BestBot",
+        "description": "A BestBuy Inventory Tracking Bot.",
+        "imageUrl": "images/bestbot.png",
+        "repoUrl": "https://github.com/armckinney/bestbot"
+    },
+    {
+        "title": "Mission To Mars",
+        "description": "Front Page of the Martian Internet.",
+        "imageUrl": "images/mission-to-mars.png",
+        "repoUrl": "https://github.com/armckinney/mission-to-mars"
+    },
+    {
+        "title": "Ten Second Tools",
+        "description": "Tools That Save A Second - Or Ten. Collection of useful scripts.",
+        "imageUrl": "images/nsync.png",
+        "repoUrl": "https://github.com/armckinney/ten-second-tools"
+    },
+    {
+        "title": "Repository Templates",
+        "description": "GitHub Template Repositories for .NET, Go, Python, Spark, Java and more.",
+        "imageUrl": "images/template-python.png",
+        "repoUrl": "https://github.com/armckinney?tab=repositories&q=template&type=template&language=&sort=name"
+    },
+    {
+        "title": "Containers",
+        "description": "Extendable Docker Images.",
+        "imageUrl": "images/dotnet-base.png",
+        "repoUrl": "https://github.com/armckinney/containers",
+        "demoUrl": "https://hub.docker.com/u/armck"
+    },
+    {
+        "title": "Design Patterns",
+        "description": "Design Patterns From The Gang Of Four Written In Python.",
+        "imageUrl": "images/design-patterns.png",
+        "repoUrl": "https://github.com/armckinney/design-patterns"
+    }
+]

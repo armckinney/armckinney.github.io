@@ -1,19 +1,19 @@
 <div class="card">
-    @if (!string.IsNullOrEmpty(ImageUrl))
+    @if (!string.IsNullOrEmpty(Project.ImageUrl))
     {
-        <img src="@ImageUrl" alt="@Title" class="card-img" />
+        <img src="@Project.ImageUrl" alt="@Project.Title" class="card-img" />
     }
     <div class="card-body">
-        <h3 class="card-title">@Title</h3>
-        <p class="card-text">@Description</p>
+        <h3 class="card-title">@Project.Title</h3>
+        <p class="card-text">@Project.Description</p>
         <div class="card-actions">
-            @if (!string.IsNullOrEmpty(RepoUrl))
+            @if (!string.IsNullOrEmpty(Project.RepoUrl))
             {
-                <a href="@RepoUrl" target="_blank" class="btn btn-outline">Code</a>
+                <a href="@Project.RepoUrl" target="_blank" class="btn btn-outline" aria-label="View source code for @Project.Title">Code</a>
             }
-            @if (!string.IsNullOrEmpty(DemoUrl))
+            @if (!string.IsNullOrEmpty(Project.DemoUrl))
             {
-                <a href="@DemoUrl" target="_blank" class="btn btn-primary">Demo</a>
+                <a href="@Project.DemoUrl" target="_blank" class="btn btn-primary" aria-label="View demo for @Project.Title">Demo</a>
             }
         </div>
     </div>
@@ -21,17 +21,5 @@
 
 @code {
     [Parameter]
-    public string Title { get; set; } = "";
-
-    [Parameter]
-    public string Description { get; set; } = "";
-
-    [Parameter]
-    public string? ImageUrl { get; set; }
-
-    [Parameter]
-    public string? RepoUrl { get; set; }
-
-    [Parameter]
-    public string? DemoUrl { get; set; }
+    public ProjectModel Project { get; set; } = new();
 }
