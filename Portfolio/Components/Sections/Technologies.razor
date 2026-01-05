@@ -2,7 +2,9 @@
 @using Portfolio.Models
 @using Portfolio.Components.Common
 @inject PortfolioService PortfolioService
+@inject LayoutState LayoutState
 @inject IJSRuntime JS
+@implements IDisposable
 
 <section id="technologies" class="section">
     <div class="container">
@@ -55,7 +57,7 @@
 
                     <div class="modal-grid">
                         <div>
-                            <h4 class="modal-section-title">Related Achievements</h4>
+                            <h4 class="modal-section-title">Related @(LayoutState.Audience == "engineer" ? "Case Studies" : "Achievements")</h4>
                             @if (SelectedSkill.RelatedStories.Any())
                             {
                                 <ul class="related-list">
@@ -70,7 +72,7 @@
                             }
                             else
                             {
-                                <p class="no-related">No achievements using this technology yet</p>
+                                <p class="no-related">No @(LayoutState.Audience == "engineer" ? "case studies" : "achievements") using this technology yet</p>
                             }
                         </div>
 
@@ -107,6 +109,12 @@
     protected override async Task OnInitializedAsync()
     {
         Skills = await PortfolioService.GetSkillsAsync();
+        LayoutState.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        LayoutState.OnChange -= StateHasChanged;
     }
 
     private void SelectSkill(SkillModel skill)

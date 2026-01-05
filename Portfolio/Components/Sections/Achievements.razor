@@ -7,7 +7,7 @@
 <section id="achievements" class="section">
     <div class="container">
         <div class="section-title-wrapper">
-            <h2 class="section-title">Achievements</h2>
+            <h2 class="section-title">@(LayoutState.Audience == "engineer" ? "Case Studies" : "Achievements")</h2>
             <p class="section-subtitle">
                 @if (LayoutState.Audience == "engineer")
                 {
@@ -26,7 +26,7 @@
              <div>
                 <label class="filter-group-label">Search</label>
                 <div class="search-wrapper">
-                    <input @bind="SearchQuery" @bind:event="oninput" type="text" placeholder="Search achievements..." class="filter-input" />
+                    <input @bind="SearchQuery" @bind:event="oninput" type="text" placeholder="Search @(LayoutState.Audience == "engineer" ? "case studies" : "achievements")..." class="filter-input" />
                     <Icon Name="search" Class="search-icon w-4 h-4" />
                 </div>
             </div>
@@ -98,7 +98,7 @@
          @if (!FilteredAchievements.Any())
         {
              <div class="no-results">
-              <p>No achievements match the selected filters.</p>
+              <p>No @(LayoutState.Audience == "engineer" ? "case studies" : "achievements") match the selected filters.</p>
             </div>
         }
     </div>
@@ -186,7 +186,8 @@
                                  @if (!string.IsNullOrEmpty(SelectedAchievement.DeepDive.Challenges))
                                 {
                                     <div>
-                                        <h4 style="font-weight: 500; margin-bottom: 0.75rem;">
+                                        <h4 style="font-weight: 500; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                                            <Icon Name="alert-triangle" Class="w-5 h-5 icon-blue" />
                                             Technical Challenges
                                         </h4>
                                         <p>@SelectedAchievement.DeepDive.Challenges</p>
