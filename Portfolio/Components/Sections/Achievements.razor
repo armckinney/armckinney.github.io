@@ -20,7 +20,9 @@
             </p>
         </div>
 
-         <!-- Filters -->
+        <!-- Filters -->
+        @if (!MaxCount.HasValue)
+        {
         <div class="filters-container">
              <!-- Search Filter -->
              <div>
@@ -62,6 +64,7 @@
                 </select>
             </div>
         </div>
+        }
 
         <!-- Achievements Grid -->
         <div class="stories-grid">
@@ -70,7 +73,7 @@
                 <div @onclick="() => SelectAchievement(item)" class="story-card group">
                     <div class="card-header">
                         <span class="domain-badge">
-                            @item.Domain
+                            @item.Domains.FirstOrDefault()
                         </span>
                          <div class="arrow-icon-wrapper">
                             <Icon Name="arrow-right" Class="w-5 h-5" />
@@ -101,6 +104,15 @@
               <p>No @(LayoutState.Audience == "engineer" ? "case studies" : "achievements") match the selected filters.</p>
             </div>
         }
+
+        @if (MaxCount.HasValue && AchievementItems.Count > MaxCount.Value)
+        {
+            <div class="view-all-container" style="display: flex; justify-content: center; margin-top: 2rem;">
+                <button @onclick="NavigateToAllAchievements" class="btn btn-primary" style="padding: 0.75rem 1.5rem;">
+                    View All @(LayoutState.Audience == "engineer" ? "Case Studies" : "Achievements")
+                </button>
+            </div>
+        }
     </div>
 
     <!-- Modal -->
@@ -113,7 +125,10 @@
                          <div class="modal-title-group">
                             <h3>@SelectedAchievement.Title</h3>
                             <div class="modal-tags">
-                                <span class="domain-badge">@SelectedAchievement.Domain</span>
+                                @foreach (var d in SelectedAchievement.Domains)
+                                {
+                                    <span class="domain-badge">@d</span>
+                                }
                                 @foreach (var p in SelectedAchievement.Principles)
                                 {
                                      <span class="principle-tag">@p</span>
@@ -121,7 +136,6 @@
                             </div>
                         </div>
                         <button @onclick="CloseAchievement" class="close-btn">
-                            <span class="sr-only">Close</span>
                              <Icon Name="x" Class="h-6 w-6" />
                         </button>
                     </div>
@@ -213,6 +227,12 @@
 </section>
 
 @code {
+    [Parameter]
+    public int? MaxCount { get; set; }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; } = default!;
+
     private List<AchievementModel> AchievementItems = new();
     private AchievementModel? SelectedAchievement;
     private string ActiveDomain = "All";
@@ -220,7 +240,7 @@
     private string ActiveTech = "All";
     private string SearchQuery = "";
 
-    private IEnumerable<string> Domains => new[] { "All" }.Concat(AchievementItems.Select(s => s.Domain).Distinct().OrderBy(d => d));
+    private IEnumerable<string> Domains => new[] { "All" }.Concat(AchievementItems.SelectMany(s => s.Domains).Distinct().OrderBy(d => d));
     private IEnumerable<string> Principles => new[] { "All" }.Concat(AchievementItems.SelectMany(s => s.Principles).Distinct().OrderBy(p => p));
     private IEnumerable<string> Technologies => new[] { "All" }.Concat(AchievementItems.SelectMany(s => s.Technologies).Distinct().OrderBy(t => t));
 
@@ -245,13 +265,31 @@
         SelectedAchievement = null;
     }
 
-    private IEnumerable<AchievementModel> FilteredAchievements => AchievementItems.Where(s => 
-        (string.IsNullOrWhiteSpace(SearchQuery) || 
-         s.Title.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) || 
-         s.Result.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
-         s.Situation.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase)) &&
-        (ActiveDomain == "All" || s.Domain == ActiveDomain) &&
-        (ActivePrinciple == "All" || s.Principles.Contains(ActivePrinciple)) &&
-        (ActiveTech == "All" || s.Technologies.Contains(ActiveTech))
-    );
+    private void NavigateToAllAchievements()
+    {
+        NavigationManager.NavigateTo("achievements");
+    }
+
+    private IEnumerable<AchievementModel> FilteredAchievements 
+    {
+        get
+        {
+            var query = AchievementItems.Where(s => 
+                (string.IsNullOrWhiteSpace(SearchQuery) || 
+                 s.Title.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) || 
+                 s.Result.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                 s.Situation.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase)) &&
+                (ActiveDomain == "All" || s.Domains.Contains(ActiveDomain)) &&
+                (ActivePrinciple == "All" || s.Principles.Contains(ActivePrinciple)) &&
+                (ActiveTech == "All" || s.Technologies.Contains(ActiveTech))
+            );
+
+            if (MaxCount.HasValue)
+            {
+                return query.Take(MaxCount.Value);
+            }
+            
+            return query;
+        }
+    }
 }

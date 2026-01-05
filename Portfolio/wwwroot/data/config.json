@@ -1,4 +1,5 @@
 {
+    "$schema": "./schemas/config.schema.json",
     "socials": {
         "github": "https://github.com/armckinney",
         "linkedin": "https://linkedin.com/in/drew-mckinney",

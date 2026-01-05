@@ -31,4 +31,24 @@
 .copyright {
     color: var(--text-tertiary);
     font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.separator {
+    color: var(--text-tertiary);
+    opacity: 0.5;
+}
+
+.source-link {
+    color: var(--text-tertiary);
+    display: flex;
+    align-items: center;
+    transition: color 0.3s;
+    text-decoration: none;
+}
+
+.source-link:hover {
+    color: var(--text-primary);
 }

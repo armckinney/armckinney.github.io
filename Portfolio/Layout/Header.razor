@@ -2,24 +2,28 @@
 @using Portfolio.Components.Common
 @inject LayoutState LayoutState
 @inject IJSRuntime JS
+@inject NavigationManager NavigationManager
 @implements IDisposable
 
 <header class="header">
     <div class="header-inner">
         <!-- Brand Logo -->
-        <a href="#" @onclick:preventDefault @onclick='() => ScrollTo("hero")' class="brand-logo">
+        <a href="/" @onclick:preventDefault @onclick="HandleLogoClick" class="brand-logo">
             <img src="favicon/android-chrome-192x192.png" alt="Logo" class="logo-image" />
         </a>
 
         <!-- Desktop Nav -->
-        <nav class="nav-desktop">
-            <button @onclick='() => ScrollTo("achievements")' class="nav-link">
-                @(LayoutState.Audience == "engineer" ? "Case Studies" : "Achievements")
-            </button>
-            <button @onclick='() => ScrollTo("projects")' class="nav-link">Projects</button>
-            <button @onclick='() => ScrollTo("technologies")' class="nav-link">Technologies</button>
-            <button @onclick='() => ScrollTo("contact")' class="nav-link">Contact</button>
-        </nav>
+        @if (IsHomePage)
+        {
+            <nav class="nav-desktop">
+                <button @onclick='() => ScrollTo("achievements")' class="nav-link">
+                    @(LayoutState.Audience == "engineer" ? "Case Studies" : "Achievements")
+                </button>
+                <button @onclick='() => ScrollTo("projects")' class="nav-link">Projects</button>
+                <button @onclick='() => ScrollTo("technologies")' class="nav-link">Technologies</button>
+                <button @onclick='() => ScrollTo("contact")' class="nav-link">Contact</button>
+            </nav>
+        }
 
         <!-- Right Side Controls -->
         <div class="controls-group">
@@ -37,20 +41,23 @@
         </div>
 
         <!-- Mobile Menu Button -->
-        <button class="menu-button" @onclick="ToggleMobileMenu">
-            @if (IsMobileMenuOpen)
-            {
-                <Icon Name="x" Class="w-6 h-6" />
-            }
-            else
-            {
-                <Icon Name="menu" Class="w-6 h-6" />
-            }
-        </button>
+        @if (IsHomePage)
+        {
+            <button class="menu-button" @onclick="ToggleMobileMenu">
+                @if (IsMobileMenuOpen)
+                {
+                    <Icon Name="x" Class="w-6 h-6" />
+                }
+                else
+                {
+                    <Icon Name="menu" Class="w-6 h-6" />
+                }
+            </button>
+        }
     </div>
 
     <!-- Mobile Menu -->
-    @if (IsMobileMenuOpen)
+    @if (IsMobileMenuOpen && IsHomePage)
     {
         <div class="mobile-menu">
             <button @onclick='() => ScrollTo("achievements")' class="mobile-nav-link">
@@ -66,15 +73,23 @@
 
 @code {
     private bool IsMobileMenuOpen = false;
+    private bool IsHomePage => NavigationManager.Uri.TrimEnd('/') == NavigationManager.BaseUri.TrimEnd('/');
 
     protected override void OnInitialized()
     {
         LayoutState.OnChange += StateHasChanged;
+        NavigationManager.LocationChanged += HandleLocationChanged;
     }
 
     public void Dispose()
     {
         LayoutState.OnChange -= StateHasChanged;
+        NavigationManager.LocationChanged -= HandleLocationChanged;
+    }
+
+    private void HandleLocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        StateHasChanged();
     }
 
     private void ToggleMobileMenu()
@@ -91,5 +106,17 @@
     {
         IsMobileMenuOpen = false;
         await JS.InvokeVoidAsync("scrollToSection", id);
+    }
+
+    private async Task HandleLogoClick()
+    {
+        if (IsHomePage)
+        {
+            await ScrollTo("hero");
+        }
+        else
+        {
+            NavigationManager.NavigateTo("/");
+        }
     }
 }

@@ -4,7 +4,7 @@ public class AchievementModel
 {
     public string Id { get; set; } = "";
     public string Title { get; set; } = "";
-    public string Domain { get; set; } = "";
+    public List<string> Domains { get; set; } = new();
     public List<string> Principles { get; set; } = new();
     public List<string> Technologies { get; set; } = new();
     public string Situation { get; set; } = "";

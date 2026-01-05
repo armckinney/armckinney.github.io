@@ -22,6 +22,8 @@
         </div>
 
         <!-- Filters -->
+        @if (!MaxCount.HasValue) 
+        {
         <div class="filters-container">
              <!-- Search Filter -->
              <div>
@@ -54,6 +56,7 @@
                 </select>
             </div>
         </div>
+        }
 
         <!-- Projects Grid -->
         <div class="projects-grid">
@@ -127,10 +130,25 @@
               <p>No projects match the selected filters.</p>
             </div>
         }
+
+        @if (MaxCount.HasValue && ProjectItems.Count > MaxCount.Value)
+        {
+            <div class="view-all-container" style="display: flex; justify-content: center; margin-top: 2rem;">
+                <button @onclick="NavigateToAllProjects" class="btn btn-primary" style="padding: 0.75rem 1.5rem;">
+                     View All Projects
+                </button>
+            </div>
+        }
     </div>
 </section>
 
 @code {
+    [Parameter]
+    public int? MaxCount { get; set; }
+
+    [Inject]
+    private NavigationManager NavigationManager { get; set; } = default!;
+
     private List<ProjectModel> ProjectItems = new();
     private string ActiveDomain = "All";
     private string ActiveTech = "All";
@@ -150,11 +168,29 @@
          LayoutState.OnChange -= StateHasChanged;
     }
 
-    private IEnumerable<ProjectModel> FilteredProjects => ProjectItems.Where(p => 
-        (string.IsNullOrWhiteSpace(SearchQuery) || 
-         p.Title.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) || 
-         p.Description.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase)) &&
-        (ActiveDomain == "All" || p.Domain == ActiveDomain) &&
-        (ActiveTech == "All" || p.Technologies.Contains(ActiveTech))
-    );
+    private void NavigateToAllProjects()
+    {
+        NavigationManager.NavigateTo("projects");
+    }
+
+    private IEnumerable<ProjectModel> FilteredProjects 
+    {
+        get
+        {
+             var query = ProjectItems.Where(p => 
+                (string.IsNullOrWhiteSpace(SearchQuery) || 
+                 p.Title.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) || 
+                 p.Description.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase)) &&
+                (ActiveDomain == "All" || p.Domain == ActiveDomain) &&
+                (ActiveTech == "All" || p.Technologies.Contains(ActiveTech))
+            );
+
+            if (MaxCount.HasValue)
+            {
+                return query.Take(MaxCount.Value);
+            }
+
+            return query;
+        }
+    }
 }

@@ -14,26 +14,32 @@ public class PortfolioService
 
     public async Task<List<ProjectModel>> GetProjectsAsync()
     {
-        return await _http.GetFromJsonAsync<List<ProjectModel>>("data/projects.json") ?? new List<ProjectModel>();
+        var data = await _http.GetFromJsonAsync<ProjectsData>("data/projects.json");
+        return data?.Projects ?? new List<ProjectModel>();
     }
 
     public async Task<List<SkillModel>> GetSkillsAsync()
     {
-        return await _http.GetFromJsonAsync<List<SkillModel>>("data/skills.json") ?? new List<SkillModel>();
+        var data = await _http.GetFromJsonAsync<SkillsData>("data/skills.json");
+        return data?.Skills ?? new List<SkillModel>();
     }
     
     public async Task<List<AchievementModel>> GetAchievementsAsync()
     {
         try 
         {
-            return await _http.GetFromJsonAsync<List<AchievementModel>>("data/achievements.json") ?? new List<AchievementModel>();
+            var data = await _http.GetFromJsonAsync<AchievementsData>("data/achievements.json");
+            return data?.Achievements ?? new List<AchievementModel>();
         }
         catch(HttpRequestException) 
         {
-            // If the file doesn't exist or is empty, just return empty list
             return new List<AchievementModel>();
         }
     }
+
+    private class ProjectsData { public List<ProjectModel> Projects { get; set; } = new(); }
+    private class SkillsData { public List<SkillModel> Skills { get; set; } = new(); }
+    private class AchievementsData { public List<AchievementModel> Achievements { get; set; } = new(); }
 
     private ConfigModel? _config;
 

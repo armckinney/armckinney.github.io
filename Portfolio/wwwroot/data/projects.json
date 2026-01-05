@@ -1,111 +1,132 @@
-[
-    {
-        "id": "1",
-        "title": "Cloud Infrastructure Automation Platform",
-        "description": "Enterprise-grade infrastructure automation platform managing 500+ AWS resources using Terraform and Python custom providers.",
-        "domain": "Cloud Architecture",
-        "technologies": [
-            "AWS",
-            "Terraform",
-            "Python",
-            "Docker"
-        ],
-        "codeUrl": "https://github.com/armckinney/cloud-automation",
-        "highlights": [
-            "Reduced infrastructure costs by 40%",
-            "99.99% uptime SLA achievement"
-        ]
-    },
-    {
-        "id": "2",
-        "title": "Real-time Collaborative IDE",
-        "description": "Web-based integrated development environment with real-time collaboration features, code execution, and AI-powered code suggestions.",
-        "domain": "Developer Tools",
-        "technologies": [
-            "TypeScript",
-            "React",
-            "WebSocket",
-            "Node.js"
-        ],
-        "codeUrl": "https://github.com/armckinney/collab-ide",
-        "demoUrl": "https://ide.armckinney.dev",
-        "highlights": [
-            "Real-time multi-user editing with CRDT",
-            "Supports 20+ programming languages",
-            "AI-powered code completion"
-        ]
-    },
-    {
-        "id": "3",
-        "title": "AI Content Moderation System",
-        "description": "Machine learning pipeline for automated content moderation using computer vision and NLP to detect inappropriate content at scale.",
-        "domain": "Machine Learning",
-        "technologies": [
-            "Python",
-            "PyTorch",
-            "FastAPI",
-            "Redis"
-        ],
-        "codeUrl": "https://github.com/armckinney/content-moderator",
-        "highlights": [
-            "Processes 1M+ images daily",
-            "95% accuracy with low false positives",
-            "Real-time decision making (<100ms)"
-        ]
-    },
-    {
-        "id": "4",
-        "title": "Distributed Task Queue Framework",
-        "description": "High-performance distributed task queue system with priority scheduling, fault tolerance, and horizontal scalability.",
-        "domain": "Infrastructure",
-        "technologies": [
-            "Go",
-            "Redis",
-            "Kubernetes",
-            "gRPC"
-        ],
-        "codeUrl": "https://github.com/armckinney/task-queue",
-        "demoUrl": "https://docs.taskqueue.dev",
-        "highlights": [
-            "Handles 100k+ tasks per second",
-            "Built-in retry and dead letter queue",
-            "Dynamic worker pool scaling"
-        ]
-    },
-    {
-        "id": "5",
-        "title": "Financial Analytics Dashboard",
-        "description": "Interactive dashboard for real-time financial data analysis with custom indicators, alerts, and portfolio management.",
-        "domain": "Data Analytics",
-        "technologies": [
-            "React",
-            "TypeScript",
-            "D3.js",
-            "WebSocket"
-        ],
-        "demoUrl": "https://finance.armckinney.dev",
-        "highlights": [
-            "Real-time market data streaming",
-            "Custom technical indicators",
-            "Portfolio performance tracking"
-        ]
-    },
-    {
-        "id": "6",
-        "title": "Microservices Monitoring Platform",
-        "description": "Comprehensive monitoring and observability platform for microservices with distributed tracing, metrics, and log aggregation.",
-        "domain": "DevOps",
-        "technologies": [
-            "TypeScript",
-            "React",
-            "OpenTelemetry",
-            "ClickHouse"
-        ],
-        "codeUrl": "https://github.com/armckinney/observability",
-        "highlights": [
-            "Distributed tracing across services",
-            "Custom dashboards and alerts",
-            "Log aggregation from 100+ services"
-        ]
-    }
-]
+{
+    "$schema": "./schemas/projects.schema.json",
+    "projects": [
+        {
+            "id": "1",
+            "title": "Cloud Infrastructure Automation Platform",
+            "description": "Enterprise-grade infrastructure automation platform managing 500+ AWS resources using Terraform and Python custom providers.",
+            "domain": "Cloud Architecture",
+            "technologies": [
+                "AWS",
+                "Terraform",
+                "Python",
+                "Docker"
+            ],
+            "codeUrl": "https://github.com/armckinney/cloud-automation",
+            "highlights": [
+                "Reduced infrastructure costs by 40%",
+                "99.99% uptime SLA achievement"
+            ]
+        },
+        {
+            "id": "2",
+            "title": "Real-time Collaborative IDE",
+            "description": "Web-based integrated development environment with real-time collaboration features, code execution, and AI-powered code suggestions.",
+            "domain": "Developer Tools",
+            "technologies": [
+                "TypeScript",
+                "React",
+                "WebSocket",
+                "Node.js"
+            ],
+            "codeUrl": "https://github.com/armckinney/collab-ide",
+            "demoUrl": "https://ide.armckinney.dev",
+            "highlights": [
+                "Real-time multi-user editing with CRDT",
+                "Supports 20+ programming languages",
+                "AI-powered code completion"
+            ]
+        },
+        {
+            "id": "3",
+            "title": "AI Content Moderation System",
+            "description": "Machine learning pipeline for automated content moderation using computer vision and NLP to detect inappropriate content at scale.",
+            "domain": "Machine Learning",
+            "technologies": [
+                "Python",
+                "PyTorch",
+                "FastAPI",
+                "Redis"
+            ],
+            "codeUrl": "https://github.com/armckinney/content-moderator",
+            "highlights": [
+                "Processes 1M+ images daily",
+                "95% accuracy with low false positives",
+                "Real-time decision making (<100ms)"
+            ]
+        },
+        {
+            "id": "4",
+            "title": "Distributed Task Queue Framework",
+            "description": "High-performance distributed task queue system with priority scheduling, fault tolerance, and horizontal scalability.",
+            "domain": "Infrastructure",
+            "technologies": [
+                "Go",
+                "Redis",
+                "Kubernetes",
+                "gRPC"
+            ],
+            "codeUrl": "https://github.com/armckinney/task-queue",
+            "demoUrl": "https://docs.taskqueue.dev",
+            "highlights": [
+                "Handles 100k+ tasks per second",
+                "Built-in retry and dead letter queue",
+                "Dynamic worker pool scaling"
+            ]
+        },
+        {
+            "id": "5",
+            "title": "Financial Analytics Dashboard",
+            "description": "Interactive dashboard for real-time financial data analysis with custom indicators, alerts, and portfolio management.",
+            "domain": "Data Analytics",
+            "technologies": [
+                "React",
+                "TypeScript",
+                "D3.js",
+                "WebSocket"
+            ],
+            "demoUrl": "https://finance.armckinney.dev",
+            "highlights": [
+                "Real-time market data streaming",
+                "Custom technical indicators",
+                "Portfolio performance tracking"
+            ]
+        },
+        {
+            "id": "6",
+            "title": "Microservices Monitoring Platform",
+            "description": "Comprehensive monitoring and observability platform for microservices with distributed tracing, metrics, and log aggregation.",
+            "domain": "DevOps",
+            "technologies": [
+                "TypeScript",
+                "React",
+                "OpenTelemetry",
+                "ClickHouse"
+            ],
+            "codeUrl": "https://github.com/armckinney/observability",
+            "highlights": [
+                "Distributed tracing across services",
+                "Custom dashboards and alerts",
+                "Log aggregation from 100+ services"
+            ]
+        },
+        {
+            "id": "7",
+            "title": "Microservices Monitoring Platform test",
+            "description": "Comprehensive monitoring and observability platform for microservices with distributed tracing, metrics, and log aggregation.",
+            "domain": "DevOps",
+            "technologies": [
+                "TypeScript",
+                "React",
+                "OpenTelemetry",
+                "ClickHouse"
+            ],
+            "codeUrl": "https://github.com/armckinney/observability",
+            "highlights": [
+                "Distributed tracing across services",
+                "Custom dashboards and alerts",
+                "Log aggregation from 100+ services"
+            ]
+        }
+    ]
+}

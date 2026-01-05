@@ -1,0 +1,40 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Config",
+    "type": "object",
+    "properties": {
+        "socials": {
+            "type": "object",
+            "properties": {
+                "github": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "linkedin": {
+                    "type": "string",
+                    "format": "uri"
+                },
+                "email": {
+                    "type": "string",
+                    "format": "email"
+                },
+                "docker": {
+                    "type": "string",
+                    "format": "uri"
+                }
+            },
+            "required": [
+                "github",
+                "linkedin",
+                "email"
+            ]
+        },
+        "resume": {
+            "type": "string"
+        }
+    },
+    "required": [
+        "socials",
+        "resume"
+    ]
+}
