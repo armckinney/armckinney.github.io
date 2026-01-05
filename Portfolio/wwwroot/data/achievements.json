@@ -1,0 +1,119 @@
+[
+    {
+        "id": "1",
+        "title": "Scaling Microservices Architecture",
+        "domain": "Backend Engineering",
+        "principles": [
+            "Bias for Action",
+            "Think Big",
+            "Deliver Results"
+        ],
+        "technologies": [
+            "Go",
+            "Kubernetes",
+            "Redis",
+            "AWS"
+        ],
+        "situation": "Our legacy monolith was hitting scalability limits during peak traffic, causing 500 errors and high latency for 20% of users.",
+        "task": "Decompose the monolith into microservices to improve scalability, fault tolerance, and developer velocity.",
+        "action": "Architected a domain-driven design strategy, identified service boundaries, and incrementally migrated critical paths to Go microservices running on EKS. Implemented circuit breakers and rate limiting.",
+        "result": "Improved system throughput by 300%, reduced latency by 60%, and achieved 99.99% availability during subsequent peak events.",
+        "deepDive": {
+            "architecture": "Migrated from Django monolith to 12 Go microservices communicating via gRPC. Persisted data in separate RDS instances and used Redis for caching. Deployed on EKS with HPA (Horizontal Pod Autoscaling).",
+            "challenges": "Handling distributed transactions and data consistency across services. Solving this using the Saga pattern and event sourcing for eventual consistency.",
+            "metrics": "Throughput: 5k -> 20k RPS, Latency: 450ms -> 180ms p95, Deployments: Weekly -> Daily",
+            "diagram": {
+                "type": "architecture",
+                "description": "Transition from monolith to microservices showing load balancer, API gateway, and individual domain services."
+            }
+        }
+    },
+    {
+        "id": "2",
+        "title": "AI-Powered Customer Support System",
+        "domain": "AI/ML",
+        "principles": [
+            "Customer Obsession",
+            "Invent and Simplify"
+        ],
+        "technologies": [
+            "Python",
+            "TensorFlow",
+            "FastAPI",
+            "React"
+        ],
+        "situation": "Customer support team was overwhelmed with repetitive queries, leading to 48-hour response times and low CSAT scores.",
+        "task": "Build an intelligent system to automate responses to common queries and triage complex issues to human agents.",
+        "action": "Developed an NLP model using BERT for intent classification, built a retrieval-augmented generation (RAG) pipeline for answer synthesis, and integrated it into the support portal.",
+        "result": "Reduced ticket resolution time by 65%, automated 40% of inquiries with 92% accuracy, improved customer satisfaction score from 3.2 to 4.7/5.",
+        "deepDive": {
+            "architecture": "Fine-tuned BERT model for multi-class intent classification, implemented RAG (Retrieval-Augmented Generation) for context-aware responses using vector database, built React dashboard with real-time metrics, deployed on FastAPI with async processing.",
+            "challenges": "Handling ambiguous queries with confidence scoring, ensuring accurate responses while avoiding hallucinations, integrating with existing CRM system (Salesforce) via API, maintaining model accuracy over time with continuous learning pipeline.",
+            "metrics": "Model accuracy: 92% on test set, Precision/Recall: 0.89/0.91, Response time: 48h → 12h average, Automation rate: 40% of all tickets, Customer satisfaction: +47% improvement, Support team productivity: +35%.",
+            "diagram": {
+                "type": "flow",
+                "description": "ML pipeline showing data ingestion, preprocessing, model training, inference, and feedback loop for continuous improvement."
+            }
+        }
+    },
+    {
+        "id": "3",
+        "title": "Real-time Analytics Dashboard",
+        "domain": "Data Engineering",
+        "principles": [
+            "Customer Obsession",
+            "Dive Deep",
+            "Deliver Results"
+        ],
+        "technologies": [
+            "React",
+            "WebSocket",
+            "Apache Kafka",
+            "MongoDB",
+            "D3.js"
+        ],
+        "situation": "Business stakeholders lacked visibility into key metrics, relying on daily email reports with stale data that often led to missed opportunities.",
+        "task": "Create a real-time analytics platform providing instant insights into business performance with customizable dashboards.",
+        "action": "Designed streaming data pipeline with Kafka for event processing, built interactive React dashboard with WebSocket updates, implemented custom D3.js visualizations, and created materialized views for fast queries.",
+        "result": "Enabled real-time decision making, identified revenue optimization opportunities worth $2M annually, reduced time-to-insight from 24 hours to under 2 seconds.",
+        "deepDive": {
+            "architecture": "Event streaming with Apache Kafka (10 partitions per topic), materialized views in MongoDB with aggregation pipelines, WebSocket server using Socket.io for push updates, custom D3.js visualizations with React hooks integration, CDC (Change Data Capture) from PostgreSQL.",
+            "challenges": "Handling high-frequency data streams (100k events/min), optimizing query performance with proper indexing and aggregations, ensuring data accuracy during transformations, building intuitive UX for non-technical users with drill-down capabilities.",
+            "metrics": "Data latency: 24h → 1.8s average, Dashboard load time: < 800ms, Processing throughput: 100k events/min sustained, User adoption: 95% of stakeholders (85+ users), Query response time: < 200ms for 90th percentile.",
+            "diagram": {
+                "type": "architecture",
+                "description": "Data flow from sources through Kafka topics, stream processors, materialized views, and real-time WebSocket connections to dashboard clients."
+            }
+        }
+    },
+    {
+        "id": "4",
+        "title": "DevOps Pipeline Optimization",
+        "domain": "DevOps",
+        "principles": [
+            "Ownership",
+            "Invent and Simplify",
+            "Bias for Action"
+        ],
+        "technologies": [
+            "GitHub Actions",
+            "Docker",
+            "Terraform",
+            "AWS",
+            "Python"
+        ],
+        "situation": "Deployment process took 45 minutes with 25% failure rate, blocking developer productivity and slowing feature delivery.",
+        "task": "Streamline CI/CD pipeline to enable rapid, reliable deployments with comprehensive testing and automated rollback capabilities.",
+        "action": "Redesigned pipeline architecture with parallel stages, implemented multi-stage Docker builds, added automated testing and security scanning, created infrastructure as code with Terraform, and implemented blue-green deployments.",
+        "result": "Reduced deployment time from 45 to 8 minutes, increased deployment success rate to 98%, enabled 20+ daily deployments with zero-downtime releases.",
+        "deepDive": {
+            "architecture": "Multi-stage Docker builds with layer caching, parallel test execution (unit, integration, e2e), blue-green deployments with AWS ECS and ALB, Terraform for infrastructure management with remote state in S3, artifact storage in ECR with vulnerability scanning.",
+            "challenges": "Minimizing pipeline execution time through parallelization, ensuring test reliability and reducing flakiness, implementing safe rollback mechanisms with health checks, managing secrets securely using AWS Secrets Manager and OIDC authentication.",
+            "metrics": "Deploy time: 45min → 8min (82% reduction), Success rate: 75% → 98%, Daily deployments: 3 → 20+ average, MTTR (Mean Time To Recovery): 2h → 15min, Developer satisfaction: +80% in surveys.",
+            "diagram": {
+                "type": "flow",
+                "description": "CI/CD pipeline stages from commit to production, including build, test, security scan, staging deployment, and production rollout with automated health checks."
+            }
+        }
+    }
+]

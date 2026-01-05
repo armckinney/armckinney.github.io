@@ -1,0 +1,91 @@
+@using Portfolio.Services
+@using Portfolio.Components.Common
+@inject LayoutState LayoutState
+@inject IJSRuntime JS
+@implements IDisposable
+
+<header class="header">
+    <div class="header-inner">
+        <!-- Brand Logo -->
+        <a href="#" @onclick:preventDefault @onclick='() => ScrollTo("hero")' class="brand-logo">
+            <img src="favicon/android-chrome-192x192.png" alt="Logo" class="logo-image" />
+        </a>
+
+        <!-- Desktop Nav -->
+        <nav class="nav-desktop">
+            <button @onclick='() => ScrollTo("achievements")' class="nav-link">Achievements</button>
+            <button @onclick='() => ScrollTo("projects")' class="nav-link">Projects</button>
+            <button @onclick='() => ScrollTo("technologies")' class="nav-link">Technologies</button>
+            <button @onclick='() => ScrollTo("contact")' class="nav-link">Contact</button>
+        </nav>
+
+        <!-- Right Side Controls -->
+        <div class="controls-group">
+            <!-- Audience Toggle -->
+            <div class="audience-toggle">
+                <button @onclick='() => SetAudience("recruiter")' 
+                        class="audience-btn @(LayoutState.Audience == "recruiter" ? "active" : "")">
+                    Recruiter
+                </button>
+                <button @onclick='() => SetAudience("engineer")' 
+                        class="audience-btn @(LayoutState.Audience == "engineer" ? "active" : "")">
+                    Engineer
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Button -->
+        <button class="menu-button" @onclick="ToggleMobileMenu">
+            @if (IsMobileMenuOpen)
+            {
+                <Icon Name="x" Class="w-6 h-6" />
+            }
+            else
+            {
+                <Icon Name="menu" Class="w-6 h-6" />
+            }
+        </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    @if (IsMobileMenuOpen)
+    {
+        <div class="mobile-menu">
+            <button @onclick='() => ScrollTo("achievements")' class="mobile-nav-link">Achievements</button>
+            <button @onclick='() => ScrollTo("projects")' class="mobile-nav-link">Projects</button>
+            <button @onclick='() => ScrollTo("technologies")' class="mobile-nav-link">Technologies</button>
+            <button @onclick='() => ScrollTo("contact")' class="mobile-nav-link">Contact</button>
+            
+        </div>
+    }
+</header>
+
+@code {
+    private bool IsMobileMenuOpen = false;
+
+    protected override void OnInitialized()
+    {
+        LayoutState.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        LayoutState.OnChange -= StateHasChanged;
+    }
+
+    private void ToggleMobileMenu()
+    {
+        IsMobileMenuOpen = !IsMobileMenuOpen;
+    }
+
+    private void SetAudience(string audience)
+    {
+        LayoutState.SetAudience(audience);
+    }
+
+    private async Task ScrollTo(string id)
+    {
+        IsMobileMenuOpen = false;
+        await JS.InvokeVoidAsync("scrollToSection", id);
+    }
+}

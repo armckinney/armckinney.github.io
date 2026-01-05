@@ -1,0 +1,256 @@
+@using Portfolio.Services
+@using Portfolio.Models
+@using Portfolio.Components.Common
+@inject PortfolioService PortfolioService
+@inject LayoutState LayoutState
+
+<section id="achievements" class="section">
+    <div class="container">
+        <div class="section-title-wrapper">
+            <h2 class="section-title">Achievements</h2>
+            <p class="section-subtitle">
+                @if (LayoutState.Audience == "engineer")
+                {
+                    <text>Deep dives into complex technical challenges and solutions</text>
+                }
+                else
+                {
+                    <text>Proven track record of delivering results in high-stakes environments</text>
+                }
+            </p>
+        </div>
+
+         <!-- Filters -->
+        <div class="filters-container">
+             <!-- Search Filter -->
+             <div>
+                <label class="filter-group-label">Search</label>
+                <div class="search-wrapper">
+                    <input @bind="SearchQuery" @bind:event="oninput" type="text" placeholder="Search achievements..." class="filter-input" />
+                    <Icon Name="search" Class="search-icon w-4 h-4" />
+                </div>
+            </div>
+
+            <!-- Domain Filter -->
+            <div>
+                <label class="filter-group-label">Domain</label>
+                <select @bind="ActiveDomain" class="filter-select">
+                    @foreach (var domain in Domains)
+                    {
+                        <option value="@domain">@domain</option>
+                    }
+                </select>
+            </div>
+             <!-- Principle Filter -->
+            <div>
+                <label class="filter-group-label">Leadership Principle</label>
+                <select @bind="ActivePrinciple" class="filter-select">
+                    @foreach (var p in Principles)
+                    {
+                        <option value="@p">@p</option>
+                    }
+                </select>
+            </div>
+             <!-- Technology Filter -->
+            <div>
+                <label class="filter-group-label">Technology</label>
+                <select @bind="ActiveTech" class="filter-select">
+                    @foreach (var tech in Technologies)
+                    {
+                        <option value="@tech">@tech</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <!-- Achievements Grid -->
+        <div class="stories-grid">
+            @foreach (var item in FilteredAchievements)
+            {
+                <div @onclick="() => SelectAchievement(item)" class="story-card group">
+                    <div class="card-header">
+                        <span class="domain-badge">
+                            @item.Domain
+                        </span>
+                         <div class="arrow-icon-wrapper">
+                            <Icon Name="arrow-right" Class="w-5 h-5" />
+                        </div>
+                    </div>
+
+                    <h3 class="card-title">@item.Title</h3>
+
+                    <p class="card-result">@item.Result</p>
+
+                    <div class="tech-tags">
+                        @foreach (var tech in item.Technologies.Take(4))
+                        {
+                            <span class="tech-tag">@tech</span>
+                        }
+                        @if(item.Technologies.Count > 4)
+                        {
+                             <span class="tech-tag">+@(item.Technologies.Count - 4)</span>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+        
+         @if (!FilteredAchievements.Any())
+        {
+             <div class="no-results">
+              <p>No achievements match the selected filters.</p>
+            </div>
+        }
+    </div>
+
+    <!-- Modal -->
+    @if (SelectedAchievement != null)
+    {
+        <div class="modal-overlay" @onclick="CloseAchievement">
+            <div class="modal-content" @onclick:stopPropagation>
+                 <div class="modal-inner">
+                    <div class="modal-header">
+                         <div class="modal-title-group">
+                            <h3>@SelectedAchievement.Title</h3>
+                            <div class="modal-tags">
+                                <span class="domain-badge">@SelectedAchievement.Domain</span>
+                                @foreach (var p in SelectedAchievement.Principles)
+                                {
+                                     <span class="principle-tag">@p</span>
+                                }
+                            </div>
+                        </div>
+                        <button @onclick="CloseAchievement" class="close-btn">
+                            <span class="sr-only">Close</span>
+                             <Icon Name="x" Class="h-6 w-6" />
+                        </button>
+                    </div>
+
+                    <div class="star-sections">
+                        <!-- STAR Framework -->
+                        <div class="star-box situation-box">
+                            <h4>Situation</h4>
+                            <p>@SelectedAchievement.Situation</p>
+                        </div>
+                        <div class="star-box neutral-box">
+                            <h4>Task</h4>
+                            <p>@SelectedAchievement.Task</p>
+                        </div>
+                        <div class="star-box neutral-box">
+                            <h4>Action</h4>
+                            <p>@SelectedAchievement.Action</p>
+                        </div>
+                        <div class="star-box result-box">
+                            <h4>Result</h4>
+                            <p>@SelectedAchievement.Result</p>
+                        </div>
+
+                         <!-- Deep Dive -->
+                         @if (LayoutState.Audience == "engineer" && SelectedAchievement.DeepDive != null)
+                         {
+                             <div class="deep-dive">
+                                <h3>Technical Deep Dive</h3>
+                                
+                                @if (SelectedAchievement.DeepDive.Diagram != null)
+                                {
+                                     <div class="diagram-box">
+                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+                                            <!-- Icon based on type -->
+                                             @if (SelectedAchievement.DeepDive.Diagram.Type == "architecture") { <Icon Name="network" Class="w-12 h-12 icon-blue" /> }
+                                             else if (SelectedAchievement.DeepDive.Diagram.Type == "flow") { <Icon Name="menu" Class="w-12 h-12 icon-blue" /> }
+                                             else { <Icon Name="file-down" Class="w-12 h-12 icon-blue" /> }
+
+                                            <div>
+                                                <p style="font-weight: 500; font-size: 0.875rem; margin-bottom: 0.5rem;">
+                                                    @char.ToUpper(SelectedAchievement.DeepDive.Diagram.Type[0])@SelectedAchievement.DeepDive.Diagram.Type.Substring(1) Diagram
+                                                </p>
+                                                <p style="font-size: 0.75rem; color: var(--text-tertiary);">@SelectedAchievement.DeepDive.Diagram.Description</p>
+                                            </div>
+                                             <div style="font-size: 0.75rem; color: var(--text-tertiary); margin-top: 1rem;">
+                                                [Diagram would be displayed here in production]
+                                            </div>
+                                        </div>
+                                     </div>
+                                }
+
+                                @if (!string.IsNullOrEmpty(SelectedAchievement.DeepDive.Architecture))
+                                {
+                                    <div>
+                                        <h4 style="font-weight: 500; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                                            <Icon Name="network" Class="w-5 h-5 icon-blue" />
+                                            Architecture
+                                        </h4>
+                                        <p>@SelectedAchievement.DeepDive.Architecture</p>
+                                    </div>
+                                }
+                                 @if (!string.IsNullOrEmpty(SelectedAchievement.DeepDive.Challenges))
+                                {
+                                    <div>
+                                        <h4 style="font-weight: 500; margin-bottom: 0.75rem;">
+                                            Technical Challenges
+                                        </h4>
+                                        <p>@SelectedAchievement.DeepDive.Challenges</p>
+                                    </div>
+                                }
+                                @if (!string.IsNullOrEmpty(SelectedAchievement.DeepDive.Metrics))
+                                {
+                                    <div>
+                                        <h4 style="font-weight: 500; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                                            <Icon Name="bar-chart-3" Class="w-5 h-5 icon-blue" />
+                                             Metrics & Impact
+                                        </h4>
+                                        <p>@SelectedAchievement.DeepDive.Metrics</p>
+                                    </div>
+                                }
+                             </div>
+                         }
+                    </div>
+                 </div>
+            </div>
+        </div>
+    }
+</section>
+
+@code {
+    private List<AchievementModel> AchievementItems = new();
+    private AchievementModel? SelectedAchievement;
+    private string ActiveDomain = "All";
+    private string ActivePrinciple = "All";
+    private string ActiveTech = "All";
+    private string SearchQuery = "";
+
+    private IEnumerable<string> Domains => new[] { "All" }.Concat(AchievementItems.Select(s => s.Domain).Distinct().OrderBy(d => d));
+    private IEnumerable<string> Principles => new[] { "All" }.Concat(AchievementItems.SelectMany(s => s.Principles).Distinct().OrderBy(p => p));
+    private IEnumerable<string> Technologies => new[] { "All" }.Concat(AchievementItems.SelectMany(s => s.Technologies).Distinct().OrderBy(t => t));
+
+    protected override async Task OnInitializedAsync()
+    {
+        AchievementItems = await PortfolioService.GetAchievementsAsync();
+        LayoutState.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        LayoutState.OnChange -= StateHasChanged;
+    }
+
+    private void SelectAchievement(AchievementModel item)
+    {
+        SelectedAchievement = item;
+    }
+
+    private void CloseAchievement()
+    {
+        SelectedAchievement = null;
+    }
+
+    private IEnumerable<AchievementModel> FilteredAchievements => AchievementItems.Where(s => 
+        (string.IsNullOrWhiteSpace(SearchQuery) || 
+         s.Title.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) || 
+         s.Result.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+         s.Situation.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase)) &&
+        (ActiveDomain == "All" || s.Domain == ActiveDomain) &&
+        (ActivePrinciple == "All" || s.Principles.Contains(ActivePrinciple)) &&
+        (ActiveTech == "All" || s.Technologies.Contains(ActiveTech))
+    );
+}

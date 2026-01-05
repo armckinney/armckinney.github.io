@@ -1,0 +1,127 @@
+@using Portfolio.Services
+@using Portfolio.Models
+@using Portfolio.Components.Common
+@inject PortfolioService PortfolioService
+@inject IJSRuntime JS
+
+<section id="technologies" class="section">
+    <div class="container">
+        <div class="section-title-wrapper">
+            <h2 class="section-title">Technologies</h2>
+            <p class="section-subtitle">
+                A comprehensive toolkit for building scalable, high-performance applications.
+            </p>
+        </div>
+
+        <!-- Categories -->
+        <div class="categories-container">
+            @foreach (var categoryGroup in Skills.GroupBy(s => s.Category))
+            {
+                <div>
+                    <h3 class="category-title">@categoryGroup.Key</h3>
+                    <div class="skills-grid">
+                        @foreach (var skill in categoryGroup)
+                        {
+                            <button @onclick="() => SelectSkill(skill)" class="skill-btn group">
+                                <div class="skill-header">
+                                    <span class="skill-name">@skill.Name</span>
+                                    <Icon Name="arrow-right" Class="skill-arrow w-4 h-4" />
+                                </div>
+                            </button>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Selected Tech Details -->
+        @if (SelectedSkill != null)
+        {
+            <div class="modal-overlay" @onclick="CloseSelection">
+                <div class="modal-content" @onclick:stopPropagation>
+                    <div class="modal-header">
+                        <div>
+                            <h3 class="modal-title">
+                                @SelectedSkill.Name
+                            </h3>
+                            <a href="@SelectedSkill.Url" target="_blank" rel="noopener noreferrer" class="learn-more">
+                                Learn more <Icon Name="arrow-right" Class="w-3 h-3" />
+                            </a>
+                        </div>
+                        <button @onclick="CloseSelection" class="close-btn">
+                            <Icon Name="x" Class="w-6 h-6" />
+                        </button>
+                    </div>
+
+                    <div class="modal-grid">
+                        <div>
+                            <h4 class="modal-section-title">Related Achievements</h4>
+                            @if (SelectedSkill.RelatedStories.Any())
+                            {
+                                <ul class="related-list">
+                                    @foreach (var story in SelectedSkill.RelatedStories)
+                                    {
+                                        <li @onclick='() => ScrollTo("achievements")' class="related-item">
+                                            <span class="arrow-bullet">→</span>
+                                            <span>@story</span>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <p class="no-related">No achievements using this technology yet</p>
+                            }
+                        </div>
+
+                        <div>
+                            <h4 class="modal-section-title">Related Projects</h4>
+                            @if (SelectedSkill.RelatedProjects.Any())
+                            {
+                                <ul class="related-list">
+                                    @foreach (var project in SelectedSkill.RelatedProjects)
+                                    {
+                                        <li @onclick='() => ScrollTo("projects")' class="related-item">
+                                            <span class="arrow-bullet">→</span>
+                                            <span>@project</span>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <p class="no-related">No projects using this technology yet</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    private List<SkillModel> Skills = new();
+    private SkillModel? SelectedSkill;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Skills = await PortfolioService.GetSkillsAsync();
+    }
+
+    private void SelectSkill(SkillModel skill)
+    {
+        SelectedSkill = skill;
+    }
+
+    private void CloseSelection()
+    {
+        SelectedSkill = null;
+    }
+
+    private async Task ScrollTo(string id)
+    {
+        CloseSelection();
+        await JS.InvokeVoidAsync("scrollToSection", id);
+    }
+}

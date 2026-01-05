@@ -1,0 +1,35 @@
+@using Portfolio.Services
+@using Portfolio.Models
+@using Portfolio.Components.Common
+@inject PortfolioService PortfolioService
+
+<footer class="footer">
+    <div class="container footer-content">
+        <div class="social-links">
+            @if (Config != null)
+            {
+                <a href="@Config.Socials.Github" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <Icon Name="github" Class="w-5 h-5" />
+                </a>
+                <a href="@Config.Socials.Linkedin" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <Icon Name="linkedin" Class="w-5 h-5" />
+                </a>
+                <a href="mailto:@Config.Socials.Email" class="social-link">
+                    <Icon Name="mail" Class="w-5 h-5" />
+                </a>
+            }
+        </div>
+        <p class="copyright">
+            &copy; 2026 Andrew McKinney. All rights reserved.
+        </p>
+    </div>
+</footer>
+
+@code {
+    private ConfigModel? Config;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Config = await PortfolioService.GetConfigAsync();
+    }
+}

@@ -1,118 +1,165 @@
 [
     {
-        "category": "Languages",
-        "name": "C#"
+        "name": "React",
+        "category": "Frontend",
+        "url": "https://react.dev",
+        "relatedStories": [
+            "Real-time Analytics Dashboard"
+        ],
+        "relatedProjects": [
+            "Real-time Collaborative IDE",
+            "Financial Analytics Dashboard",
+            "Cloud Infrastructure Automation Platform"
+        ]
     },
     {
-        "category": "Languages",
-        "name": "Python"
+        "name": "TypeScript",
+        "category": "Language",
+        "url": "https://www.typescriptlang.org",
+        "relatedStories": [
+            "Real-time Analytics Dashboard"
+        ],
+        "relatedProjects": [
+            "Real-time Collaborative IDE",
+            "Financial Analytics Dashboard",
+            "Microservices Monitoring Platform"
+        ]
     },
     {
-        "category": "Languages",
-        "name": "SQL"
+        "name": "Python",
+        "category": "Language",
+        "url": "https://www.python.org",
+        "relatedStories": [
+            "Scaling Microservices Architecture",
+            "AI-Powered Customer Support System"
+        ],
+        "relatedProjects": [
+            "Cloud Infrastructure Automation Platform",
+            "AI Content Moderation System"
+        ]
     },
     {
-        "category": "Languages",
-        "name": "BASH"
+        "name": "Node.js",
+        "category": "Backend",
+        "url": "https://nodejs.org",
+        "relatedStories": [],
+        "relatedProjects": [
+            "Real-time Collaborative IDE"
+        ]
     },
     {
-        "category": "Languages",
-        "name": "PowerShell"
+        "name": "AWS",
+        "category": "Cloud",
+        "url": "https://aws.amazon.com",
+        "relatedStories": [
+            "Scaling Microservices Architecture",
+            "DevOps Pipeline Optimization"
+        ],
+        "relatedProjects": [
+            "Cloud Infrastructure Automation Platform"
+        ]
     },
     {
-        "category": "Frameworks",
-        "name": ".NET"
-    },
-    {
-        "category": "Frameworks",
-        "name": "FastAPI"
-    },
-    {
-        "category": "Frameworks",
-        "name": "Blazor"
-    },
-    {
-        "category": "Frameworks",
-        "name": "BootStrap"
-    },
-    {
-        "category": "Frameworks",
-        "name": "PySpark"
-    },
-    {
-        "category": "Databases & Storage",
-        "name": "Blob Storage"
-    },
-    {
-        "category": "Databases & Storage",
-        "name": "PostgreSql"
-    },
-    {
-        "category": "Databases & Storage",
-        "name": "Sqlite"
-    },
-    {
-        "category": "Databases & Storage",
-        "name": "SqlServer"
-    },
-    {
-        "category": "Machine Learning",
-        "name": "Keras"
-    },
-    {
-        "category": "Machine Learning",
-        "name": "Sci-Kit Learn"
-    },
-    {
-        "category": "Machine Learning",
-        "name": "TensorFlow"
-    },
-    {
-        "category": "Visualizations",
-        "name": "Plotly"
-    },
-    {
-        "category": "Visualizations",
-        "name": "Seaborn"
-    },
-    {
-        "category": "Visualizations",
-        "name": "Power BI"
-    },
-    {
+        "name": "Docker",
         "category": "DevOps",
-        "name": "GitLab"
+        "url": "https://www.docker.com",
+        "relatedStories": [
+            "Scaling Microservices Architecture",
+            "DevOps Pipeline Optimization"
+        ],
+        "relatedProjects": [
+            "Cloud Infrastructure Automation Platform"
+        ]
     },
     {
+        "name": "Kubernetes",
         "category": "DevOps",
-        "name": "Github"
+        "url": "https://kubernetes.io",
+        "relatedStories": [
+            "Scaling Microservices Architecture"
+        ],
+        "relatedProjects": [
+            "Distributed Task Queue Framework"
+        ]
     },
     {
-        "category": "DevOps",
-        "name": "Terraform"
+        "name": "PostgreSQL",
+        "category": "Database",
+        "url": "https://www.postgresql.org",
+        "relatedStories": [
+            "AI-Powered Customer Support System"
+        ],
+        "relatedProjects": [
+            "Cloud Infrastructure Automation Platform",
+            "AI Content Moderation System"
+        ]
     },
     {
-        "category": "Other",
-        "name": "Microsoft Azure"
+        "name": "MongoDB",
+        "category": "Database",
+        "url": "https://www.mongodb.com",
+        "relatedStories": [
+            "Real-time Analytics Dashboard"
+        ],
+        "relatedProjects": []
     },
     {
-        "category": "Other",
-        "name": "Databricks"
+        "name": "Redis",
+        "category": "Database",
+        "url": "https://redis.io",
+        "relatedStories": [
+            "Scaling Microservices Architecture"
+        ],
+        "relatedProjects": [
+            "AI Content Moderation System",
+            "Distributed Task Queue Framework"
+        ]
     },
     {
-        "category": "Other",
-        "name": "Delta Storage"
+        "name": "TensorFlow",
+        "category": "AI/ML",
+        "url": "https://www.tensorflow.org",
+        "relatedStories": [
+            "AI-Powered Customer Support System"
+        ],
+        "relatedProjects": []
     },
     {
-        "category": "Other",
-        "name": "Linux"
+        "name": "PyTorch",
+        "category": "AI/ML",
+        "url": "https://pytorch.org",
+        "relatedStories": [],
+        "relatedProjects": [
+            "AI Content Moderation System"
+        ]
     },
     {
-        "category": "Other",
-        "name": "Obsidian"
+        "name": "FastAPI",
+        "category": "Backend",
+        "url": "https://fastapi.tiangolo.com",
+        "relatedStories": [
+            "AI-Powered Customer Support System"
+        ],
+        "relatedProjects": [
+            "AI Content Moderation System"
+        ]
     },
     {
-        "category": "Other",
-        "name": "VS Code"
+        "name": "GraphQL",
+        "category": "API",
+        "url": "https://graphql.org",
+        "relatedStories": [],
+        "relatedProjects": []
+    },
+    {
+        "name": "Go",
+        "category": "Language",
+        "url": "https://go.dev",
+        "relatedStories": [
+            "Scaling Microservices Architecture"
+        ],
+        "relatedProjects": [
+            "Distributed Task Queue Framework"
+        ]
     }
 ]

@@ -1,0 +1,160 @@
+@using Portfolio.Services
+@using Portfolio.Models
+@using Portfolio.Components.Common
+@inject PortfolioService PortfolioService
+@inject LayoutState LayoutState
+@implements IDisposable
+
+<section id="projects" class="section">
+    <div class="container">
+        <div class="section-title-wrapper">
+            <h2 class="section-title">Projects</h2>
+            <p class="section-subtitle">
+                @if (LayoutState.Audience == "engineer")
+                {
+                    <text>Explore technical implementations and architectural decisions</text>
+                }
+                else
+                {
+                    <text>Innovative solutions delivering measurable business impact</text>
+                }
+            </p>
+        </div>
+
+        <!-- Filters -->
+        <div class="filters-container">
+             <!-- Search Filter -->
+             <div>
+                <label class="filter-group-label">Search</label>
+                <div class="search-wrapper">
+                    <input @bind="SearchQuery" @bind:event="oninput" type="text" placeholder="Search projects..." class="filter-input" />
+                    <Icon Name="search" Class="search-icon w-4 h-4" />
+                </div>
+            </div>
+
+            <!-- Domain Filter -->
+            <div>
+                <label class="filter-group-label">Domain</label>
+                <select @bind="ActiveDomain" class="filter-select">
+                    @foreach (var domain in Domains)
+                    {
+                        <option value="@domain">@domain</option>
+                    }
+                </select>
+            </div>
+
+            <!-- Technology Filter -->
+            <div>
+                <label class="filter-group-label">Technology</label>
+                <select @bind="ActiveTech" class="filter-select">
+                    @foreach (var tech in AllTechnologies)
+                    {
+                        <option value="@tech">@tech</option>
+                    }
+                </select>
+            </div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+            @foreach (var project in FilteredProjects)
+            {
+                <div class="project-card group">
+                    <!-- Placeholder Image -->
+                    <div class="project-image-wrapper">
+                         <div class="icon-placeholder">
+                            <div class="icon-circle">
+                                <div class="icon-dot"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-content">
+                        <div class="card-top">
+                            <span class="domain-text">@project.Domain</span>
+                             <div class="arrow-icon-wrapper">
+                                <Icon Name="arrow-right" Class="w-4 h-4 icon-small" />
+                            </div>
+                        </div>
+
+                        <h3 class="card-title">@project.Title</h3>
+
+                        <p class="card-desc">@project.Description</p>
+
+                        <ul class="highlights-list">
+                            @foreach (var highlight in project.Highlights.Take(2))
+                            {
+                                <li class="highlight-item">
+                                    <span class="bullet">•</span>
+                                    <span>@highlight</span>
+                                </li>
+                            }
+                        </ul>
+
+                         <div class="tech-tags">
+                            @foreach (var tech in project.Technologies.Take(3))
+                            {
+                                <span class="tech-tag">@tech</span>
+                            }
+                             @if (project.Technologies.Count > 3)
+                            {
+                                <span class="tech-tag">+@(project.Technologies.Count - 3)</span>
+                            }
+                        </div>
+
+                         <div class="card-actions">
+                            @if (!string.IsNullOrEmpty(project.CodeUrl))
+                            {
+                                <a href="@project.CodeUrl" target="_blank" rel="noopener noreferrer" class="action-link">
+                                    <Icon Name="github" Class="w-4 h-4 icon-small" /> Code
+                                </a>
+                            }
+                            @if (!string.IsNullOrEmpty(project.DemoUrl))
+                            {
+                                <a href="@project.DemoUrl" target="_blank" rel="noopener noreferrer" class="action-link">
+                                     <Icon Name="network" Class="w-4 h-4 icon-small" /> Demo
+                                </a>
+                            }
+                         </div>
+                    </div>
+                </div>
+            }
+        </div>
+        
+        @if (!FilteredProjects.Any())
+        {
+             <div class="no-results">
+              <p>No projects match the selected filters.</p>
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    private List<ProjectModel> ProjectItems = new();
+    private string ActiveDomain = "All";
+    private string ActiveTech = "All";
+    private string SearchQuery = "";
+
+    private IEnumerable<string> Domains => new[] { "All" }.Concat(ProjectItems.Select(p => p.Domain).Distinct().OrderBy(d => d));
+    private IEnumerable<string> AllTechnologies => new[] { "All" }.Concat(ProjectItems.SelectMany(p => p.Technologies).Distinct().OrderBy(t => t));
+
+    protected override async Task OnInitializedAsync()
+    {
+        ProjectItems = await PortfolioService.GetProjectsAsync();
+        LayoutState.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+         LayoutState.OnChange -= StateHasChanged;
+    }
+
+    private IEnumerable<ProjectModel> FilteredProjects => ProjectItems.Where(p => 
+        (string.IsNullOrWhiteSpace(SearchQuery) || 
+         p.Title.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) || 
+         p.Description.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase)) &&
+        (ActiveDomain == "All" || p.Domain == ActiveDomain) &&
+        (ActiveTech == "All" || p.Technologies.Contains(ActiveTech))
+    );
+}

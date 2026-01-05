@@ -1,0 +1,82 @@
+@using Portfolio.Services
+@using Portfolio.Models
+@using Portfolio.Components.Common
+@inject PortfolioService PortfolioService
+@inject IJSRuntime JS
+
+<section id="contact" class="section">
+    <div class="container">
+        <div class="section-title-wrapper">
+            <h2 class="section-title">Get In Touch</h2>
+            <p class="section-subtitle">
+                Interested in collaboration or have questions? Let's connect!
+            </p>
+        </div>
+
+        @if (Config != null)
+        {
+            <div class="contact-grid">
+                <!-- Email -->
+                <a href="mailto:@Config.Socials.Email" class="contact-card group">
+                    <div class="icon-wrapper">
+                        <Icon Name="mail" Class="w-8 h-8" />
+                    </div>
+                    <h3 class="contact-label">Email</h3>
+                    <p class="contact-value">@Config.Socials.Email</p>
+                </a>
+
+                <!-- GitHub -->
+                <a href="@Config.Socials.Github" target="_blank" rel="noopener noreferrer" class="contact-card group">
+                    <div class="icon-wrapper">
+                        <Icon Name="github" Class="w-8 h-8" />
+                    </div>
+                    <h3 class="contact-label">GitHub</h3>
+                    <p class="contact-value">@("@armckinney")</p>
+                </a>
+
+                <!-- LinkedIn -->
+                <a href="@Config.Socials.Linkedin" target="_blank" rel="noopener noreferrer" class="contact-card group">
+                    <div class="icon-wrapper">
+                        <Icon Name="linkedin" Class="w-8 h-8" />
+                    </div>
+                    <h3 class="contact-label">LinkedIn</h3>
+                    <p class="contact-value">Andrew McKinney</p>
+                </a>
+                
+                 <!-- Docker Hub -->
+                <a href="@Config.Socials.Docker" target="_blank" rel="noopener noreferrer" class="contact-card group">
+                    <div class="icon-wrapper">
+                         <Icon Name="network" Class="w-8 h-8" />
+                    </div>
+                    <h3 class="contact-label">Docker Hub</h3>
+                    <p class="contact-value">@("@armck")</p>
+                </a>
+            </div>
+
+            <!-- Resume Download -->
+            <div class="resume-wrapper">
+                <button @onclick='() => OpenResume()' class="resume-btn">
+                    <Icon Name="file-down" Class="w-5 h-5 resume-icon" />
+                    Download Resume
+                </button>
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    private ConfigModel? Config;
+
+    protected override async Task OnInitializedAsync()
+    {
+        Config = await PortfolioService.GetConfigAsync();
+    }
+
+    private async Task OpenResume()
+    {
+        if (Config != null)
+        {
+            await JS.InvokeVoidAsync("open", Config.Resume, "_blank");
+        }
+    }
+}

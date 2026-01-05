@@ -1,11 +1,41 @@
 ﻿@inherits LayoutComponentBase
+@inject Portfolio.Services.LayoutState LayoutState
+@inject IJSRuntime JS
+@implements IDisposable
 
-<div class="page">
-    <NavBar />
-
+<div class="transition-colors">
+    <Header />
     <main>
         @Body
     </main>
-
     <Footer />
 </div>
+
+@code {
+    protected override void OnInitialized()
+    {
+        LayoutState.OnChange += OnStateChanged;
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            // Set initial theme
+            await JS.InvokeVoidAsync("setTheme", LayoutState.Theme);
+        }
+    }
+
+    private void OnStateChanged()
+    {
+        // We only care about theme changes for JS hook, but LayoutState notifies for audience too.
+        // It's cheap to call setTheme idempotent-ish-ly (it adds/removes class).
+        _ = JS.InvokeVoidAsync("setTheme", LayoutState.Theme);
+        StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        LayoutState.OnChange -= OnStateChanged;
+    }
+}

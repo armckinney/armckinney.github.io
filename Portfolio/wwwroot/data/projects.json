@@ -1,67 +1,111 @@
 [
     {
-        "title": "Credit Crunch",
-        "description": "Credit Approval Web Application with Integrated Neural Net Risk Analysis.",
-        "imageUrl": "images/west-end-financial.png",
-        "repoUrl": "https://github.com/armckinney/west-end-financial",
-        "demoUrl": "https://westendfinancial.armckinney.dev/"
+        "id": "1",
+        "title": "Cloud Infrastructure Automation Platform",
+        "description": "Enterprise-grade infrastructure automation platform managing 500+ AWS resources using Terraform and Python custom providers.",
+        "domain": "Cloud Architecture",
+        "technologies": [
+            "AWS",
+            "Terraform",
+            "Python",
+            "Docker"
+        ],
+        "codeUrl": "https://github.com/armckinney/cloud-automation",
+        "highlights": [
+            "Reduced infrastructure costs by 40%",
+            "99.99% uptime SLA achievement"
+        ]
     },
     {
-        "title": "Mail-To-Me",
-        "description": "Mail Handler Web Application For HTML Forms.",
-        "imageUrl": "images/mail-to-me.png",
-        "repoUrl": "https://github.com/armckinney/mail-to-me",
-        "demoUrl": "https://mailtome.armckinney.dev/"
+        "id": "2",
+        "title": "Real-time Collaborative IDE",
+        "description": "Web-based integrated development environment with real-time collaboration features, code execution, and AI-powered code suggestions.",
+        "domain": "Developer Tools",
+        "technologies": [
+            "TypeScript",
+            "React",
+            "WebSocket",
+            "Node.js"
+        ],
+        "codeUrl": "https://github.com/armckinney/collab-ide",
+        "demoUrl": "https://ide.armckinney.dev",
+        "highlights": [
+            "Real-time multi-user editing with CRDT",
+            "Supports 20+ programming languages",
+            "AI-powered code completion"
+        ]
     },
     {
-        "title": "Epicentered",
-        "description": "Website Visualizing Recent Earthquakes.",
-        "imageUrl": "images/epicentered.png",
-        "repoUrl": "https://github.com/armckinney/epicentered",
-        "demoUrl": "https://epicentered.armckinney.dev/"
+        "id": "3",
+        "title": "AI Content Moderation System",
+        "description": "Machine learning pipeline for automated content moderation using computer vision and NLP to detect inappropriate content at scale.",
+        "domain": "Machine Learning",
+        "technologies": [
+            "Python",
+            "PyTorch",
+            "FastAPI",
+            "Redis"
+        ],
+        "codeUrl": "https://github.com/armckinney/content-moderator",
+        "highlights": [
+            "Processes 1M+ images daily",
+            "95% accuracy with low false positives",
+            "Real-time decision making (<100ms)"
+        ]
     },
     {
-        "title": "GeoHops",
-        "description": "Nashville Metro Beer Permits Visualized.",
-        "imageUrl": "images/geohops.png",
-        "repoUrl": "https://github.com/armckinney/geohops",
-        "demoUrl": "https://geohops.armckinney.dev/"
+        "id": "4",
+        "title": "Distributed Task Queue Framework",
+        "description": "High-performance distributed task queue system with priority scheduling, fault tolerance, and horizontal scalability.",
+        "domain": "Infrastructure",
+        "technologies": [
+            "Go",
+            "Redis",
+            "Kubernetes",
+            "gRPC"
+        ],
+        "codeUrl": "https://github.com/armckinney/task-queue",
+        "demoUrl": "https://docs.taskqueue.dev",
+        "highlights": [
+            "Handles 100k+ tasks per second",
+            "Built-in retry and dead letter queue",
+            "Dynamic worker pool scaling"
+        ]
     },
     {
-        "title": "BestBot",
-        "description": "A BestBuy Inventory Tracking Bot.",
-        "imageUrl": "images/bestbot.png",
-        "repoUrl": "https://github.com/armckinney/bestbot"
+        "id": "5",
+        "title": "Financial Analytics Dashboard",
+        "description": "Interactive dashboard for real-time financial data analysis with custom indicators, alerts, and portfolio management.",
+        "domain": "Data Analytics",
+        "technologies": [
+            "React",
+            "TypeScript",
+            "D3.js",
+            "WebSocket"
+        ],
+        "demoUrl": "https://finance.armckinney.dev",
+        "highlights": [
+            "Real-time market data streaming",
+            "Custom technical indicators",
+            "Portfolio performance tracking"
+        ]
     },
     {
-        "title": "Mission To Mars",
-        "description": "Front Page of the Martian Internet.",
-        "imageUrl": "images/mission-to-mars.png",
-        "repoUrl": "https://github.com/armckinney/mission-to-mars"
-    },
-    {
-        "title": "Ten Second Tools",
-        "description": "Tools That Save A Second - Or Ten. Collection of useful scripts.",
-        "imageUrl": "images/nsync.png",
-        "repoUrl": "https://github.com/armckinney/ten-second-tools"
-    },
-    {
-        "title": "Repository Templates",
-        "description": "GitHub Template Repositories for .NET, Go, Python, Spark, Java and more.",
-        "imageUrl": "images/template-python.png",
-        "repoUrl": "https://github.com/armckinney?tab=repositories&q=template&type=template&language=&sort=name"
-    },
-    {
-        "title": "Containers",
-        "description": "Extendable Docker Images.",
-        "imageUrl": "images/dotnet-base.png",
-        "repoUrl": "https://github.com/armckinney/containers",
-        "demoUrl": "https://hub.docker.com/u/armck"
-    },
-    {
-        "title": "Design Patterns",
-        "description": "Design Patterns From The Gang Of Four Written In Python.",
-        "imageUrl": "images/design-patterns.png",
-        "repoUrl": "https://github.com/armckinney/design-patterns"
+        "id": "6",
+        "title": "Microservices Monitoring Platform",
+        "description": "Comprehensive monitoring and observability platform for microservices with distributed tracing, metrics, and log aggregation.",
+        "domain": "DevOps",
+        "technologies": [
+            "TypeScript",
+            "React",
+            "OpenTelemetry",
+            "ClickHouse"
+        ],
+        "codeUrl": "https://github.com/armckinney/observability",
+        "highlights": [
+            "Distributed tracing across services",
+            "Custom dashboards and alerts",
+            "Log aggregation from 100+ services"
+        ]
     }
 ]
