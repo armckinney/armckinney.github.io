@@ -17,7 +17,7 @@
                 "Reduced infrastructure costs by 40%",
                 "99.99% uptime SLA achievement"
             ],
-            "image": "images/design-patterns.png"
+            "image": "images/template-go.png"
         },
         {
             "id": "2",
@@ -37,7 +37,7 @@
                 "Supports 20+ programming languages",
                 "AI-powered code completion"
             ],
-            "image": "images/climate-endpoint.png"
+            "image": "images/epicentered.png"
         },
         {
             "id": "3",
@@ -56,7 +56,7 @@
                 "95% accuracy with low false positives",
                 "Real-time decision making (<100ms)"
             ],
-            "image": "images/bestbot.png"
+            "image": "images/mail-to-me.png"
         },
         {
             "id": "4",
@@ -76,7 +76,7 @@
                 "Built-in retry and dead letter queue",
                 "Dynamic worker pool scaling"
             ],
-            "image": "images/dotnet-base.png"
+            "image": "images/template-dotnet.png"
         },
         {
             "id": "5",
@@ -114,7 +114,7 @@
                 "Custom dashboards and alerts",
                 "Log aggregation from 100+ services"
             ],
-            "image": "images/geohops.png"
+            "image": "images/template-java.png"
         },
         {
             "id": "7",
