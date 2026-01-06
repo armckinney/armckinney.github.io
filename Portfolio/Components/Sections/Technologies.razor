@@ -63,9 +63,9 @@
                                 <ul class="related-list">
                                     @foreach (var story in SelectedSkill.RelatedStories)
                                     {
-                                        <li @onclick='() => ScrollTo("achievements")' class="related-item">
+                                        <li @onclick="() => OpenAchievement(story)" class="related-item">
                                             <span class="arrow-bullet">→</span>
-                                            <span>@story</span>
+                                            <span>@GetAchievementTitle(story)</span>
                                         </li>
                                     }
                                 </ul>
@@ -83,9 +83,9 @@
                                 <ul class="related-list">
                                     @foreach (var project in SelectedSkill.RelatedProjects)
                                     {
-                                        <li @onclick='() => ScrollTo("projects")' class="related-item">
+                                        <li @onclick="() => OpenProject(project)" class="related-item">
                                             <span class="arrow-bullet">→</span>
-                                            <span>@project</span>
+                                            <span>@GetProjectTitle(project)</span>
                                         </li>
                                     }
                                 </ul>
@@ -104,11 +104,22 @@
 
 @code {
     private List<SkillModel> Skills = new();
+    private List<AchievementModel> AllAchievements = new();
+    private List<ProjectModel> AllProjects = new();
     private SkillModel? SelectedSkill;
 
     protected override async Task OnInitializedAsync()
     {
-        Skills = await PortfolioService.GetSkillsAsync();
+        var skillsTask = PortfolioService.GetSkillsAsync();
+        var achievementsTask = PortfolioService.GetAchievementsAsync();
+        var projectsTask = PortfolioService.GetProjectsAsync();
+
+        await Task.WhenAll(skillsTask, achievementsTask, projectsTask);
+
+        Skills = await skillsTask;
+        AllAchievements = await achievementsTask;
+        AllProjects = await projectsTask;
+
         LayoutState.OnChange += StateHasChanged;
     }
 
@@ -127,9 +138,33 @@
         SelectedSkill = null;
     }
 
-    private async Task ScrollTo(string id)
+    private void OpenAchievement(string id)
     {
-        CloseSelection();
-        await JS.InvokeVoidAsync("scrollToSection", id);
+        var achievement = AllAchievements.FirstOrDefault(a => a.Id == id);
+        if (achievement != null)
+        {
+            CloseSelection();
+            LayoutState.SelectAchievement(achievement);
+        }
+    }
+
+    private void OpenProject(string id)
+    {
+        var project = AllProjects.FirstOrDefault(p => p.Id == id);
+        if (project != null)
+        {
+            CloseSelection();
+            LayoutState.SelectProject(project);
+        }
+    }
+
+    private string GetAchievementTitle(string id)
+    {
+        return AllAchievements.FirstOrDefault(a => a.Id == id)?.Title ?? id;
+    }
+
+    private string GetProjectTitle(string id)
+    {
+        return AllProjects.FirstOrDefault(p => p.Id == id)?.Title ?? id;
     }
 }

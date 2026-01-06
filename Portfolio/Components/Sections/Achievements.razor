@@ -234,7 +234,7 @@
     private NavigationManager NavigationManager { get; set; } = default!;
 
     private List<AchievementModel> AchievementItems = new();
-    private AchievementModel? SelectedAchievement;
+    private AchievementModel? SelectedAchievement => LayoutState.SelectedAchievement;
     private string ActiveDomain = "All";
     private string ActivePrinciple = "All";
     private string ActiveTech = "All";
@@ -257,12 +257,12 @@
 
     private void SelectAchievement(AchievementModel item)
     {
-        SelectedAchievement = item;
+        LayoutState.SelectAchievement(item);
     }
 
     private void CloseAchievement()
     {
-        SelectedAchievement = null;
+         LayoutState.SelectAchievement(null);
     }
 
     private void NavigateToAllAchievements()

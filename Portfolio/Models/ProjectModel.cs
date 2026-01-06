@@ -10,4 +10,5 @@ public class ProjectModel
     public string? CodeUrl { get; set; }
     public string? DemoUrl { get; set; }
     public List<string> Highlights { get; set; } = new();
+    public string? Image { get; set; }
 }

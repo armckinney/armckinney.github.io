@@ -29,6 +29,21 @@ namespace Portfolio.Services
             }
         }
 
+        public Portfolio.Models.AchievementModel? SelectedAchievement { get; private set; }
+        public Portfolio.Models.ProjectModel? SelectedProject { get; private set; }
+
+        public void SelectAchievement(Portfolio.Models.AchievementModel? achievement)
+        {
+            SelectedAchievement = achievement;
+            NotifyStateChanged();
+        }
+
+        public void SelectProject(Portfolio.Models.ProjectModel? project)
+        {
+            SelectedProject = project;
+            NotifyStateChanged();
+        }
+
         private void NotifyStateChanged() => OnChange?.Invoke();
     }
 }

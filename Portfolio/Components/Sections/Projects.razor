@@ -62,14 +62,21 @@
         <div class="projects-grid">
             @foreach (var project in FilteredProjects)
             {
-                <div class="project-card group">
+                <div @onclick="() => SelectProject(project)" class="project-card group" style="cursor: pointer;">
                     <!-- Placeholder Image -->
                     <div class="project-image-wrapper">
-                         <div class="icon-placeholder">
-                            <div class="icon-circle">
-                                <div class="icon-dot"></div>
+                         @if (!string.IsNullOrEmpty(project.Image))
+                         {
+                             <img src="@project.Image" alt="@project.Title" class="project-image" />
+                         }
+                         else
+                         {
+                             <div class="icon-placeholder">
+                                <div class="icon-circle">
+                                    <div class="icon-dot"></div>
+                                </div>
                             </div>
-                        </div>
+                         }
                     </div>
 
                     <div class="card-content">
@@ -81,18 +88,6 @@
                         </div>
 
                         <h3 class="card-title">@project.Title</h3>
-
-                        <p class="card-desc">@project.Description</p>
-
-                        <ul class="highlights-list">
-                            @foreach (var highlight in project.Highlights.Take(2))
-                            {
-                                <li class="highlight-item">
-                                    <span class="bullet">•</span>
-                                    <span>@highlight</span>
-                                </li>
-                            }
-                        </ul>
 
                          <div class="tech-tags">
                             @foreach (var tech in project.Technologies.Take(3))
@@ -108,13 +103,13 @@
                          <div class="card-actions">
                             @if (!string.IsNullOrEmpty(project.CodeUrl))
                             {
-                                <a href="@project.CodeUrl" target="_blank" rel="noopener noreferrer" class="action-link">
+                                <a href="@project.CodeUrl" @onclick:stopPropagation target="_blank" rel="noopener noreferrer" class="action-link">
                                     <Icon Name="github" Class="w-4 h-4 icon-small" /> Code
                                 </a>
                             }
                             @if (!string.IsNullOrEmpty(project.DemoUrl))
                             {
-                                <a href="@project.DemoUrl" target="_blank" rel="noopener noreferrer" class="action-link">
+                                <a href="@project.DemoUrl" @onclick:stopPropagation target="_blank" rel="noopener noreferrer" class="action-link">
                                      <Icon Name="network" Class="w-4 h-4 icon-small" /> Demo
                                 </a>
                             }
@@ -140,6 +135,61 @@
             </div>
         }
     </div>
+
+    <!-- Modal -->
+    @if (SelectedProject != null)
+    {
+        <div class="modal-overlay" @onclick="CloseProject">
+            <div class="modal-content" @onclick:stopPropagation>
+                <div class="modal-inner">
+                     <div class="modal-header">
+                        <h3>@SelectedProject.Title</h3>
+                        <button @onclick="CloseProject" class="close-btn">
+                             <Icon Name="x" Class="h-6 w-6" />
+                        </button>
+                    </div>
+                    <!-- Description -->
+                    <p style="margin-bottom: 1.5rem; color: var(--text-secondary); line-height: 1.6;">@SelectedProject.Description</p>
+                    
+                    <!-- Highlights/Details -->
+                    <h4 style="font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary);">Key Highlights</h4>
+                    <ul class="highlights-list">
+                        @foreach (var highlight in SelectedProject.Highlights)
+                        {
+                            <li class="highlight-item">
+                                <span>@highlight</span>
+                            </li>
+                        }
+                    </ul>
+
+                    <!-- Tech -->
+                     <h4 style="font-weight: 500; margin-bottom: 0.5rem; margin-top: 1.5rem; color: var(--text-primary);">Technologies</h4>
+                    <div class="tech-tags">
+                         @foreach (var tech in SelectedProject.Technologies)
+                        {
+                            <span class="tech-tag">@tech</span>
+                        }
+                    </div>
+
+                    <!-- Links -->
+                    <div class="card-actions" style="margin-top: 2rem;">
+                        @if (!string.IsNullOrEmpty(SelectedProject.CodeUrl))
+                        {
+                            <a href="@SelectedProject.CodeUrl" target="_blank" rel="noopener noreferrer" class="action-link">
+                                <Icon Name="github" Class="w-5 h-5 icon-small" /> Code
+                            </a>
+                        }
+                        @if (!string.IsNullOrEmpty(SelectedProject.DemoUrl))
+                        {
+                            <a href="@SelectedProject.DemoUrl" target="_blank" rel="noopener noreferrer" class="action-link">
+                                    <Icon Name="network" Class="w-5 h-5 icon-small" /> Demo
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
 </section>
 
 @code {
@@ -150,6 +200,7 @@
     private NavigationManager NavigationManager { get; set; } = default!;
 
     private List<ProjectModel> ProjectItems = new();
+    private ProjectModel? SelectedProject => LayoutState.SelectedProject;
     private string ActiveDomain = "All";
     private string ActiveTech = "All";
     private string SearchQuery = "";
@@ -171,6 +222,16 @@
     private void NavigateToAllProjects()
     {
         NavigationManager.NavigateTo("projects");
+    }
+
+    private void SelectProject(ProjectModel project)
+    {
+        LayoutState.SelectProject(project);
+    }
+
+    private void CloseProject()
+    {
+        LayoutState.SelectProject(null);
     }
 
     private IEnumerable<ProjectModel> FilteredProjects 

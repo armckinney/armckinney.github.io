@@ -16,7 +16,8 @@
             "highlights": [
                 "Reduced infrastructure costs by 40%",
                 "99.99% uptime SLA achievement"
-            ]
+            ],
+            "image": "images/design-patterns.png"
         },
         {
             "id": "2",
@@ -35,7 +36,8 @@
                 "Real-time multi-user editing with CRDT",
                 "Supports 20+ programming languages",
                 "AI-powered code completion"
-            ]
+            ],
+            "image": "images/climate-endpoint.png"
         },
         {
             "id": "3",
@@ -53,7 +55,8 @@
                 "Processes 1M+ images daily",
                 "95% accuracy with low false positives",
                 "Real-time decision making (<100ms)"
-            ]
+            ],
+            "image": "images/bestbot.png"
         },
         {
             "id": "4",
@@ -72,7 +75,8 @@
                 "Handles 100k+ tasks per second",
                 "Built-in retry and dead letter queue",
                 "Dynamic worker pool scaling"
-            ]
+            ],
+            "image": "images/dotnet-base.png"
         },
         {
             "id": "5",
@@ -90,7 +94,8 @@
                 "Real-time market data streaming",
                 "Custom technical indicators",
                 "Portfolio performance tracking"
-            ]
+            ],
+            "image": "images/west-end-financial.png"
         },
         {
             "id": "6",
@@ -108,7 +113,8 @@
                 "Distributed tracing across services",
                 "Custom dashboards and alerts",
                 "Log aggregation from 100+ services"
-            ]
+            ],
+            "image": "images/geohops.png"
         },
         {
             "id": "7",
@@ -126,7 +132,8 @@
                 "Distributed tracing across services",
                 "Custom dashboards and alerts",
                 "Log aggregation from 100+ services"
-            ]
+            ],
+            "image": "images/mission-to-mars.png"
         }
     ]
 }

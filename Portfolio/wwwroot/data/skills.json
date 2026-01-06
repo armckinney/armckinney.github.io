@@ -1,168 +1,141 @@
 {
-    "$schema": "./schemas/skills.schema.json",
-    "skills": [
-        {
-            "name": "React",
-            "category": "Frontend",
-            "url": "https://react.dev",
-            "relatedStories": [
-                "Real-time Analytics Dashboard"
-            ],
-            "relatedProjects": [
-                "Real-time Collaborative IDE",
-                "Financial Analytics Dashboard",
-                "Cloud Infrastructure Automation Platform"
-            ]
-        },
-        {
-            "name": "TypeScript",
-            "category": "Language",
-            "url": "https://www.typescriptlang.org",
-            "relatedStories": [
-                "Real-time Analytics Dashboard"
-            ],
-            "relatedProjects": [
-                "Real-time Collaborative IDE",
-                "Financial Analytics Dashboard",
-                "Microservices Monitoring Platform"
-            ]
-        },
-        {
-            "name": "Python",
-            "category": "Language",
-            "url": "https://www.python.org",
-            "relatedStories": [
-                "Scaling Microservices Architecture",
-                "AI-Powered Customer Support System"
-            ],
-            "relatedProjects": [
-                "Cloud Infrastructure Automation Platform",
-                "AI Content Moderation System"
-            ]
-        },
-        {
-            "name": "Node.js",
-            "category": "Backend",
-            "url": "https://nodejs.org",
-            "relatedStories": [],
-            "relatedProjects": [
-                "Real-time Collaborative IDE"
-            ]
-        },
-        {
-            "name": "AWS",
-            "category": "Cloud",
-            "url": "https://aws.amazon.com",
-            "relatedStories": [
-                "Scaling Microservices Architecture",
-                "DevOps Pipeline Optimization"
-            ],
-            "relatedProjects": [
-                "Cloud Infrastructure Automation Platform"
-            ]
-        },
-        {
-            "name": "Docker",
-            "category": "DevOps",
-            "url": "https://www.docker.com",
-            "relatedStories": [
-                "Scaling Microservices Architecture",
-                "DevOps Pipeline Optimization"
-            ],
-            "relatedProjects": [
-                "Cloud Infrastructure Automation Platform"
-            ]
-        },
-        {
-            "name": "Kubernetes",
-            "category": "DevOps",
-            "url": "https://kubernetes.io",
-            "relatedStories": [
-                "Scaling Microservices Architecture"
-            ],
-            "relatedProjects": [
-                "Distributed Task Queue Framework"
-            ]
-        },
-        {
-            "name": "PostgreSQL",
-            "category": "Database",
-            "url": "https://www.postgresql.org",
-            "relatedStories": [
-                "AI-Powered Customer Support System"
-            ],
-            "relatedProjects": [
-                "Cloud Infrastructure Automation Platform",
-                "AI Content Moderation System"
-            ]
-        },
-        {
-            "name": "MongoDB",
-            "category": "Database",
-            "url": "https://www.mongodb.com",
-            "relatedStories": [
-                "Real-time Analytics Dashboard"
-            ],
-            "relatedProjects": []
-        },
-        {
-            "name": "Redis",
-            "category": "Database",
-            "url": "https://redis.io",
-            "relatedStories": [
-                "Scaling Microservices Architecture"
-            ],
-            "relatedProjects": [
-                "AI Content Moderation System",
-                "Distributed Task Queue Framework"
-            ]
-        },
-        {
-            "name": "TensorFlow",
-            "category": "AI/ML",
-            "url": "https://www.tensorflow.org",
-            "relatedStories": [
-                "AI-Powered Customer Support System"
-            ],
-            "relatedProjects": []
-        },
-        {
-            "name": "PyTorch",
-            "category": "AI/ML",
-            "url": "https://pytorch.org",
-            "relatedStories": [],
-            "relatedProjects": [
-                "AI Content Moderation System"
-            ]
-        },
-        {
-            "name": "FastAPI",
-            "category": "Backend",
-            "url": "https://fastapi.tiangolo.com",
-            "relatedStories": [
-                "AI-Powered Customer Support System"
-            ],
-            "relatedProjects": [
-                "AI Content Moderation System"
-            ]
-        },
-        {
-            "name": "GraphQL",
-            "category": "API",
-            "url": "https://graphql.org",
-            "relatedStories": [],
-            "relatedProjects": []
-        },
-        {
-            "name": "Go",
-            "category": "Language",
-            "url": "https://go.dev",
-            "relatedStories": [
-                "Scaling Microservices Architecture"
-            ],
-            "relatedProjects": [
-                "Distributed Task Queue Framework"
-            ]
-        }
-    ]
+  "$schema": "./schemas/skills.schema.json",
+  "skills": [
+    {
+      "name": "React",
+      "category": "Frontend",
+      "url": "https://react.dev",
+      "relatedStories": [],
+      "relatedProjects": [
+        "2",
+        "5",
+        "1"
+      ]
+    },
+    {
+      "name": "TypeScript",
+      "category": "Language",
+      "url": "https://www.typescriptlang.org",
+      "relatedStories": [],
+      "relatedProjects": [
+        "2",
+        "5",
+        "6"
+      ]
+    },
+    {
+      "name": "Python",
+      "category": "Language",
+      "url": "https://www.python.org",
+      "relatedStories": [],
+      "relatedProjects": [
+        "1",
+        "3"
+      ]
+    },
+    {
+      "name": "Node.js",
+      "category": "Backend",
+      "url": "https://nodejs.org",
+      "relatedStories": [],
+      "relatedProjects": [
+        "2"
+      ]
+    },
+    {
+      "name": "AWS",
+      "category": "Cloud",
+      "url": "https://aws.amazon.com",
+      "relatedStories": [],
+      "relatedProjects": [
+        "1"
+      ]
+    },
+    {
+      "name": "Docker",
+      "category": "DevOps",
+      "url": "https://www.docker.com",
+      "relatedStories": [],
+      "relatedProjects": [
+        "1"
+      ]
+    },
+    {
+      "name": "Kubernetes",
+      "category": "DevOps",
+      "url": "https://kubernetes.io",
+      "relatedStories": [],
+      "relatedProjects": [
+        "4"
+      ]
+    },
+    {
+      "name": "PostgreSQL",
+      "category": "Database",
+      "url": "https://www.postgresql.org",
+      "relatedStories": [],
+      "relatedProjects": [
+        "1",
+        "3"
+      ]
+    },
+    {
+      "name": "MongoDB",
+      "category": "Database",
+      "url": "https://www.mongodb.com",
+      "relatedStories": [],
+      "relatedProjects": []
+    },
+    {
+      "name": "Redis",
+      "category": "Database",
+      "url": "https://redis.io",
+      "relatedStories": [],
+      "relatedProjects": [
+        "3",
+        "4"
+      ]
+    },
+    {
+      "name": "TensorFlow",
+      "category": "AI/ML",
+      "url": "https://www.tensorflow.org",
+      "relatedStories": [],
+      "relatedProjects": []
+    },
+    {
+      "name": "PyTorch",
+      "category": "AI/ML",
+      "url": "https://pytorch.org",
+      "relatedStories": [],
+      "relatedProjects": [
+        "3"
+      ]
+    },
+    {
+      "name": "FastAPI",
+      "category": "Backend",
+      "url": "https://fastapi.tiangolo.com",
+      "relatedStories": [],
+      "relatedProjects": [
+        "3"
+      ]
+    },
+    {
+      "name": "GraphQL",
+      "category": "API",
+      "url": "https://graphql.org",
+      "relatedStories": [],
+      "relatedProjects": []
+    },
+    {
+      "name": "Go",
+      "category": "Language",
+      "url": "https://go.dev",
+      "relatedStories": [],
+      "relatedProjects": [
+        "4"
+      ]
+    }
+  ]
 }
