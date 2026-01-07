@@ -6,9 +6,9 @@ env:
 
 on:
   push:
-    branches: [ main ]
+    branches: [ master ]
   pull_request:
-    branches: [ main ]
+    branches: [ master ]
 
 
 defaults:
@@ -27,7 +27,7 @@ jobs:
           echo "dockerhub_id=$DOCKERHUB_ID" >> "$GITHUB_OUTPUT"
   
   container-build-and-push:
-    uses: armckinney/cicd/.github/workflows/rwf-container-build-and-push.yaml@main
+    uses: armckinney/cicd/.github/workflows/rwf-container-build-and-push.yaml@master
     needs: setup-env
     with:
       dockerhub_id: ${{ needs.setup-env.outputs.dockerhub_id }}
@@ -48,7 +48,7 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Run Linting
-      run: echo "running linting"
+      run: make lint
 
   test:
     runs-on: ubuntu-latest
@@ -64,4 +64,4 @@ jobs:
       uses: actions/checkout@v4
 
     - name: Run Tests
-      run: echo "running tests"
+      run: make test
