@@ -25,10 +25,7 @@
                         @foreach (var tech in categoryGroup)
                         {
                             <button @onclick="() => SelectTechnology(tech)" class="tech-btn group">
-                                <div class="tech-header">
-                                    <span class="tech-name">@tech.Name</span>
-                                    <Icon Name="arrow-right" Class="tech-arrow w-4 h-4" />
-                                </div>
+                                <span class="tech-name">@tech.Name</span>
                             </button>
                         }
                     </div>

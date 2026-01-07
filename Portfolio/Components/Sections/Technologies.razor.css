@@ -13,66 +13,43 @@
 .category-title {
     font-size: 1.5rem;
     font-weight: 500;
-    color: var(--text-primary);
+    color: var(--accent-hover);
     margin-bottom: 1.5rem;
 }
 
 .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-}
-
-@media (min-width: 48rem) {
-    .tech-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-}
-
-@media (min-width: 64rem) {
-    .tech-grid {
-        grid-template-columns: repeat(4, 1fr);
-    }
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
 }
 
 .tech-btn {
     background-color: var(--card-bg);
-    padding: 1rem;
-    border-radius: 0.75rem;
+    padding: 0.5rem 1.25rem;
+    border-radius: 9999px;
     border: 1px solid var(--border-color);
-    text-align: left;
-    transition: all 0.3s;
-    width: 100%;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
 }
 
 .tech-btn:hover {
-    box-shadow: var(--card-hover-shadow);
-}
-
-.tech-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    /* margin-bottom removed as it was for the progress bar */
+    border-color: var(--accent-color);
+    background-color: var(--accent-light);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .tech-name {
+    font-size: 0.95rem;
     font-weight: 500;
     color: var(--text-primary);
-    transition: color 0.3s;
+    transition: color 0.2s;
 }
 
 .tech-btn:hover .tech-name {
-    color: var(--accent-color);
-}
-
-
-.tech-arrow {
-    color: var(--text-tertiary);
-    transition: color 0.3s;
-}
-
-.tech-btn:hover .tech-arrow {
     color: var(--accent-color);
 }
 
