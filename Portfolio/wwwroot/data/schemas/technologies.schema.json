@@ -1,9 +1,9 @@
 {
     "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Skills",
+    "title": "Technologies",
     "type": "object",
     "properties": {
-        "skills": {
+        "technologies": {
             "type": "array",
             "items": {
                 "type": "object",
@@ -17,18 +17,6 @@
                     "url": {
                         "type": "string",
                         "format": "uri"
-                    },
-                    "relatedStories": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
-                    },
-                    "relatedProjects": {
-                        "type": "array",
-                        "items": {
-                            "type": "string"
-                        }
                     }
                 },
                 "required": [
@@ -40,6 +28,6 @@
         }
     },
     "required": [
-        "skills"
+        "technologies"
     ]
 }

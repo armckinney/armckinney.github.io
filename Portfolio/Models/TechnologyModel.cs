@@ -1,6 +1,6 @@
 namespace Portfolio.Models;
 
-public class SkillModel
+public class TechnologyModel
 {
     public string Name { get; set; } = "";
     public string Category { get; set; } = "";

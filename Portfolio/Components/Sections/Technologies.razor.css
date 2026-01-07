@@ -17,25 +17,25 @@
     margin-bottom: 1.5rem;
 }
 
-.skills-grid {
+.tech-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 }
 
 @media (min-width: 48rem) {
-    .skills-grid {
+    .tech-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (min-width: 64rem) {
-    .skills-grid {
+    .tech-grid {
         grid-template-columns: repeat(4, 1fr);
     }
 }
 
-.skill-btn {
+.tech-btn {
     background-color: var(--card-bg);
     padding: 1rem;
     border-radius: 0.75rem;
@@ -45,34 +45,34 @@
     width: 100%;
 }
 
-.skill-btn:hover {
+.tech-btn:hover {
     box-shadow: var(--card-hover-shadow);
 }
 
-.skill-header {
+.tech-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     /* margin-bottom removed as it was for the progress bar */
 }
 
-.skill-name {
+.tech-name {
     font-weight: 500;
     color: var(--text-primary);
     transition: color 0.3s;
 }
 
-.skill-btn:hover .skill-name {
+.tech-btn:hover .tech-name {
     color: var(--accent-color);
 }
 
 
-.skill-arrow {
+.tech-arrow {
     color: var(--text-tertiary);
     transition: color 0.3s;
 }
 
-.skill-btn:hover .skill-arrow {
+.tech-btn:hover .tech-arrow {
     color: var(--accent-color);
 }
 

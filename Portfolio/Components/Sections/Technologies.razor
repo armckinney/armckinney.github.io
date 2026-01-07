@@ -17,17 +17,17 @@
 
         <!-- Categories -->
         <div class="categories-container">
-            @foreach (var categoryGroup in Skills.GroupBy(s => s.Category))
+            @foreach (var categoryGroup in TechnologyList.GroupBy(t => t.Category))
             {
                 <div>
                     <h3 class="category-title">@categoryGroup.Key</h3>
-                    <div class="skills-grid">
-                        @foreach (var skill in categoryGroup)
+                    <div class="tech-grid">
+                        @foreach (var tech in categoryGroup)
                         {
-                            <button @onclick="() => SelectSkill(skill)" class="skill-btn group">
-                                <div class="skill-header">
-                                    <span class="skill-name">@skill.Name</span>
-                                    <Icon Name="arrow-right" Class="skill-arrow w-4 h-4" />
+                            <button @onclick="() => SelectTechnology(tech)" class="tech-btn group">
+                                <div class="tech-header">
+                                    <span class="tech-name">@tech.Name</span>
+                                    <Icon Name="arrow-right" Class="tech-arrow w-4 h-4" />
                                 </div>
                             </button>
                         }
@@ -37,16 +37,16 @@
         </div>
 
         <!-- Selected Tech Details -->
-        @if (SelectedSkill != null)
+        @if (SelectedTechnology != null)
         {
             <div class="modal-overlay" @onclick="CloseSelection">
                 <div class="modal-content" @onclick:stopPropagation>
                     <div class="modal-header">
                         <div>
                             <h3 class="modal-title">
-                                @SelectedSkill.Name
+                                @SelectedTechnology.Name
                             </h3>
-                            <a href="@SelectedSkill.Url" target="_blank" rel="noopener noreferrer" class="learn-more">
+                            <a href="@SelectedTechnology.Url" target="_blank" rel="noopener noreferrer" class="learn-more">
                                 Learn more <Icon Name="arrow-right" Class="w-3 h-3" />
                             </a>
                         </div>
@@ -58,11 +58,11 @@
                     <div class="modal-grid">
                         @{
                             var relatedAchievements = AllAchievements
-                                .Where(a => a.Technologies.Any(t => t.Equals(SelectedSkill.Name, StringComparison.OrdinalIgnoreCase)))
+                                .Where(a => a.Technologies.Any(t => t.Equals(SelectedTechnology.Name, StringComparison.OrdinalIgnoreCase)))
                                 .ToList();
                             
                             var relatedProjects = AllProjects
-                                .Where(p => p.Technologies.Any(t => t.Equals(SelectedSkill.Name, StringComparison.OrdinalIgnoreCase)))
+                                .Where(p => p.Technologies.Any(t => t.Equals(SelectedTechnology.Name, StringComparison.OrdinalIgnoreCase)))
                                 .ToList();
                         }
 
@@ -113,20 +113,20 @@
 </section>
 
 @code {
-    private List<SkillModel> Skills = new();
+    private List<TechnologyModel> TechnologyList = new();
     private List<AchievementModel> AllAchievements = new();
     private List<ProjectModel> AllProjects = new();
-    private SkillModel? SelectedSkill;
+    private TechnologyModel? SelectedTechnology;
 
     protected override async Task OnInitializedAsync()
     {
-        var skillsTask = PortfolioService.GetSkillsAsync();
+        var technologiesTask = PortfolioService.GetTechnologiesAsync();
         var achievementsTask = PortfolioService.GetAchievementsAsync();
         var projectsTask = PortfolioService.GetProjectsAsync();
 
-        await Task.WhenAll(skillsTask, achievementsTask, projectsTask);
+        await Task.WhenAll(technologiesTask, achievementsTask, projectsTask);
 
-        Skills = await skillsTask;
+        TechnologyList = await technologiesTask;
         AllAchievements = await achievementsTask;
         AllProjects = await projectsTask;
 
@@ -138,14 +138,14 @@
         LayoutState.OnChange -= StateHasChanged;
     }
 
-    private void SelectSkill(SkillModel skill)
+    private void SelectTechnology(TechnologyModel technology)
     {
-        SelectedSkill = skill;
+        SelectedTechnology = technology;
     }
 
     private void CloseSelection()
     {
-        SelectedSkill = null;
+        SelectedTechnology = null;
     }
 
     private void OpenAchievement(string id)

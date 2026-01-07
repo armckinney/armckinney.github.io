@@ -1,10 +1,10 @@
 {
-  "$schema": "./schemas/skills.schema.json",
-  "skills": [
+  "$schema": "./schemas/technologies.schema.json",
+  "technologies": [
     {
       "name": "Agile",
       "category": "Management & Architecture",
-      "url": ""
+      "url": "https://www.atlassian.com/agile"
     },
     {
       "name": "Scrum",
@@ -164,7 +164,7 @@
     {
       "name": "Blob Storage",
       "category": "Distributed Systems",
-      "url": ""
+      "url": "https://azure.microsoft.com/en-us/products/storage/blobs"
     },
     {
       "name": "Etcd",
@@ -174,12 +174,12 @@
     {
       "name": "Serverless Architectures",
       "category": "Distributed Systems",
-      "url": ""
+      "url": "https://www.datadoghq.com/knowledge-center/serverless-architecture/"
     },
     {
       "name": "Microservices",
       "category": "Distributed Systems",
-      "url": ""
+      "url": "https://microservices.io/"
     },
     {
       "name": "Terraform",
@@ -214,17 +214,17 @@
     {
       "name": "Unit Testing",
       "category": "DevOps",
-      "url": ""
+      "url": "https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing"
     },
     {
       "name": "Static Testing",
       "category": "DevOps",
-      "url": ""
+      "url": "https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing"
     },
     {
       "name": "Integration Testing",
       "category": "DevOps",
-      "url": ""
+      "url": "https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing"
     },
     {
       "name": "GitLab",
@@ -284,7 +284,7 @@
     {
       "name": "Antigravity",
       "category": "AI/ML",
-      "url": ""
+      "url": "https://antigravity.google"
     },
     {
       "name": "MCP",

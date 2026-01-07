@@ -18,10 +18,10 @@ public class PortfolioService
         return data?.Projects ?? new List<ProjectModel>();
     }
 
-    public async Task<List<SkillModel>> GetSkillsAsync()
+    public async Task<List<TechnologyModel>> GetTechnologiesAsync()
     {
-        var data = await _http.GetFromJsonAsync<SkillsData>("data/skills.json");
-        return data?.Skills ?? new List<SkillModel>();
+        var data = await _http.GetFromJsonAsync<TechnologiesData>("data/technologies.json");
+        return data?.Technologies ?? new List<TechnologyModel>();
     }
     
     public async Task<List<AchievementModel>> GetAchievementsAsync()
@@ -38,7 +38,7 @@ public class PortfolioService
     }
 
     private class ProjectsData { public List<ProjectModel> Projects { get; set; } = new(); }
-    private class SkillsData { public List<SkillModel> Skills { get; set; } = new(); }
+    private class TechnologiesData { public List<TechnologyModel> Technologies { get; set; } = new(); }
     private class AchievementsData { public List<AchievementModel> Achievements { get; set; } = new(); }
 
     private ConfigModel? _config;
