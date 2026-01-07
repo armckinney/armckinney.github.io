@@ -56,16 +56,26 @@
                     </div>
 
                     <div class="modal-grid">
+                        @{
+                            var relatedAchievements = AllAchievements
+                                .Where(a => a.Technologies.Any(t => t.Equals(SelectedSkill.Name, StringComparison.OrdinalIgnoreCase)))
+                                .ToList();
+                            
+                            var relatedProjects = AllProjects
+                                .Where(p => p.Technologies.Any(t => t.Equals(SelectedSkill.Name, StringComparison.OrdinalIgnoreCase)))
+                                .ToList();
+                        }
+
                         <div>
                             <h4 class="modal-section-title">Related @(LayoutState.Audience == "engineer" ? "Case Studies" : "Achievements")</h4>
-                            @if (SelectedSkill.RelatedStories.Any())
+                            @if (relatedAchievements.Any())
                             {
                                 <ul class="related-list">
-                                    @foreach (var story in SelectedSkill.RelatedStories)
+                                    @foreach (var story in relatedAchievements)
                                     {
-                                        <li @onclick="() => OpenAchievement(story)" class="related-item">
+                                        <li @onclick="() => OpenAchievement(story.Id)" class="related-item">
                                             <span class="arrow-bullet">→</span>
-                                            <span>@GetAchievementTitle(story)</span>
+                                            <span>@story.Title</span>
                                         </li>
                                     }
                                 </ul>
@@ -78,14 +88,14 @@
 
                         <div>
                             <h4 class="modal-section-title">Related Projects</h4>
-                            @if (SelectedSkill.RelatedProjects.Any())
+                            @if (relatedProjects.Any())
                             {
                                 <ul class="related-list">
-                                    @foreach (var project in SelectedSkill.RelatedProjects)
+                                    @foreach (var project in relatedProjects)
                                     {
-                                        <li @onclick="() => OpenProject(project)" class="related-item">
+                                        <li @onclick="() => OpenProject(project.Id)" class="related-item">
                                             <span class="arrow-bullet">→</span>
-                                            <span>@GetProjectTitle(project)</span>
+                                            <span>@project.Title</span>
                                         </li>
                                     }
                                 </ul>
@@ -156,15 +166,5 @@
             CloseSelection();
             LayoutState.SelectProject(project);
         }
-    }
-
-    private string GetAchievementTitle(string id)
-    {
-        return AllAchievements.FirstOrDefault(a => a.Id == id)?.Title ?? id;
-    }
-
-    private string GetProjectTitle(string id)
-    {
-        return AllProjects.FirstOrDefault(p => p.Id == id)?.Title ?? id;
     }
 }

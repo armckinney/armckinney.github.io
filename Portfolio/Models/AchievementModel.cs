@@ -12,6 +12,7 @@ public class AchievementModel
     public string Action { get; set; } = "";
     public string Result { get; set; } = "";
     public DeepDive? DeepDive { get; set; }
+    public bool Pin { get; set; } = false;
 }
 
 public class DeepDive
