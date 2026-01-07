@@ -248,7 +248,7 @@
 
             if (MaxCount.HasValue)
             {
-                return query.Take(MaxCount.Value);
+                return query.Where(p => p.Pin).Take(MaxCount.Value);
             }
 
             return query;
