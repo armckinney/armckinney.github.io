@@ -137,7 +137,7 @@
 .card-title {
     font-size: 1.5rem;
     font-weight: 400;
-    color: var(--text-primary);
+    color: var(--text-secondary);
     margin-bottom: 1rem;
     transition: color 0.3s;
 }
@@ -147,7 +147,7 @@
 }
 
 .card-result {
-    color: var(--text-secondary);
+    color: var(--text-primary);
     margin-bottom: 1rem;
     display: -webkit-box;
     line-clamp: 2;
