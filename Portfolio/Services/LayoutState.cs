@@ -4,8 +4,8 @@ namespace Portfolio.Services
 {
     public class LayoutState
     {
-        public string Audience { get; private set; } = "engineer";
-        public string Theme { get; private set; } = "dark"; // Default for engineer
+        public string Audience { get; private set; } = "recruiter";
+        public string Theme { get; private set; } = "light"; // Default for recruiter
 
         public event Action? OnChange;
 
