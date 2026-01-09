@@ -25,6 +25,6 @@ public class DeepDive
 
 public class Diagram
 {
-    public string Type { get; set; } = "";
     public string Description { get; set; } = "";
+    public string Url { get; set; } = "";
 }

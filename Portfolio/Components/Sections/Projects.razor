@@ -55,7 +55,7 @@
         <div class="projects-grid">
             @foreach (var project in FilteredProjects)
             {
-                <div @onclick="() => SelectProject(project)" class="project-card group" style="cursor: pointer;">
+                <div @onclick="() => SelectProject(project)" class="project-card group">
                     <!-- Placeholder Image -->
                     <div class="project-image-wrapper">
                          @if (!string.IsNullOrEmpty(project.Image))
@@ -121,8 +121,8 @@
 
         @if (MaxCount.HasValue && ProjectItems.Count > MaxCount.Value)
         {
-            <div class="view-all-container" style="display: flex; justify-content: center; margin-top: 2rem;">
-                <button @onclick="NavigateToAllProjects" class="btn btn-primary" style="padding: 0.75rem 1.5rem;">
+            <div class="view-all-container">
+                <button @onclick="NavigateToAllProjects" class="btn btn-primary btn-padded">
                      View All Projects
                 </button>
             </div>
@@ -142,10 +142,10 @@
                         </button>
                     </div>
                     <!-- Description -->
-                    <p style="margin-bottom: 1.5rem; color: var(--text-secondary); line-height: 1.6;">@SelectedProject.Description</p>
+                    <p class="modal-description">@SelectedProject.Description</p>
                     
                     <!-- Highlights/Details -->
-                    <h4 style="font-weight: 500; margin-bottom: 0.5rem; color: var(--text-primary);">Key Highlights</h4>
+                    <h4 class="modal-subtitle">Key Highlights</h4>
                     <ul class="highlights-list">
                         @foreach (var highlight in SelectedProject.Highlights)
                         {
@@ -156,7 +156,7 @@
                     </ul>
 
                     <!-- Tech -->
-                     <h4 style="font-weight: 500; margin-bottom: 0.5rem; margin-top: 1.5rem; color: var(--text-primary);">Technologies</h4>
+                     <h4 class="modal-subtitle modal-subtitle-tech">Technologies</h4>
                     <div class="tech-tags">
                          @foreach (var tech in SelectedProject.Technologies)
                         {
@@ -165,7 +165,7 @@
                     </div>
 
                     <!-- Links -->
-                    <div class="card-actions" style="margin-top: 2rem;">
+                    <div class="card-actions modal-links">
                         @if (!string.IsNullOrEmpty(SelectedProject.CodeUrl))
                         {
                             <a href="@SelectedProject.CodeUrl" target="_blank" rel="noopener noreferrer" class="action-link">

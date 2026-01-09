@@ -298,3 +298,42 @@ svg {
   display: inline-block;
   vertical-align: middle;
 }
+
+/* Global Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  cursor: pointer;
+  font-size: 0.875rem;
+  border: 1px solid transparent;
+  /* Ensure border box consistency */
+}
+
+.btn-primary {
+  background-color: var(--accent-light);
+  color: var(--accent-text);
+  border: 1px solid var(--accent-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-color);
+  color: var(--bg-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-padded {
+  padding: 0.75rem 1.5rem;
+}
+
+.view-all-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  width: 100%;
+  /* Ensure full width for centering */
+}

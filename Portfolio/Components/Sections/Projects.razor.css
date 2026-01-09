@@ -341,3 +341,55 @@
     backdrop-filter: none;
     -webkit-backdrop-filter: none;
 }
+
+.view-all-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.btn-padded {
+    padding: 0.75rem 1.5rem;
+}
+
+.modal-description {
+    margin-bottom: 1.5rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.modal-subtitle {
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: var(--text-primary);
+}
+
+.modal-subtitle-tech {
+    margin-top: 1.5rem;
+}
+
+.highlights-list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.highlight-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.highlight-item::before {
+    content: "•";
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+.modal-links {
+    margin-top: 2rem;
+}

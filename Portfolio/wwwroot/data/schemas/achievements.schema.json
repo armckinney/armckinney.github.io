@@ -61,6 +61,23 @@
                             },
                             "Metrics": {
                                 "type": "string"
+                            },
+                            "Diagram": {
+                                "type": [
+                                    "object",
+                                    "null"
+                                ],
+                                "properties": {
+                                    "Description": {
+                                        "type": "string"
+                                    },
+                                    "Url": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "Description"
+                                ]
                             }
                         },
                         "additionalProperties": false

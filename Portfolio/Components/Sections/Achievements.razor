@@ -107,8 +107,8 @@
 
         @if (MaxCount.HasValue && AchievementItems.Count > MaxCount.Value)
         {
-            <div class="view-all-container" style="display: flex; justify-content: center; margin-top: 2rem;">
-                <button @onclick="NavigateToAllAchievements" class="btn btn-primary" style="padding: 0.75rem 1.5rem;">
+            <div class="view-all-container">
+                <button @onclick="NavigateToAllAchievements" class="btn btn-primary btn-padded">
                     View All @(LayoutState.Audience == "engineer" ? "Case Studies" : "Achievements")
                 </button>
             </div>
@@ -167,30 +167,53 @@
                                 
                                 @if (SelectedAchievement.DeepDive.Diagram != null)
                                 {
-                                     <div class="diagram-box">
-                                        <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
-                                            <!-- Icon based on type -->
-                                             @if (SelectedAchievement.DeepDive.Diagram.Type == "architecture") { <Icon Name="network" Class="w-12 h-12 icon-blue" /> }
-                                             else if (SelectedAchievement.DeepDive.Diagram.Type == "flow") { <Icon Name="menu" Class="w-12 h-12 icon-blue" /> }
-                                             else { <Icon Name="file-down" Class="w-12 h-12 icon-blue" /> }
+                                     <div class="diagram-box" style="margin-bottom: 1.5rem;">
+                                        @if (!string.IsNullOrEmpty(SelectedAchievement.DeepDive.Diagram.Description))
+                                        {
+                                            <div class="diagram-description">
+                                                <p>@SelectedAchievement.DeepDive.Diagram.Description</p>
+                                            </div>
+                                        }
 
-                                            <div>
-                                                <p style="font-weight: 500; font-size: 0.875rem; margin-bottom: 0.5rem;">
-                                                    @char.ToUpper(SelectedAchievement.DeepDive.Diagram.Type[0])@SelectedAchievement.DeepDive.Diagram.Type.Substring(1) Diagram
-                                                </p>
-                                                <p style="font-size: 0.75rem; color: var(--text-tertiary);">@SelectedAchievement.DeepDive.Diagram.Description</p>
-                                            </div>
-                                             <div style="font-size: 0.75rem; color: var(--text-tertiary); margin-top: 1rem;">
-                                                [Diagram would be displayed here in production]
-                                            </div>
-                                        </div>
+                                        @if (!string.IsNullOrEmpty(SelectedAchievement.DeepDive.Diagram.Url))
+                                        {
+                                             @if (SelectedAchievement.DeepDive.Diagram.Url.Contains("excalidraw.com"))
+                                             {
+                                                 <iframe src="@SelectedAchievement.DeepDive.Diagram.Url" class="diagram-frame" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                                 
+                                                 <div class="diagram-controls">
+                                                     <p class="diagram-info">
+                                                         <Icon Name="info" Class="w-3 h-3 icon-inline" />
+                                                         View Mode: <strong>Option + R</strong> (Mac) or <strong>Alt + R</strong> (Windows/Linux)
+                                                     </p>
+                                                     <a href="@SelectedAchievement.DeepDive.Diagram.Url" target="_blank" rel="noopener noreferrer" class="enlarge-link">
+                                                        <Icon Name="maximize" Class="w-3 h-3" /> Enlarge
+                                                     </a>
+                                                 </div>
+                                             }
+                                             else
+                                             {
+                                                 <img src="@SelectedAchievement.DeepDive.Diagram.Url" alt="@SelectedAchievement.DeepDive.Diagram.Description" class="diagram-img" />
+                                                 <div class="diagram-controls-end">
+                                                     <a href="@SelectedAchievement.DeepDive.Diagram.Url" target="_blank" rel="noopener noreferrer" class="enlarge-link">
+                                                        <Icon Name="maximize" Class="w-3 h-3" /> Enlarge
+                                                     </a>
+                                                 </div>
+                                             }
+                                        }
+                                        else
+                                        {
+                                             <div class="diagram-placeholder">
+                                                 <Icon Name="file-down" Class="w-12 h-12 icon-blue" /> 
+                                                 <p class="diagram-placeholder-text">[No diagram available]</p>
+                                             </div>
+                                        }
                                      </div>
                                 }
-
                                 @if (!string.IsNullOrEmpty(SelectedAchievement.DeepDive.Architecture))
                                 {
                                     <div>
-                                        <h4 style="font-weight: 500; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                                        <h4 class="deep-dive-title">
                                             <Icon Name="network" Class="w-5 h-5 icon-blue" />
                                             Architecture
                                         </h4>
@@ -200,7 +223,7 @@
                                  @if (!string.IsNullOrEmpty(SelectedAchievement.DeepDive.Challenges))
                                 {
                                     <div>
-                                        <h4 style="font-weight: 500; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                                        <h4 class="deep-dive-title">
                                             <Icon Name="alert-triangle" Class="w-5 h-5 icon-blue" />
                                             Technical Challenges
                                         </h4>
@@ -210,7 +233,7 @@
                                 @if (!string.IsNullOrEmpty(SelectedAchievement.DeepDive.Metrics))
                                 {
                                     <div>
-                                        <h4 style="font-weight: 500; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+                                        <h4 class="deep-dive-title">
                                             <Icon Name="bar-chart-3" Class="w-5 h-5 icon-blue" />
                                              Metrics & Impact
                                         </h4>

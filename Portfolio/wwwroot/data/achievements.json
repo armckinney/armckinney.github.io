@@ -18,12 +18,6 @@
       "Task": "Detail available in full description.",
       "Action": "Detail available in full description.",
       "Result": "Issue with databricks workspaces (very containerized - using managed vnet injection) needing to act like mesh network and communicate with each other (apart of UC initiative, and allow cross-party data sharing), current deployed Azure infra not allowing without perm data loss/infra destruction, consulted with databricks and was provided a complex and expensive solution, designed Hub/Spoke network solution to be created after workspace persistence can be decoupled, currently WIP but will allow platform users to safely share their own data assets with other departments enabling better analytical initiatives (healthcare, finance, etc)  This was a cost savings because it allowed us to have implement domain filtering via a single firewall which is central to the platform as opposed to instance-specific ones, which saved $200k+ annum.",
-      "DeepDive": {
-        "Problem": "",
-        "Architecture": "",
-        "Challenges": "",
-        "Metrics": ""
-      },
       "Pin": true
     },
     {
