@@ -1,0 +1,340 @@
+/* CSS Variables for Theming */
+:root {
+  /* Dracula Palette */
+  --bg-primary: #282a36;
+  --bg-secondary: #44475a;
+  --text-primary: #f8f8f2;
+  /* White */
+  --text-secondary: #8be9fd;
+  /* Cyan */
+  --text-tertiary: #bd93f9;
+  /* Purple */
+
+  --accent-color: #ff79c6;
+  /* Pink */
+  --accent-hover: #ffb86c;
+  /* Orange */
+  --accent-light: rgba(255, 121, 198, 0.15);
+  --accent-text: #ff79c6;
+
+  --border-color: #6272a4;
+  --card-bg: #282a36;
+  --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+
+  /* Component Specific Defaults */
+  --header-bg: rgba(40, 42, 54, 0.95);
+  --toggle-active-bg: #ff79c6;
+  --toggle-active-text: #282a36;
+}
+
+/* Dark Mode Variables (One Dark Pro) */
+html.dark {
+  --bg-primary: #282c34;
+  --bg-secondary: #21252b;
+  --text-primary: #abb2bf;
+  --text-secondary: #d19a66;
+  /* Purple */
+  --text-tertiary: #56b6c2;
+  /* Cyan */
+
+  --accent-color: #61afef;
+  /* Blue */
+  --accent-hover: #c678dd;
+  /* Orange */
+  --accent-light: rgba(97, 175, 239, 0.15);
+  --accent-text: #61afef;
+
+  --border-color: #3e4451;
+  --card-bg: #282c34;
+  --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+
+  /* Component Specific Overrides */
+  --header-bg: rgba(40, 44, 52, 0.9);
+  --toggle-active-bg: #61afef;
+  --toggle-active-text: #282c34;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background-color: var(--bg-primary);
+  transition: background-color 0.3s ease;
+}
+
+/* Base Styles */
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  /* Assuming Inter or system-ui */
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text-primary);
+  margin-top: 0;
+}
+
+p {
+  color: var(--text-secondary);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font-family: inherit;
+}
+
+/* Icon Utilities */
+.icon-root {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 0;
+}
+
+svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.w-3 {
+  width: 0.75rem;
+}
+
+.h-3 {
+  height: 0.75rem;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
+.h-4 {
+  height: 1rem;
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
+.w-6 {
+  width: 1.5rem;
+}
+
+.h-6 {
+  height: 1.5rem;
+}
+
+.w-8 {
+  width: 2rem;
+}
+
+.h-8 {
+  height: 2rem;
+}
+
+.w-12 {
+  width: 3rem;
+}
+
+.h-12 {
+  height: 3rem;
+}
+
+/* Utility-like classes reused across components */
+.container {
+  max-width: 80rem;
+  /* 7xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+.section-title-wrapper {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-title {
+  font-size: 3rem;
+  /* 5xl */
+  font-weight: 400;
+  margin-bottom: 1rem;
+  letter-spacing: -0.025em;
+  /* tracking-tight */
+  color: var(--text-secondary);
+}
+
+.section-subtitle {
+  font-size: 1.25rem;
+  /* xl */
+  color: var(--text-primary);
+  max-width: 42rem;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 300;
+  /* font-light */
+}
+
+/* Transitions */
+.transition-colors {
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+}
+
+*,
+*::before,
+*::after {
+  transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
+}
+
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out both;
+}
+
+.delay-200 {
+  animation-delay: 200ms;
+}
+
+.delay-400 {
+  animation-delay: 400ms;
+}
+
+/* Loading Indicator */
+.loading-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-primary);
+  z-index: 9999;
+}
+
+.loading-bar {
+  width: 200px;
+  height: 4px;
+  background-color: var(--border-color);
+  border-radius: 2px;
+  overflow: hidden;
+  position: relative;
+}
+
+.loading-bar::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 40%;
+  background-color: var(--accent-color);
+  border-radius: 2px;
+  animation: loading 1.5s infinite ease-in-out;
+}
+
+.loading-text {
+  margin-top: 1rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-family: 'Inter', sans-serif;
+}
+
+@keyframes loading {
+  0% {
+    left: -40%;
+  }
+
+  100% {
+    left: 100%;
+  }
+}
+
+.icon-mask {
+  background-color: currentColor;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Global Button Styles */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  cursor: pointer;
+  font-size: 0.875rem;
+  border: 1px solid transparent;
+  /* Ensure border box consistency */
+}
+
+.btn-primary {
+  background-color: var(--accent-light);
+  color: var(--accent-text);
+  border: 1px solid var(--accent-color);
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-color);
+  color: var(--bg-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-padded {
+  padding: 0.75rem 1.5rem;
+}
+
+.view-all-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  width: 100%;
+  /* Ensure full width for centering */
+}

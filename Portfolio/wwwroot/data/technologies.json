@@ -1,0 +1,295 @@
+{
+  "$schema": "./schemas/technologies.schema.json",
+  "technologies": [
+    {
+      "name": "Agile",
+      "category": "Management & Architecture",
+      "url": "https://www.atlassian.com/agile"
+    },
+    {
+      "name": "Scrum",
+      "category": "Management & Architecture",
+      "url": "https://www.scrum.org/"
+    },
+    {
+      "name": "Jira",
+      "category": "Management & Architecture",
+      "url": "https://www.atlassian.com/software/jira"
+    },
+    {
+      "name": "Confluence",
+      "category": "Management & Architecture",
+      "url": "https://www.atlassian.com/software/confluence"
+    },
+    {
+      "name": "Lucid",
+      "category": "Management & Architecture",
+      "url": "https://lucid.co/"
+    },
+    {
+      "name": "AWS Well Architected Tool",
+      "category": "Management & Architecture",
+      "url": "https://aws.amazon.com/well-architected-tool/"
+    },
+    {
+      "name": "Python",
+      "category": "Language",
+      "url": "https://www.python.org/"
+    },
+    {
+      "name": "C#",
+      "category": "Language",
+      "url": "https://learn.microsoft.com/en-us/dotnet/csharp/"
+    },
+    {
+      "name": "Go",
+      "category": "Language",
+      "url": "https://go.dev/"
+    },
+    {
+      "name": "Groovy",
+      "category": "Language",
+      "url": "https://groovy-lang.org/"
+    },
+    {
+      "name": "T-SQL",
+      "category": "Language",
+      "url": "https://learn.microsoft.com/en-us/sql/t-sql/"
+    },
+    {
+      "name": "Bash",
+      "category": "Language",
+      "url": "https://www.gnu.org/software/bash/"
+    },
+    {
+      "name": "PowerShell",
+      "category": "Language",
+      "url": "https://learn.microsoft.com/en-us/powershell/"
+    },
+    {
+      "name": "JavaScript",
+      "category": "Language",
+      "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+    },
+    {
+      "name": "FastAPI",
+      "category": "Framework",
+      "url": "https://fastapi.tiangolo.com/"
+    },
+    {
+      "name": "Flask",
+      "category": "Framework",
+      "url": "https://flask.palletsprojects.com/"
+    },
+    {
+      "name": ".NET",
+      "category": "Framework",
+      "url": "https://dotnet.microsoft.com/"
+    },
+    {
+      "name": "Blazor WASM",
+      "category": "Framework",
+      "url": "https://dotnet.microsoft.com/apps/aspnet/web-apps/blazor"
+    },
+    {
+      "name": "Bootstrap",
+      "category": "Framework",
+      "url": "https://getbootstrap.com/"
+    },
+    {
+      "name": "PySpark",
+      "category": "Framework",
+      "url": "https://spark.apache.org/docs/latest/api/python/"
+    },
+    {
+      "name": "TensorFlow",
+      "category": "Framework",
+      "url": "https://www.tensorflow.org/"
+    },
+    {
+      "name": "Delta Lake",
+      "category": "Database",
+      "url": "https://delta.io/"
+    },
+    {
+      "name": "Apache Iceberg",
+      "category": "Database",
+      "url": "https://iceberg.apache.org/"
+    },
+    {
+      "name": "PostgreSQL",
+      "category": "Database",
+      "url": "https://www.postgresql.org/"
+    },
+    {
+      "name": "SQL Server",
+      "category": "Database",
+      "url": "https://www.microsoft.com/sql-server"
+    },
+    {
+      "name": "MongoDB",
+      "category": "Database",
+      "url": "https://www.mongodb.com/"
+    },
+    {
+      "name": "Azure",
+      "category": "Cloud",
+      "url": "https://azure.microsoft.com/"
+    },
+    {
+      "name": "AWS",
+      "category": "Cloud",
+      "url": "https://aws.amazon.com/"
+    },
+    {
+      "name": "Databricks",
+      "category": "Cloud",
+      "url": "https://www.databricks.com/"
+    },
+    {
+      "name": "CloudZero",
+      "category": "Cloud",
+      "url": "https://www.cloudzero.com/"
+    },
+    {
+      "name": "Datadog",
+      "category": "Cloud",
+      "url": "https://www.datadoghq.com/"
+    },
+    {
+      "name": "Apache Spark",
+      "category": "Distributed Systems",
+      "url": "https://spark.apache.org/"
+    },
+    {
+      "name": "Blob Storage",
+      "category": "Distributed Systems",
+      "url": "https://azure.microsoft.com/en-us/products/storage/blobs"
+    },
+    {
+      "name": "Etcd",
+      "category": "Distributed Systems",
+      "url": "https://etcd.io/"
+    },
+    {
+      "name": "Serverless Architectures",
+      "category": "Distributed Systems",
+      "url": "https://www.datadoghq.com/knowledge-center/serverless-architecture/"
+    },
+    {
+      "name": "Microservices",
+      "category": "Distributed Systems",
+      "url": "https://microservices.io/"
+    },
+    {
+      "name": "Terraform",
+      "category": "DevOps",
+      "url": "https://www.terraform.io/"
+    },
+    {
+      "name": "Bicep",
+      "category": "DevOps",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-resource-manager/bicep/"
+    },
+    {
+      "name": "Kubernetes",
+      "category": "DevOps",
+      "url": "https://kubernetes.io/"
+    },
+    {
+      "name": "Docker",
+      "category": "DevOps",
+      "url": "https://www.docker.com/"
+    },
+    {
+      "name": "Docker Compose",
+      "category": "DevOps",
+      "url": "https://docs.docker.com/compose/"
+    },
+    {
+      "name": "libvirt",
+      "category": "DevOps",
+      "url": "https://libvirt.org/"
+    },
+    {
+      "name": "Unit Testing",
+      "category": "DevOps",
+      "url": "https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing"
+    },
+    {
+      "name": "Static Testing",
+      "category": "DevOps",
+      "url": "https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing"
+    },
+    {
+      "name": "Integration Testing",
+      "category": "DevOps",
+      "url": "https://www.atlassian.com/continuous-delivery/software-testing/types-of-software-testing"
+    },
+    {
+      "name": "GitLab",
+      "category": "DevOps",
+      "url": "https://about.gitlab.com/"
+    },
+    {
+      "name": "GitHub",
+      "category": "DevOps",
+      "url": "https://github.com/"
+    },
+    {
+      "name": "Bamboo",
+      "category": "DevOps",
+      "url": "https://www.atlassian.com/software/bamboo"
+    },
+    {
+      "name": "Jenkins",
+      "category": "DevOps",
+      "url": "https://www.jenkins.io/"
+    },
+    {
+      "name": "GitOps",
+      "category": "DevOps",
+      "url": "https://about.gitlab.com/topics/gitops/"
+    },
+    {
+      "name": "Mosaic AI",
+      "category": "AI/ML",
+      "url": "https://www.databricks.com/product/machine-learning/mosaic-ai"
+    },
+    {
+      "name": "Databricks ML",
+      "category": "AI/ML",
+      "url": "https://www.databricks.com/product/machine-learning"
+    },
+    {
+      "name": "Azure ML",
+      "category": "AI/ML",
+      "url": "https://azure.microsoft.com/en-us/products/machine-learning"
+    },
+    {
+      "name": "scikit-learn",
+      "category": "AI/ML",
+      "url": "https://scikit-learn.org/"
+    },
+    {
+      "name": "Cursor",
+      "category": "AI/ML",
+      "url": "https://cursor.com/"
+    },
+    {
+      "name": "Copilot",
+      "category": "AI/ML",
+      "url": "https://github.com/features/copilot"
+    },
+    {
+      "name": "Antigravity",
+      "category": "AI/ML",
+      "url": "https://antigravity.google"
+    },
+    {
+      "name": "MCP",
+      "category": "AI/ML",
+      "url": "https://modelcontextprotocol.io"
+    }
+  ]
+}

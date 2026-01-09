@@ -1,0 +1,167 @@
+@using Portfolio.Services
+@using Portfolio.Models
+@using Portfolio.Components.Common
+@inject PortfolioService PortfolioService
+@inject LayoutState LayoutState
+@inject IJSRuntime JS
+@implements IDisposable
+
+<section id="technologies" class="section">
+    <div class="container">
+        <div class="section-title-wrapper">
+            <h2 class="section-title">Technologies</h2>
+            <p class="section-subtitle">
+                A comprehensive toolkit for building scalable, performant applications
+            </p>
+        </div>
+
+        <!-- Categories -->
+        <div class="categories-container">
+            @foreach (var categoryGroup in TechnologyList.GroupBy(t => t.Category))
+            {
+                <div>
+                    <h3 class="category-title">@categoryGroup.Key</h3>
+                    <div class="tech-grid">
+                        @foreach (var tech in categoryGroup)
+                        {
+                            <button @onclick="() => SelectTechnology(tech)" class="tech-btn group">
+                                <span class="tech-name">@tech.Name</span>
+                            </button>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Selected Tech Details -->
+        @if (SelectedTechnology != null)
+        {
+            <div class="modal-overlay" @onclick="CloseSelection">
+                <div class="modal-content" @onclick:stopPropagation>
+                    <div class="modal-header">
+                        <div>
+                            <h3 class="modal-title">
+                                @SelectedTechnology.Name
+                            </h3>
+                            <a href="@SelectedTechnology.Url" target="_blank" rel="noopener noreferrer" class="learn-more">
+                                Learn more <Icon Name="arrow-right" Class="w-3 h-3" />
+                            </a>
+                        </div>
+                        <button @onclick="CloseSelection" class="close-btn">
+                            <Icon Name="x" Class="w-6 h-6" />
+                        </button>
+                    </div>
+
+                    <div class="modal-grid">
+                        @{
+                            var relatedAchievements = AllAchievements
+                                .Where(a => a.Technologies.Any(t => t.Equals(SelectedTechnology.Name, StringComparison.OrdinalIgnoreCase)))
+                                .ToList();
+                            
+                            var relatedProjects = AllProjects
+                                .Where(p => p.Technologies.Any(t => t.Equals(SelectedTechnology.Name, StringComparison.OrdinalIgnoreCase)))
+                                .ToList();
+                        }
+
+                        <div>
+                            <h4 class="modal-section-title">Related @(LayoutState.Audience == "engineer" ? "Case Studies" : "Achievements")</h4>
+                            @if (relatedAchievements.Any())
+                            {
+                                <ul class="related-list">
+                                    @foreach (var story in relatedAchievements)
+                                    {
+                                        <li @onclick="() => OpenAchievement(story.Id)" class="related-item">
+                                            <span class="arrow-bullet">→</span>
+                                            <span>@story.Title</span>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <p class="no-related">No @(LayoutState.Audience == "engineer" ? "case studies" : "achievements") using this technology yet</p>
+                            }
+                        </div>
+
+                        <div>
+                            <h4 class="modal-section-title">Related Projects</h4>
+                            @if (relatedProjects.Any())
+                            {
+                                <ul class="related-list">
+                                    @foreach (var project in relatedProjects)
+                                    {
+                                        <li @onclick="() => OpenProject(project.Id)" class="related-item">
+                                            <span class="arrow-bullet">→</span>
+                                            <span>@project.Title</span>
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                            else
+                            {
+                                <p class="no-related">No projects using this technology yet</p>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    private List<TechnologyModel> TechnologyList = new();
+    private List<AchievementModel> AllAchievements = new();
+    private List<ProjectModel> AllProjects = new();
+    private TechnologyModel? SelectedTechnology;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var technologiesTask = PortfolioService.GetTechnologiesAsync();
+        var achievementsTask = PortfolioService.GetAchievementsAsync();
+        var projectsTask = PortfolioService.GetProjectsAsync();
+
+        await Task.WhenAll(technologiesTask, achievementsTask, projectsTask);
+
+        TechnologyList = await technologiesTask;
+        AllAchievements = await achievementsTask;
+        AllProjects = await projectsTask;
+
+        LayoutState.OnChange += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        LayoutState.OnChange -= StateHasChanged;
+    }
+
+    private void SelectTechnology(TechnologyModel technology)
+    {
+        SelectedTechnology = technology;
+    }
+
+    private void CloseSelection()
+    {
+        SelectedTechnology = null;
+    }
+
+    private void OpenAchievement(string id)
+    {
+        var achievement = AllAchievements.FirstOrDefault(a => a.Id == id);
+        if (achievement != null)
+        {
+            CloseSelection();
+            LayoutState.SelectAchievement(achievement);
+        }
+    }
+
+    private void OpenProject(string id)
+    {
+        var project = AllProjects.FirstOrDefault(p => p.Id == id);
+        if (project != null)
+        {
+            CloseSelection();
+            LayoutState.SelectProject(project);
+        }
+    }
+}

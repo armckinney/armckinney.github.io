@@ -1,0 +1,102 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Achievements",
+    "type": "object",
+    "properties": {
+        "achievements": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "Id": {
+                        "type": "string"
+                    },
+                    "Title": {
+                        "type": "string"
+                    },
+                    "Domains": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "Principles": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "Technologies": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "Situation": {
+                        "type": "string"
+                    },
+                    "Task": {
+                        "type": "string"
+                    },
+                    "Action": {
+                        "type": "string"
+                    },
+                    "Result": {
+                        "type": "string"
+                    },
+                    "DeepDive": {
+                        "type": [
+                            "object",
+                            "null"
+                        ],
+                        "properties": {
+                            "Problem": {
+                                "type": "string"
+                            },
+                            "Architecture": {
+                                "type": "string"
+                            },
+                            "Challenges": {
+                                "type": "string"
+                            },
+                            "Metrics": {
+                                "type": "string"
+                            },
+                            "Diagram": {
+                                "type": [
+                                    "object",
+                                    "null"
+                                ],
+                                "properties": {
+                                    "Description": {
+                                        "type": "string"
+                                    },
+                                    "Url": {
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "Description"
+                                ]
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                },
+                "required": [
+                    "Id",
+                    "Title",
+                    "Domains",
+                    "Technologies",
+                    "Situation",
+                    "Task",
+                    "Action",
+                    "Result"
+                ]
+            }
+        }
+    },
+    "required": [
+        "achievements"
+    ]
+}

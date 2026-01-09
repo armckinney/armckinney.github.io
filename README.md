@@ -2,7 +2,7 @@
 <div align="center">
     <p>
     <!-- Header -->
-        <img width="100px" src="./assets/favicon/android-chrome-512x512.png"  alt="armckinney.github.io" />
+        <img width="100px" src="./Portfolio/wwwroot/favicon/android-chrome-512x512.png"  alt="armckinney.github.io" />
         <h2>armckinney.github.io</h2>
         <p><i>Definitely not a template format</i></p>
     </p>

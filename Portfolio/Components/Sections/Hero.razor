@@ -1,0 +1,93 @@
+@using Portfolio.Services
+@using Portfolio.Models
+@using Portfolio.Components.Common
+@inject LayoutState LayoutState
+@inject PortfolioService PortfolioService
+@inject IJSRuntime JS
+@implements IDisposable
+
+<section id="hero" class="hero-section">
+    <div class="hero-content">
+        <div class="animate-fade-in-up">
+            <h1 class="hero-title">
+                Andrew McKinney
+            </h1>
+            <p class="hero-subtitle">
+                @if (LayoutState.Audience == "engineer")
+                {
+                    <text>Platform Engineer & AI Enthusiast</text>
+                }
+                else
+                {
+                    <text>Innovative Problem Solver & Technical Leader</text>
+                }
+            </p>
+            <p class="hero-description">
+                @if (LayoutState.Audience == "engineer")
+                {
+                    <text>Building scalable applications with modern technologies. Passionate about AI, cloud architecture, and developer experience.</text>
+                }
+                else
+                {
+                    <text>Delivering impactful solutions with proven leadership in software development, AI integration, and cross-functional collaboration.</text>
+                }
+            </p>
+        </div>
+
+        <div class="cta-group animate-fade-in-up delay-200">
+            <button @onclick='() => ScrollTo("projects")' class="btn-primary">
+                View Projects
+                <Icon Name="arrow-right" Class="w-4 h-4 icon-small" />
+            </button>
+            <button @onclick='() => ScrollTo("contact")' class="btn-secondary">
+                Get in Touch
+            </button>
+        </div>
+
+        <div class="social-links animate-fade-in-up delay-400">
+            @if (Config != null)
+            {
+                <a href="@Config.Socials.Github" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <Icon Name="github" Class="w-5 h-5 icon-small" />
+                </a>
+                <a href="@Config.Socials.Linkedin" target="_blank" rel="noopener noreferrer" class="social-link">
+                    <Icon Name="linkedin" Class="w-5 h-5 icon-small" />
+                </a>
+                <a href="mailto:@Config.Socials.Email" class="social-link">
+                    <Icon Name="mail" Class="w-5 h-5 icon-small" />
+                </a>
+                <button @onclick:preventDefault @onclick='() => OpenResume()' class="social-link">
+                    <Icon Name="file-down" Class="w-5 h-5 icon-small" />
+                </button>
+            }
+        </div>
+    </div>
+</section>
+
+@code {
+    private ConfigModel? Config;
+
+    protected override async Task OnInitializedAsync()
+    {
+        LayoutState.OnChange += StateHasChanged;
+        Config = await PortfolioService.GetConfigAsync();
+    }
+
+    public void Dispose()
+    {
+        LayoutState.OnChange -= StateHasChanged;
+    }
+
+    private async Task ScrollTo(string id)
+    {
+        await JS.InvokeVoidAsync("scrollToSection", id);
+    }
+
+    private async Task OpenResume()
+    {
+        if (Config != null)
+        {
+            await JS.InvokeVoidAsync("open", Config.Resume, "_blank");
+        }
+    }
+}

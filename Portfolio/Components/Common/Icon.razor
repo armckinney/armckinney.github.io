@@ -1,0 +1,16 @@
+@using Microsoft.AspNetCore.Components
+@namespace Portfolio.Components.Common
+
+<div class="icon-mask @Class" style="-webkit-mask-image: url('icons/@(Name.ToLowerInvariant()).svg'); mask-image: url('icons/@(Name.ToLowerInvariant()).svg');" @attributes="AdditionalAttributes">
+</div>
+
+@code {
+    [Parameter]
+    public string Name { get; set; } = "";
+
+    [Parameter]
+    public string Class { get; set; } = "";
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public Dictionary<string, object>? AdditionalAttributes { get; set; }
+}

@@ -1,0 +1,4 @@
+# remove everything
+**
+
+# add back in required Dockerfile artifacts with '!./file'

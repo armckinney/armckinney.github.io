@@ -1,0 +1,10 @@
+{
+    "$schema": "./schemas/config.schema.json",
+    "socials": {
+        "github": "https://github.com/armckinney",
+        "linkedin": "https://linkedin.com/in/drew-mckinney",
+        "email": "andrewryanmckinney@gmail.com",
+        "docker": "https://hub.docker.com/u/armck"
+    },
+    "resume": "https://docs.google.com/document/d/1P5eozgfOWkpW7deijp4VXZmFufb0CigMhdOurXcvWUk/preview"
+}
