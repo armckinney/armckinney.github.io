@@ -19,7 +19,7 @@ public class DeepDive
 {
     public string Architecture { get; set; } = "";
     public string Challenges { get; set; } = "";
-    public string Metrics { get; set; } = "";
+    public string Retrospective { get; set; } = "";
     public Diagram? Diagram { get; set; }
 }
 

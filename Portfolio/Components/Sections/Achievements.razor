@@ -235,14 +235,14 @@
                                         <p>@SelectedAchievement.DeepDive.Challenges</p>
                                     </div>
                                 }
-                                @if (!string.IsNullOrEmpty(SelectedAchievement.DeepDive.Metrics))
+                                @if (!string.IsNullOrEmpty(SelectedAchievement.DeepDive.Retrospective))
                                 {
                                     <div>
                                         <h4 class="deep-dive-title">
-                                            <Icon Name="bar-chart-3" Class="w-5 h-5 icon-blue" />
-                                             Metrics & Impact
+                                            <Icon Name="search" Class="w-5 h-5 icon-blue" />
+                                             Retrospective
                                         </h4>
-                                        <p>@SelectedAchievement.DeepDive.Metrics</p>
+                                        <p>@SelectedAchievement.DeepDive.Retrospective</p>
                                     </div>
                                 }
                              </div>

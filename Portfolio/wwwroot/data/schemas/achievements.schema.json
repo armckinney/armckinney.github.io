@@ -50,16 +50,13 @@
                             "null"
                         ],
                         "properties": {
-                            "Problem": {
-                                "type": "string"
-                            },
                             "Architecture": {
                                 "type": "string"
                             },
                             "Challenges": {
                                 "type": "string"
                             },
-                            "Metrics": {
+                            "Retrospective": {
                                 "type": "string"
                             },
                             "Diagram": {
