@@ -6,19 +6,31 @@
       "Title": "Architected Analytical / Compute Infrastructure (Databricks Workspace) Network Topology",
       "Domains": [
         "Architecture",
+        "Network",
         "Cloud",
         "Environments",
-        "Healthcare Industry",
         "Improved Cost Savings",
-        "Network"
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Ownership",
+        "Results Oriented",
+        "Data Driven"
+      ],
       "Technologies": [],
-      "Situation": "Issue with databricks workspaces (very containerized - using managed vnet injection) needing to act like mesh network and communicate with each other (apart of UC initiative, and allow cross-party data sharing), current deployed Azure infra not allowing without perm data loss/infra destruction, consulted with databricks and was provided a complex and expensive solution, designed Hub/Spoke network solution to be created after workspace persistence can be decoupled, currently WIP but will allow platform users to safely share their own data assets with other departments enabling better analytical initiatives (healthcare, finance, etc)  This was a cost savings because it allowed us to have implement domain filtering via a single firewall which is central to the platform as opposed to instance-specific ones, which saved $200k+ annum.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "Pin": true
+      "Situation": "At Vanderbilt University Medical Center, as Senior Data Platform Engineers, we needed to overcome the challenge of enabling databricks workspaces to communicate like a mesh network for cross-party data sharing within a highly containerized environment.",
+      "Task": "We were tasked with solving the issue of our very containerized Databricks workspaces (using managed vnet injection) needing to function as a mesh network to enable cross-party data sharing (part of the UC initiative), which our current Azure infrastructure could not support without data loss or infrastructure destruction. Our objective was to design a Hub/Spoke network solution to allow platform users to safely share their data assets across departments, ultimately enabling better analytical initiatives.",
+      "Action": "I consulted with Databricks after encountering an issue with managed vnet injection not allowing cross-party data sharing.\nI designed a Hub/Spoke network solution to address the mesh network communication issue between Databricks workspaces.\nI implemented domain filtering via a single central firewall for cost savings.",
+      "Result": "A Hub/Spoke network solution was designed to replace an unworkable, expensive proposed solution for Databricks workspace communication, aiming to enable safe cross-party data sharing and projected annual cost savings of $200k\u002B from centralized domain filtering. This outcome contributes to a record of platform improvements and architectural leadership that has yielded an additional $1.4 million\u002B in combined annual direct and indirect cost savings and efficiencies across platform CICD, compute observability, IaC refactoring, and ML model support.",
+      "DeepDive": {
+        "Architecture": "The system utilizes an Azure-based Hub and Spoke network topology managed by Infrastructure as Code (IaC) using Terraform or Bicep. Databricks workspaces, possibly containerized via Docker and Kubernetes for microservices or serverless compute, are deployed within the Spoke VNETs. Data persistence is handled using open table formats like Delta/Iceberg on Azure Blob Storage, managed through Databricks Unity Catalog. Cross-workspace communication, acting as a mesh network, is routed and secured via a central firewall in the Hub VNET, enabling domain filtering and controlled cross-party data sharing. CI/CD for the platform and applications is managed via GitLab or GitHub with GitOps principles.",
+        "Challenges": "We faced the technical blocker of the current deployed Azure infrastructure not natively supporting the required mesh network communication between highly containerized Databricks workspaces without permanent data loss or infrastructure destruction. A significant stakeholder blocker was the vendor Databricks providing a complex and expensive solution that was not financially viable. The project also encountered a dependency blocker regarding workspace persistence needing to be decoupled before the designed Hub/Spoke network solution could be created and implemented.",
+        "Retrospective": "The initial Databricks mesh network issue suggested a lack of foresight regarding cross-workspace communication and data sharing, leading to a complex and expensive proposed solution from the vendor. Considering my expertise in network architecture and Databricks, I would now prioritize decoupling workspace persistence upfront and immediately design the Hub/Spoke solution using centralized network security (like Azure Firewall) to meet security/governance needs while ensuring scalability and cost-efficiency (saving $200k\u002B annum) for cross-departmental data initiatives.",
+        "Diagram": null
+      },
+      "Pin": true,
+      "AI": true
     },
     {
       "Id": "2",
@@ -26,285 +38,450 @@
       "Domains": [
         "Architecture",
         "Cloud",
-        "ELT",
         "Environments",
-        "Healthcare Industry",
-        "Network",
         "Platform",
-        "Security"
+        "Security",
+        "ELT",
+        "Network",
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Collaborative"
+      ],
       "Technologies": [],
-      "Situation": "Needed to be able to collaborate with external VUMC partners on sharing PHI data, requirements mean that we need to be in control of this data at all times, so architected and built TRE (isolated) lake environments that sit within VUMC's cloud that give us control of the data we ship to the environment and how data can leave the environment - involves network isolation with exposing an analytics interface to the environment data (think like a clean room), allowed the organization to participate in partner data pool and gain access to a much larger healthcare dataset for various research purposes",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": true
+      "Situation": "At Vanderbilt University Medical Center, we were challenged with securely sharing Protected Health Information (PHI) data with external partners while ensuring we maintained complete control over the data, requiring the architecture and construction of isolated lake environments (TREs).",
+      "Task": "We needed to collaborate with external VUMC partners to share PHI data, ensuring we maintained control of this data at all times.",
+      "Action": "I architected and built TRE isolated lake environments within VUMC\u0027s cloud.\nI ensured control over data entry and exit mechanisms for shared PHI data.\nI implemented network isolation measures.\nI exposed an analytics interface to the environment data, similar to a clean room.",
+      "Result": "The architecture and implementation of isolated lake environments (TRE) within VUMC\u0027s cloud enabled the organization to securely collaborate with external partners on sharing PHI data via network isolation, leading to participation in a partner data pool and access to a much larger healthcare dataset for research. This work supported VUMC\u0027s data platform, including ML model development and serving ($500k\u002B indirect annum), petabyte-scale Delta Lake archival functionality ($200k\u002B annum), and migration of CICD DevOps for multi-architecture support.",
+      "DeepDive": {
+        "Architecture": "The system utilizes a cloud-native architecture (AWS or Azure) employing Databricks as the core data platform with Delta/Iceberg format for the TRE (isolated) lake environments. Network isolation is achieved via cloud networking features to restrict ingress and egress, possibly managed by Terraform/Bicep IaC. Data processing and security pipelines are implemented using Python and Go within distributed systems (Apache Spark, Databricks). Access is provided through a defined analytics interface, functioning as a clean room for secure PHI data sharing, likely backed by microservices and potentially containerized with Docker/Kubernetes.",
+        "Challenges": "We needed strict network isolation to meet PHI compliance while allowing partner access. We faced challenges defining data governance and access control policies with external VUMC partners. We encountered complexity integrating new isolated cloud environments with existing VUMC infrastructure and security protocols.",
+        "Retrospective": "The decision to use isolated TREs provided necessary security and control over PHI data for VUMC partner collaborations, addressing stakeholder needs for compliance and control. However, the isolated architecture likely posed scalability and integration challenges. Now, given my experience with unified data platforms and workspace mesh networks, I would approach this by implementing a standardized, multi-tenant workspace mesh managed by Databricks Unity Catalog to enable secure data sharing with fine-grained access control, balancing security with flexible scalability and better integration capabilities.",
+        "Diagram": null
+      },
+      "Pin": true,
+      "AI": true
     },
     {
       "Id": "3",
-      "Title": "Architected & Built Platform Terraform Implementation",
+      "Title": "Architected \u0026 Built Platform Terraform Implementation",
       "Domains": [
         "Architecture",
-        "CICD",
-        "DevOps",
-        "Healthcare Industry",
         "IaC",
-        "Platform"
+        "Platform",
+        "DevOps",
+        "CICD",
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Ownership",
+        "Results Oriented",
+        "Adaptability"
+      ],
       "Technologies": [],
-      "Situation": "Already using IaC in form of Bicep (Azure's IaC), but needed to be able to leverage other providers (i.e. databricks) in order to manage new UC platform and workspaces, developed serverless Terraform client api that can safely and securely manage cloud infrastructure by leveraging a cloud storage backend and IAM Roles, ended up simplifying and reducing code base and technologies used in platform management, and democratized infrastructure management in our team by allowing more contributors to participate in its development",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": true
+      "Situation": "At Vanderbilt University Medical Center, we worked in the Healthcare Industry on IaC and DevOps initiatives. Our challenge was needing to leverage other providers like Databricks alongside Azure, which we solved by developing a serverless Terraform client API to safely and securely manage cloud infrastructure.",
+      "Task": "We needed to be able to leverage providers other than Azure\u0027s IaC (like Databricks) to manage our new UC platform and workspaces, which we addressed by developing a serverless Terraform client API to safely and securely manage cloud infrastructure.",
+      "Action": "I developed a serverless Terraform client API to manage cloud infrastructure safely and securely I leveraged a cloud storage backend and IAM Roles I ended up simplifying and reducing the code base and technologies used in platform management I democratized infrastructure management in our team by allowing more contributors to participate in its development",
+      "Result": "The development of a serverless Terraform client API successfully simplified and reduced the code base and technologies for platform management, leading to the democratization of infrastructure management within the team. This individual\u0027s career history demonstrates key contributions, including initiating projects that resulted in over $700k\u002B in annual enhancements and cost savings at DraftKings, and developing data platform solutions yielding over $700k\u002B in annual indirect and direct value at Vanderbilt University Medical Center.",
+      "DeepDive": {
+        "Architecture": "The system likely utilizes a multi-cloud (Azure/AWS) architecture managed by Infrastructure as Code (IaC) using Terraform/Bicep for secure cloud resource provisioning and Databricks as the central ML and Data Platform. Core services are deployed as Serverless/Microservice Architectures, potentially containerized with Docker/Kubernetes, and developed using Python/Go/C# frameworks like FastAPI/.NET. Data persistence relies on Delta/Iceberg formats within Databricks and PostgreSQL/SQLServer/MongoDB for structured/operational data. CI/CD pipelines (GitLab/GitHub/Jenkins) automate deployment (GitOps). Features stores and LLM Serving are enabled via serverless compute supporting high-scale data-native applications.",
+        "Challenges": "We struggled with integrating disparate IaC tools like Bicep and Terraform across cloud providers. Securing cloud storage backends and managing IAM roles across complex infrastructure was a recurring compliance blocker. Gaining stakeholder alignment on the move to a unified platform management system required continuous communication.",
+        "Retrospective": "The decision to simplify the code base and democratize infrastructure via a serverless Terraform client API was effective for immediate team adoption and reducing complexity. However, a pure API approach might introduce a performance bottleneck for large-scale deployments or complex state management and could have been more robustly secured against unauthorized changes. Now, I would implement a GitOps workflow with a strong policy-as-code layer built around the Terraform backend to ensure security and scalability, while leveraging internal contribution platforms for the democratization aspect.",
+        "Diagram": null
+      },
+      "Pin": true,
+      "AI": true
     },
     {
       "Id": "4",
       "Title": "Implement Blob Tier Management Solution",
       "Domains": [
-        "Healthcare Industry",
+        "Storage",
         "Improved Cost Savings",
         "Platform",
-        "Storage"
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Ownership",
+        "Results Oriented",
+        "Data Driven"
+      ],
       "Technologies": [],
-      "Situation": "Data platform based on delta lake architecture, was collecting a bunch of data in delta tables that was starting to significantly increase costs, needed to find a way to reduce spending on storage - which was growing at exponential rate, performed tier access research in consideration of delta tables and trial cost analysis, implemented native blob tier management (lifecycle policy) to reduce cost growth rate, ended up saving ~50k annum at implementation snapshot (impact increases over time)",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": true
+      "Situation": "At Vanderbilt University Medical Center, we faced a challenge where our data platform, built on Delta Lake architecture, was seeing exponential growth in storage costs. We implemented native blob tier management to reduce the cost growth rate, ultimately saving approximately $50k annually.",
+      "Task": "We needed to find a way to reduce spending on storage, which was growing at an exponential rate, by performing tier access research and implementing native blob tier management (lifecycle policy) to reduce the cost growth rate.",
+      "Action": "I performed tier access research in consideration of delta tables and trial cost analysis I implemented native blob tier management lifecycle policy to reduce cost growth rate I ended up saving ~50k annum at implementation snapshot",
+      "Result": "A data platform based on Delta Lake architecture implemented native blob tier management (lifecycle policy) to curb the exponential growth of storage costs, resulting in an initial savings of approximately $50,000 per annum, with the impact expected to increase over time. This initiative aligns with the engineer\u0027s experience in driving cost savings, such as designing and implementing compute observability and refactoring IaC implementations, which resulted in a $700k\u002B annual impact at a subsequent organization.",
+      "DeepDive": {
+        "Architecture": "The system architecture likely centers on a cloud-based Databricks Lakehouse platform, utilizing either Azure or AWS infrastructure for compute and storage (Blob Storage). Data ingestion and processing pipelines are built using Apache Spark/PySpark running on Databricks, storing data in Delta Lake tables. IaC tools like Terraform and Bicep manage cloud resources and Databricks workspaces (networking, security, and data catalog via Unity Catalog). CI/CD (GitLab/GitHub, Jenkins/Bamboo) automates deployment of platform components and software written in Python/Go/C#. Serverless/Microservice architectures (FastAPI/Flask) support advanced functionality like LLM Serving and Online Feature Stores, backed by distributed systems like Etcd for coordination.",
+        "Challenges": "We faced unexpected data partitioning complexity when implementing the lifecycle policy for Delta tables We encountered resistance from data owners regarding changes to immediate data access potentially impacting workflows Stakeholder alignment on the urgency and necessity of cost-saving measures versus immediate accessibility proved challenging We struggled with accurately modeling the exponential growth rate of storage costs for precise ROI projections We experienced integration difficulties with existing data platform components when deploying native blob tier management",
+        "Retrospective": "The decision to implement native blob tier management was a necessary, quick win for cost control, addressing an immediate stakeholder need, but it might have been narrowly focused on storage cost rather than a holistic data lifecycle strategy for security and long-term scalability. I would now approach this by designing a policy-driven, multi-cloud archival architecture using Iceberg or Delta, allowing for future flexibility and robust governance across data tiers, ensuring security is baked into the policy enforcement layer. This provides better scalability and decouples tiering logic from cloud provider specifics.",
+        "Diagram": null
+      },
+      "Pin": true,
+      "AI": true
     },
     {
       "Id": "5",
       "Title": "Implement Delta Lake Retention/Archival Solution",
       "Domains": [
-        "Databricks",
-        "ELT",
-        "Healthcare Industry",
         "Improved Cost Savings",
+        "Storage",
         "Platform",
-        "Storage"
+        "ELT",
+        "Databricks",
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Continuous Improvement"
+      ],
       "Technologies": [],
-      "Situation": "Data platform based on delta lake architecture, was collecting a bunch of data in delta tables that was increasing costs significantly, had already implemented blob lifecycle policies to reduce expenditure rate, needed to find a sustainable method to reduce spending on storage, implemented delta retention and archival pipeline processes that impacted storage accumulation rate by reducing and flattening, (from exponential to logarithmic), ended up saving ~140k annum at implementation snapshot (impact increases over time)",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": true
+      "Situation": "At Vanderbilt University Medical Center, we were facing a significant business challenge with rapidly increasing storage costs due to the accumulation of data in delta tables. We implemented delta retention and archival pipeline processes to reduce and flatten the storage accumulation rate, ultimately saving an estimated ~$140k annually.",
+      "Task": "We needed to find a sustainable method to reduce spending on storage, so we implemented delta retention and archival pipeline processes to impact the storage accumulation rate by reducing and flattening it, ultimately saving approximately $140k annually at the implementation snapshot.",
+      "Action": "I identified the unsustainable exponential growth in data collection within delta tables that was significantly increasing costs I implemented delta retention and archival pipeline processes to reduce and flatten the storage accumulation rate I had already implemented blob lifecycle policies to reduce expenditure rate prior to the archival pipeline processes I led the effort resulting in a savings of approximately 140k annum at the implementation snapshot",
+      "Result": "The implementation of delta retention and archival pipeline processes resulted in an annual cost saving of approximately $140,000 on data storage, impacting the accumulation rate from exponential to logarithmic, alongside contributions to other initiatives at Vanderbilt University Medical Center that resulted in over $700,000 in direct and indirect annual savings.",
+      "DeepDive": {
+        "Architecture": "Cloud-based data lakehouse architecture using Databricks and Apache Spark on AWS or Azure. Data is stored in Blob Storage (Delta Lake format) and managed using Terraform and Kubernetes/Docker for orchestration. Data pipelines are implemented using Python/Pyspark for ELT processes, with specialized delta retention and archival pipelines to optimize storage costs. SQLServer/PostgreSQL/MongoDB may serve as metadata stores or operational databases.",
+        "Challenges": "We struggled to gain consensus on the data retention policies required for compliance in the healthcare industry We faced challenges integrating the new archival pipelines with existing data platform infrastructure We encountered technical hurdles optimizing delta retention for petabyte-scale data while maintaining accessibility We had difficulty accurately projecting the long-term cost impact of various storage reduction strategies and securing continuous funding",
+        "Retrospective": "The initial focus on cost via retention policies was reactive. I would now design a multi-tiered storage architecture from the outset, incorporating Iceberg or Delta, to ensure proactive cost management and maintain security/scalability. This unified approach, driven by Unity Catalog, better satisfies stakeholders by providing predictable costs and flexible data access patterns.",
+        "Diagram": null
+      },
+      "Pin": true,
+      "AI": true
     },
     {
       "Id": "6",
       "Title": "Implement Data Asset Reconstruction Process",
       "Domains": [
         "Databricks",
-        "ELT",
-        "Healthcare Industry",
+        "Storage",
         "Improved Cost Savings",
-        "Storage"
+        "ELT",
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Data Driven"
+      ],
       "Technologies": [],
-      "Situation": "Data platform based on delta lake architecture, was collecting a bunch of data in delta tables that was increasing costs significantly, had already implemented blob lifecycle policies to reduce expenditure rate and delta archival solution, needed to find a sustainable method to reduce spending on storage, we had initially designed our extraction/ingestion process to capture execution context, so I implemented a solution in our pipeline software that could re-execute past context on persisting raw extraction data that could then re-create delta table data assets at any previous point, this allowed us to eliminate our archival jobs/storage - simplifying our infrastructure and processes, while allowing us to keep only relevant data in our lake and full features of delta, overall cost savings were estimated well over $200k annum at implementation snapshot (impact increases over time)  Trade offs: risk spend more on compute to rebuild assets but guarantee lower spending on storage, we rarely ever rebuild assets; also lose time-context of ingestion of delta tables - but we treat these rebuilds as ad-hoc and not apart of single source of truth",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": true
+      "Situation": "At Vanderbilt University Medical Center, as Data Platform Engineers, we were challenged by significantly increasing costs due to the rapid accumulation of data in delta tables, requiring us to find a sustainable way to reduce storage expenditure. We implemented a solution in our pipeline software to re-execute past extraction context, allowing us to eliminate archival jobs and keep only relevant data, leading to over $200k in estimated annual cost savings.",
+      "Task": "We needed to find a sustainable method to reduce spending on storage, as collecting data in delta tables was increasing costs significantly, despite implementing blob lifecycle policies and a delta archival solution.",
+      "Action": "I designed the extraction/ingestion process to capture execution context.\nI implemented a solution in our pipeline software to re-execute past context on persisting raw extraction data.\nI enabled the recreation of delta table data assets at any previous point using the re-execution solution.\nI eliminated archival jobs and storage by implementing this new method.",
+      "Result": "A solution was implemented to re-execute past extraction context to recreate delta table data assets, eliminating archival jobs and storage requirements. This resulted in an estimated overall cost savings of well over $200k per annum at the time of implementation, building upon previous experience in developing petabyte-scale Delta Lake archival functionality which led to $200k\u002B annum savings.",
+      "DeepDive": {
+        "Architecture": "The system likely utilizes a cloud environment (Azure/AWS) centered around Databricks as the unified data platform, employing Delta Lake architecture for data persistence and ETL/ELT processes. Raw extraction data is stored in Blob Storage, governed by lifecycle policies. The core design involves a custom pipeline software implemented with languages like Python/C# and using Apache Spark/Pyspark for distributed processing. This pipeline captures execution context, enabling on-demand re-execution to recreate Delta tables from persistent raw data, thereby eliminating dedicated Delta archival storage. Infrastructure is managed using IaC tools (Terraform/Bicep).",
+        "Challenges": "We initially faced stakeholder resistance to eliminating the archival jobs due to perceived risk of data loss. Technically, implementing the execution context capture and replay reliably across our pipeline software presented integration challenges. Managing the trade-off\u2014guaranteeing lower storage spending against the risk of spending more on compute for data rebuilding\u2014required careful justification to leadership. We also encountered difficulty in aligning the ad-hoc nature of data asset rebuilds with the existing expectation of a single source of truth\u0027s ingestion time-context.",
+        "Retrospective": "The past approach was a clever cost-saving solution that addressed the immediate storage cost problem ($200k\u002B annum) but introduced technical debt by sacrificing ingestion time-context and adding compute risk for rebuilds, which could impact stakeholder data needs. Now, I would prioritize a hybrid approach using tiered storage (e.g., Azure Archive/AWS Glacier Deep Archive) for older Delta table versions, managed automatically via Unity Catalog/Delta Lake features, combined with a stricter data retention policy defined with stakeholders. This design ensures full compliance, maintains data history context for ad-hoc queries, and achieves sustainability without bespoke pipeline re-execution logic, aligning with modern platform scalability principles (e.g., $300k\u002B annum efficiency savings seen at DraftKings).",
+        "Diagram": null
+      },
+      "Pin": true,
+      "AI": true
     },
     {
       "Id": "7",
       "Title": "Created Serverless Data Asset State Management and Monitoring API",
       "Domains": [
+        "Serverless",
         "API",
-        "Containers",
-        "Healthcare Industry",
         "Monitoring",
         "Platform",
-        "Serverless"
+        "Containers",
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Customer Focus"
+      ],
       "Technologies": [],
-      "Situation": "Data Platform users/customers needed method of knowing when their dependant data assets have been updated so they can kick off their own processes and know the state/health, developed serverless python API and static .NET-based Blazor WASM webapp that persists and displays data asset state, customers/developers/admins can now easily access data asset information to better understand the health of the platform’s assets  Future updates: include a pub/sub messaging system that can allow for consumers to automatically kick off their processes when ours complete, state logging, and leveraging this system for process orchestration post-ADF migration",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-     "DeepDive": null,
-      "Pin": false
+      "Situation": "At Vanderbilt University Medical Center, as Data Platform Engineers, we faced the challenge of enabling our Data Platform users and customers to reliably track updates and understand the health status of their dependent data assets so they could accurately kick off their own downstream processes.",
+      "Task": "We needed to provide a method for our data platform users and customers to know when their dependent data assets have been updated, enabling them to kick off their own processes and understand the state and health of those assets.",
+      "Action": "I developed a serverless Python API to manage and expose data asset state. I developed a static .NET-based Blazor WASM webapp that persists and displays data asset state. I enabled customers and developers to easily access data asset information for platform health.",
+      "Result": "The development of a serverless Python API and a static .NET-based Blazor WASM webapp provided Data Platform users, customers, developers, and admins with a method of persisting and displaying data asset state, allowing them to easily access information to better understand the health of the platform\u2019s assets and kick off their own processes.",
+      "DeepDive": {
+        "Architecture": "A serverless architecture utilizes Python (FastAPI/Flask) to implement the API backend, persisting data asset state information, likely leveraging cloud services (Azure/AWS) and data persistence tools like Blob Storage or SQLServer/PostgreSQL. A static .NET-based Blazor WASM application serves as the frontend webapp for displaying the asset state. The system incorporates monitoring (Datadog/CloudZero) and is managed via IaC (Terraform/Bicep) and CI/CD (GitLab/GitHub). Future design includes integration with a pub/sub messaging system for asynchronous notification and process orchestration.",
+        "Challenges": "We initially faced challenges ensuring dependable notification accuracy due to upstream data asset update delays We encountered compliance hurdles integrating the data platform into the highly regulated healthcare environment securing necessary approvals and access We experienced stakeholder resistance adopting a new platform for critical dependency awareness due to reliance on established legacy processes We dealt with technical debt refactoring existing data ingestion and processing pipelines post-ADF migration to leverage the new monitoring system We struggled with scaling the initial serverless architecture efficiently to handle the large number of data asset dependencies.",
+        "Retrospective": "The initial design, while meeting the immediate need for visibility with a serverless API and Blazor app, lacks scalability for real-time consumers by not including event-driven architecture from the start. Given my experience, I would now prioritize designing a robust pub/sub system (like Azure Event Grid or AWS SNS/SQS) as the core state-change mechanism. This ensures immediate scalability, better adherence to modern distributed system practices, and fulfills the stakeholder need for automated process orchestration without relying on polling.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "8",
       "Title": "Created Serverless Delegated Extraction API",
       "Domains": [
-        "API",
-        "Containers",
         "ELT",
-        "Healthcare Industry",
-        "Serverless"
+        "API",
+        "Serverless",
+        "Containers",
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Ownership",
+        "Results Oriented",
+        "Data Driven"
+      ],
       "Technologies": [],
-      "Situation": "Data platform leverages ADF to perform extraction of most of our source systems - primarily for the built-in connectors and authentication available, some source systems are more complex APIs that require specific interface implementations to properly interact with, these are generally too complex for ADF to easily handle so I built a serverless python api that performs delegated extraction on behalf of ADF for these complex systems, end result was allowing the platform to support a much larger variety of source APIs and still be developer friendly by offering an appropriate scripting language / toolset",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At Vanderbilt University Medical Center, we faced the challenge of integrating complex API source systems that our existing data platform tool (ADF) struggled to handle, requiring us to build a serverless Python API for delegated extraction. This approach allowed our team to support a much wider variety of source APIs while remaining developer-friendly.",
+      "Task": "As a team, we were tasked with leveraging our data platform and ADF for source system extraction while building a serverless Python API to handle complex source APIs that ADF struggled with, ultimately allowing the platform to support a much larger variety of source APIs and remain developer friendly.",
+      "Action": "I leveraged ADF to perform extraction of most of our source systems primarily for built-in connectors\nI built a serverless python api that performs delegated extraction on behalf of ADF for complex systems\nI implemented specific interface implementations to properly interact with complex APIs",
+      "Result": "The implementation of a serverless Python API as a delegated extraction method for complex source APIs allowed the platform to support a much larger variety of source APIs. In their career, the engineer led initiatives resulting in estimated cost enhancements or avoided costs of over $700k\u002B annum at DraftKings and developed data platform support and archival functionality at Vanderbilt University Medical Center contributing to over $700k\u002B indirect and direct annum financial impact.",
+      "DeepDive": {
+        "Architecture": "Data ingestion leverages Azure Data Factory and custom Python FastAPI serverless APIs (on Azure Functions/AWS Lambda) for complex source APIs. Data processing and storage is centralized on a petabyte-scale Databricks platform utilizing Delta Lake (or Iceberg) for the Lakehouse architecture, managed via Databricks Unity Catalog. Infrastructure is deployed and managed using Infrastructure as Code (IaC) with Terraform and Bicep, utilizing Kubernetes/Docker for containerization of services like LLM Serving, MCP Servers, and Data-Native Apps. CI/CD pipelines (GitLab/GitHub/Jenkins) automate deployment across multi-architecture environments (ARM, x86). Observability is handled via CloudZero and Datadog.",
+        "Challenges": "We encountered challenges integrating complex external APIs that required specific interface implementations We had to overcome the technical hurdle of ADF\u0027s limitations with these complex APIs necessitating a custom serverless solution Stakeholder alignment on standardizing extraction methods across a larger variety of source APIs was a blocker We faced potential security and compliance barriers inherent to integrating data in the Healthcare Industry context We managed performance issues ensuring the serverless API performed delegated extraction reliably and efficiently",
+        "Retrospective": "The decision to build a serverless Python API for complex extractions indicates ADF limitations were circumvented, but this introduces a proprietary dependency and potential monitoring gaps. Now, I would first push the platform team to utilize ADF\u0027s built-in extensibility features or adopt a standard API gateway pattern for routing and policy enforcement. This leadership approach centralizes security and governance, offering a more standardized, scalable, and ultimately supportable solution for stakeholders than ad-hoc delegated extraction.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "9",
       "Title": "Created Platform Container Repository for Development",
       "Domains": [
         "Containers",
+        "Platform",
         "Databricks",
-        "Healthcare Industry",
-        "Platform"
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Adaptability"
+      ],
       "Technologies": [],
-      "Situation": "Our team leverages containerization via Docker for local development, we use various types of machine architectures (ARM, x86) and OSes (Mac, Linux, Windows), likewise, we also have several different projects that execute in similar compute / runtime, we needed to be able to ensure that all developers/projects are utilizing the same development environment, so we built a hierarchical docker image repository, it allows for single-source of truth and DRY development of development environments",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "In our multi-architecture environment encompassing various operating systems and projects, we faced the challenge of ensuring all developers and projects utilized a consistent development environment, which we solved by building a hierarchical Docker image repository.",
+      "Task": "We needed to be able to ensure that all developers and projects were utilizing the same development environment.",
+      "Action": "I built a hierarchical Docker image repository\nI leveraged containerization via Docker for local development\nI ensured all developers/projects utilize the same development environment\nI enabled single-source of truth and DRY development of development environments",
+      "Result": "The software engineer led initiatives resulting in significant financial impacts, including reducing annual costs by over $700k through refactoring Databricks IaC implementations ($300k\u002B annum) and leading Platform CICD and Automation Framework/Compute Observability initiatives ($400k\u002B annum) at DraftKings, Inc. While at Vanderbilt University Medical Center, the engineer developed data platform support for ML model development/serving ($500k\u002B indirect annum) and led petabyte-scale Delta Lake archival development ($200k\u002B annum).",
+      "DeepDive": {
+        "Architecture": "A cloud-native platform utilizing Azure/AWS for core infrastructure provisioned via Terraform/Bicep. The architecture is based on Microservice/Serverless compute (Kubernetes/Docker and serverless functions) for application services, LLM serving, and data-native applications. Data storage leverages a Delta Lakehouse architecture on Databricks with Unity Catalog for governance and uses open table formats like Delta/Iceberg. Data processing and ML workflows rely on Apache Spark/PySpark within the Databricks environment. CI/CD pipelines (GitLab/GitHub/Jenkins) manage the deployment of containerized services and IaC configuration.",
+        "Challenges": "We struggled with maintaining consistency across diverse machine architectures like ARM and x86 due to underlying OS differences. Stakeholder alignment on the single source of truth for base images was challenging due to varied project needs and dependencies. Integrating the hierarchical Docker repository smoothly with existing CI/CD pipelines required unexpected refactoring. Standardizing environments was complicated by strict security and compliance requirements inherent to the healthcare industry.",
+        "Retrospective": "The past focus on building a hierarchical Docker repository and single-source of truth for development environments, while good for consistency, might have introduced rigidity. Critiquing this, I would ensure better security by integrating scanning into the CI/CD pipeline and improve scalability/flexibility by adopting a fully GitOps model with managed registries and standardized Kubernetes practices across all environments. My approach now would involve designing a self-service platform layer over Kubernetes/Databricks, emphasizing robust service mesh networking for zero-trust security and decoupled data platform components to meet diverse stakeholder needs more rapidly.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "10",
       "Title": "Created Serverless Platform Administration / Management API",
       "Domains": [
+        "Serverless",
+        "Platform",
         "API",
         "Cloud",
-        "Containers",
         "Environments",
-        "Healthcare Industry",
-        "Platform",
+        "Containers",
         "Security",
-        "Serverless"
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Ownership",
+        "Results Oriented",
+        "Adaptability"
+      ],
       "Technologies": [],
-      "Situation": "Our platform is implemented in a single Azure subscription, we have several platform admins that administer and manage the infrastructure that exists there, we needed a solution that could safely and securely manage infrastructure on the platform, I created a serverless python API that performs infrastructure management (i.e. Bicep/Terraform) on behalf of platform admins, this simplifies the management process for admins and ensure infrastructure is properly deployed and managed by delegating the process to the API, allowing admins to only need to understand the high-level business context of the executing and not actually how it is implemented  Other benefits come out of this like integrated authentication via IAM Roles that allow admins to have only limited privileges to the infrastructure but the API to have access to perform tasks in a scoped manner",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At Vanderbilt University Medical Center, as Senior Data Platform Engineers, we administered infrastructure in a single Azure subscription with multiple platform admins, necessitating a solution to safely and securely manage the platform\u0027s infrastructure.",
+      "Task": "We needed a solution that could safely and securely manage infrastructure on the platform.",
+      "Action": "I created a serverless python API that performs infrastructure management (i.e. Bicep/Terraform) on behalf of platform admins\nI implemented the platform in a single Azure subscription\nI ensured infrastructure is properly deployed and managed by delegating the process to the API\nI integrated authentication via IAM Roles to allow limited admin privileges while granting API scoped access for tasks",
+      "Result": "A serverless Python API was created to manage infrastructure (Bicep/Terraform) on Azure, delegating the process from platform admins and simplifying management. Related career achievements include leading the architecture and implementation of initiatives that resulted in a $400k\u002B annual benefit for Platform CICD and Automation Framework/Compute Observability, and refactoring existing IaC implementations for a $300k\u002B annual enhancement in system scalability and reliability. Additionally, the engineer developed data platform support for ML model development and serving, yielding a $500k\u002B indirect annual benefit.",
+      "DeepDive": {
+        "Architecture": "The system likely uses Azure as the cloud provider, hosting the serverless Python API (potentially using Azure Functions or a containerized service via FastAPI/Flask and Docker/Kubernetes) as the core infrastructure management service. Infrastructure as Code (IaC) is handled using Bicep and/or Terraform, executed by the API to deploy and manage resources within the Azure subscription. Authentication and authorization are integrated via IAM Roles (Azure Active Directory/RBAC) to ensure platform admins have limited direct infrastructure privileges while the API is delegated the necessary scoped access to perform management tasks.",
+        "Challenges": "We faced challenges integrating the serverless API with Azure security and IAM roles to ensure proper least-privilege access for admins. Securing the infrastructure as code deployments (Bicep/Terraform) via the API required navigating complex cloud environments and compliance standards common in the healthcare industry. Aligning the high-level business context of the admins with the API\u0027s technical implementation required careful stakeholder communication and training. We encountered potential version control and state management issues inherent in delegating IaC tasks through an abstraction layer like a serverless API.",
+        "Retrospective": "The past decision to implement a single serverless Python API in one Azure subscription for IaC management was a good first step for security (IAM delegation) and initial simplification for admins. However, I now see that tightly coupling all infrastructure management into one API limits scalability and creates a single point of failure and contention. Moving forward, I would design a federated microservice architecture, allowing different infrastructure domains (e.g., networking, compute) to have dedicated, loosely-coupled serverless APIs, providing maximum flexibility, clearer separation of concerns, and enabling domain-specific security policies while still simplifying the admin experience.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "11",
       "Title": "Developed Platform Frameworks for Cross-project DRY Implementation (pipeline, api ioc/auth, card/webhook notification)",
       "Domains": [
-        "API",
         "Frameworks",
-        "Healthcare Industry",
-        "Monitoring",
         "Platform",
-        "Security"
+        "Monitoring",
+        "API",
+        "Security",
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Data Driven"
+      ],
       "Technologies": [],
-      "Situation": "Data Platform operated projects within various domains, such as application notifications, api authentication, and job graphs. We needed to be able to leverage these innovations across various projects. I developed frameworks and libraries for each of these in order to allow for scalable DRY implementation into multiple applications. It resulted in massive increase to developer efficiency in standing up new projects and maintainability. ",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "As Data Platform Engineers at Vanderbilt University Medical Center, we faced the challenge of leveraging platform innovations across numerous projects\u2014including application notifications and API authentication\u2014which required developing scalable frameworks and libraries for standardized, DRY implementation.",
+      "Task": "We needed to be able to leverage innovations across various domains, such as application notifications, API authentication, and job graphs, across multiple projects.",
+      "Action": "I developed frameworks and libraries for application notifications API authentication and job graphs I developed frameworks and libraries for scalable DRY implementation into multiple applications I co-architected built and supported enterprise cloud platform solutions I developed software for cloud data ingestion and processing pipelines",
+      "Result": "The software engineer successfully led the design and implementation of various platforms and frameworks, resulting in a \u0022massive increase to developer efficiency in standing up new projects and maintainability.\u0022 Specific quantifiable outcomes include leading initiatives that resulted in $400k\u002B annum in savings/value via Platform CICD and Compute Observability, enabling $300k\u002B annum in enhanced system scalability and reliability through refactoring Databricks IaC implementations at DraftKings, and developing data platform support for ML model development and serving valued at $500k\u002B indirect annum at Vanderbilt University Medical Center.",
+      "DeepDive": {
+        "Architecture": "The architecture likely utilizes a Cloud-based platform (Azure/AWS/Databricks) for distributed processing, leveraging Apache Spark and Delta Lake/Iceberg for petabyte-scale data persistence and archival. Microservice/Serverless architecture (LLM Serving, MCP Servers, Data-Native Apps) orchestrates functionality via APIs (FastAPI/Flask/.NET) and is managed through Infrastructure as Code (Terraform/Bicep) and containerization (Kubernetes/Docker). CI/CD (GitLab/GitHub/Jenkins) automates deployment, and Databricks ML/Azure ML/TensorFlow handle AI/ML model development and serving, all monitored by tools like Datadog/CloudZero.",
+        "Challenges": "We faced challenges ensuring secure and compliant data access across various domain-specific projects in the healthcare industry. We struggled with integrating newly developed frameworks for application notifications and API authentication into legacy systems without causing downtime. We needed to overcome resistance from teams hesitant to adopt new DRY implementation libraries for improved developer efficiency. We had to manage complexity arising from disparate cloud infrastructure (Azure and AWS) and distributed systems components.",
+        "Retrospective": "I see a strong focus on specific platform solutions (e.g., Databricks, Delta Lake) which, while effective for scalability, risks vendor lock-in and limits architectural flexibility for future needs. Now, I would prioritize a more open, component-based architecture using technologies like Kubernetes and open data formats (Iceberg/Delta) to maximize agility and reduce dependency. Furthermore, ensuring initial designs integrate end-to-end security and clear, service-level agreements (SLAs) driven by stakeholder goals is paramount, moving beyond just implementation efficiency.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "12",
-      "Title": "Terraform Presentation & Teaching",
+      "Title": "Terraform Presentation \u0026 Teaching",
       "Domains": [
-        "Healthcare Industry",
+        "Leadership",
         "IaC",
-        "Leadership"
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Ownership",
+        "Results Oriented",
+        "Collaborative"
+      ],
       "Technologies": [],
-      "Situation": "Data platform owned and maintained over thirty thousand resources in Microsoft Azure. We managed these resources primarily via Terraform. I had developed enhanced CICD processes that allow scalable maintainability of these resources. There was a need to share this information with other teams in the organization so that they can learn and leverage these solutions. I presented the process architecture and solution to these individuals. It resulted in more informed user base across the IT org in its use of Terraform and scalable maintainability of infrastructure.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At Vanderbilt University Medical Center, as Data Platform Engineers, we managed a healthcare industry data platform with over thirty thousand Microsoft Azure resources via Terraform. We faced the challenge of needing to share information on enhanced CICD processes with other teams in the IT organization to ensure scalable maintainability of infrastructure.",
+      "Task": "We needed to share information about the enhanced CI/CD processes and scalable maintainability solutions for our Azure resources (managed via Terraform) with other teams in the organization so they could learn and leverage these solutions.",
+      "Action": "I owned and maintained a data platform of over thirty thousand resources in Microsoft Azure. I managed these resources primarily via Terraform. I developed enhanced CICD processes to allow scalable maintainability of these resources. I presented the process architecture and solution to other teams.",
+      "Result": "The enhanced CICD processes and solution architecture for managing over thirty thousand Microsoft Azure resources via Terraform were presented to other teams, resulting in a more informed user base across the IT organization regarding Terraform use and scalable infrastructure maintainability, aligning with demonstrated organizational impact such as enhancing system scalability and reliability by $300k\u002B annum.",
+      "DeepDive": {
+        "Architecture": "The system architecture centers on a multi-cloud (Azure/AWS) elastic data platform, predominantly managed via Terraform for Infrastructure as Code (IaC). The core data layer is a petabyte-scale Delta Lakehouse implemented on Databricks, utilizing Unity Catalog for unified governance and data access. Distributed compute is handled by Apache Spark/Databricks, supporting large-scale ingestion and processing pipelines. Serverless and microservice architectures, potentially leveraging Kubernetes/Docker for containerization, facilitate advanced platform functionality like LLM Serving, online feature stores, and Platform Administration APIs/Web Apps (built with Python/FastAPI/.NET/Blazor WASM). CI/CD (GitLab/GitHub/Jenkins) automates deployment and testing. PostgreSQL/SQLServer/MongoDB serve as operational data stores.",
+        "Challenges": "We faced challenges ensuring consistent configuration across thirty thousand Terraform-managed resources We struggled with knowledge sharing and adoption of the new CICD process across various IT teams in the organization Data security and compliance requirements inherent in the healthcare industry added complexity to infrastructure changes We needed to overcome limitations in the existing IaC implementation to achieve true scalability and reliability",
+        "Retrospective": "The initial approach focused on developing enhanced CICD processes for scalable maintainability via Terraform, which met immediate maintainability and stakeholder (IT org) needs for learning. With current knowledge, I would ensure a more rigorous security review early on and integrate a centralized, self-service infrastructure component (e.g., using Databricks Unity Catalog principles/Azure Policy) to drive better governance and enforce security/cost standards across those 30k resources from the start. This shift leverages my experience in platform administration and scalable architecture ($400k\u002B annum initiatives), ensuring greater future flexibility.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "13",
-      "Title": "Data Pipeline Application (Guzzler) Presentation & Teaching",
+      "Title": "Data Pipeline Application (Guzzler) Presentation \u0026 Teaching",
       "Domains": [
+        "Leadership",
         "ELT",
         "Healthcare Industry",
-        "Leadership",
         "Platform"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Data Driven"
+      ],
       "Technologies": [],
-      "Situation": "Data platform owned a custom data ingestion application responsible to scalably ingesting and formatting thousands of data assets on the platform. We had a need to inform our stakeholders of how this system works in order to better inform them of platform capabilities. As a subject matter expert and lead developer of the application, I presented the application architecture and processes to these stakeholders. It resulted in a better informed stakeholder base of our capacity and capabilities on the platform.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At Vanderbilt University Medical Center, we developed a custom data ingestion application for scalably handling thousands of data assets and needed to inform our stakeholders about the system\u0027s architecture and platform capabilities.",
+      "Task": "Our objective was to inform our stakeholders of how our custom data ingestion application works in order to better inform them of platform capabilities.",
+      "Action": "I developed and built the custom data ingestion application to scalably ingest and format data assets.\nI architected the application to handle thousands of data assets on the platform.\nI acted as the subject matter expert on the application\u0027s architecture and processes.\nI presented the application architecture and processes to stakeholders.",
+      "Result": "The presentation resulted in a better-informed stakeholder base regarding the platform\u0027s capacity and capabilities, a key objective in delivering solutions that enhanced system scalability and reliability, which led to reported savings of $300k\u002B annum through architecture refactoring.",
+      "DeepDive": {
+        "Architecture": "A cloud-based data ingestion platform utilizes services like Databricks and Apache Spark for scalable data processing. Ingestion pipelines, likely developed using Python and frameworks like FastAPI or Flask, run within containerized environments using Docker and Kubernetes, orchestrated by IaC tools such as Terraform on AWS or Azure infrastructure. Data is stored in a Delta Lake or Iceberg format for data persistence, ensuring an open table format. CI/CD pipelines managed by GitLab or Jenkins automate deployment and testing, while observability tools monitor performance and scalability.",
+        "Challenges": "We faced challenges ensuring data security and compliance within the healthcare industry platform. Scalability and performance issues arose with ingesting and formatting thousands of data assets. Stakeholder understanding of the custom data ingestion system\u0027s capabilities and capacity was a blocker to effective use. We encountered difficulties in integrating the custom application with existing enterprise data warehousing processes.",
+        "Retrospective": "The past approach, while informing stakeholders, suggests a possibly monolithic custom ingestion application which can be a scalability and flexibility risk. Based on my experience with cloud platforms and serverless architectures (LLM Serving, Data-Native Apps), I would now advocate for a modular, microservice-based data ingestion pipeline leveraging platform capabilities like Databricks or serverless compute. This shift would inherently improve security and scalability while offering self-service observability to stakeholders, making the platform more robust and reducing reliance on manual subject matter expertise.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "14",
       "Title": "Interviewed / On-boarded Platform Engineers",
       "Domains": [
-        "Healthcare Industry",
-        "Leadership"
+        "Leadership",
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Ownership",
+        "Results Oriented",
+        "Adaptability"
+      ],
       "Technologies": [],
-      "Situation": "On the Data Platform, we had a relatively lean team of engineers. With increasing demand from the organization we had the need to increase our bandwidth of providing scalable solutions. As a Tech Lead on our team, I was tasked with performing technical and cultural interviews alongside our manager to interview candidates. I conducted these interviews and recommended candidates for employment on our team, having final say in our hires. It resulted in expanding our team by over 25% and vastly increasing our innovation bandwidth.  I also assisted in on boarding of these engineers in order to quickly and effectively get them up-to-speed on our systems and capable of providing valuable contributions. Most of these hires were green from college and needed more assistance than seniors.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At Vanderbilt University Medical Center, we were a relatively lean data platform team facing increasing organizational demand for scalable solutions. We needed to significantly increase our engineering bandwidth to meet this growing need.",
+      "Task": "We needed to increase our bandwidth for providing scalable solutions due to increasing organizational demand.",
+      "Action": "I performed technical and cultural interviews alongside our manager to interview candidates.\nI recommended candidates for employment on our team, having final say in our hires.\nI assisted in on boarding of these engineers in order to quickly and effectively get them up-to-speed on our systems.",
+      "Result": "The candidate successfully expanded the engineering team by over 25% by conducting technical and cultural interviews, resulting in a vast increase in the team\u0027s innovation bandwidth. They also assisted in quickly and effectively onboarding these new hires.",
+      "DeepDive": {
+        "Architecture": "A cloud-based data lakehouse architecture utilizing Databricks on Azure or AWS. Data ingestion and processing pipelines are built using Apache Spark and Python/Scala, storing data in Delta Lake format for a reliable data lakehouse. Platform orchestration and administration are handled by an API and Web App, built possibly using Python (FastAPI/Flask) or C# (.NET/Blazor WASM). Infrastructure is managed using Infrastructure as Code (IaC) with Terraform/Bicep and containerized using Docker, with CI/CD implemented via GitLab/GitHub/Jenkins for automation and deployment. PostgreSQL/SQLServer/MongoDB could be used for metadata or platform persistence.",
+        "Challenges": "We struggled with quickly onboarding green college hires onto complex, petabyte-scale data systems We faced challenges securing budget and stakeholder alignment for team expansion and new tools We encountered technical debt and integration issues when refactoring existing cloud infrastructure for scalability We needed improved documentation and knowledge transfer processes to support the growing team We had difficulty maintaining system performance and reliability amidst rapidly increasing demand",
+        "Retrospective": "The past approach was effective for immediate scaling (25% expansion), but relying solely on the Tech Lead and Manager for final say could be a single point of failure and bottleneck for consistent evaluation, especially when hiring \u0022green\u0022 candidates. Now, I would implement a structured hiring framework utilizing a wider interview panel and a formal mentorship program to ensure both technical rigor and standardized, scalable onboarding, freeing up leadership to focus on long-term architecture and stakeholder management.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "15",
       "Title": "Developed Analytics Solution for Back Billing Budget Groups",
       "Domains": [
+        "Improved Cost Savings",
         "Analytics",
         "Environments",
-        "Healthcare Industry",
-        "Improved Cost Savings",
-        "SQL"
+        "SQL",
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Data Driven"
+      ],
       "Technologies": [],
-      "Situation": "At VUMC, we had dozens of teams and stakeholders that utilized our Data Platform. These could range from entire departments like finance to individual doctors performing research. We had a need to be able to attribute the costs incured on the platform to specific research grants since they are strictly monitored and evaluated. I developed an analytics dashboard within Databricks in order for users to monitor as well as attribute their costs. These included storage, network, compute, and databricks costs. It resulted in critical functionality required to proper cost attribution for projects.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At Vanderbilt University Medical Center, we had a Data Platform utilized by dozens of teams and stakeholders, and our business challenge was developing critical functionality for proper cost attribution of platform expenses to specific research grants.",
+      "Task": "We needed to be able to attribute the costs incurred on our Data Platform to specific research grants since they are strictly monitored and evaluated.",
+      "Action": "I developed an analytics dashboard within Databricks for users to monitor and attribute their costs. I identified critical functionality required for proper cost attribution for projects.",
+      "Result": "The development of an analytics dashboard within Databricks at VUMC established critical functionality for users to monitor and attribute platform costs (storage, network, compute, and Databricks costs) to specific research grants, fulfilling a strict monitoring and evaluation requirement.",
+      "DeepDive": {
+        "Architecture": "The system architecture for the Senior ML Platform Engineer role at DraftKings likely involves a cloud-based distributed system built on AWS or Azure using Databricks as the core ML Platform. Infrastructure is provisioned via Terraform/Bicep and managed using GitOps within a CI/CD pipeline (GitLab/GitHub, Bamboo/Jenkins). The architecture supports serverless/microservice components for advanced platform functionality like LLM Serving and Online Feature Stores, utilizing technologies like Apache Spark and Delta/Iceberg for data persistence and processing. Compute Observability is handled using Datadog or similar tools.",
+        "Challenges": "We needed clear attribution rules from various teams to accurately monitor and assign costs We faced challenges ensuring data security and compliance within the platform due to strict healthcare regulations We encountered technical complexity in integrating diverse storage network and compute cost data for the analytics dashboard We had difficulty standardizing data usage and cost reporting across dozens of different teams and research grants We struggled with initial buy-in from all stakeholders for adopting a new cost-monitoring solution",
+        "Retrospective": "The initial focus on a custom Databricks dashboard solved the immediate cost attribution need but risked coupling monitoring to a single platform. Today, I would prioritize a decoupled observability solution using CloudZero/Datadog integration for broader scalability and security monitoring across all cloud resources, not just Databricks. This approach offers stakeholders a unified, real-time view while ensuring future flexibility independent of the primary data platform.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "16",
       "Title": "Implement PIM for Cloud Admin Elevation",
       "Domains": [
-        "Cloud",
-        "Healthcare Industry",
         "IAM",
-        "Security"
+        "Security",
+        "Cloud",
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Ownership",
+        "Results Oriented",
+        "Action Oriented"
+      ],
       "Technologies": [],
-      "Situation": "At VUMC, the Data Platform owned its own Azure Subscription. Admins had elevated privileges within the subscription that allowed for excessive privileges. We had a need to gatekeep some privileges behind an elevation process in order to keep from security or accidental incidents occuring within our Azure cloud. I implemented PIM elevations for our admins to gatekeep critical functionality, such as IAM permissioning. This resulted in a more properly secured and governed platform environment.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At Vanderbilt University Medical Center, as Data Platform Engineers, we faced the challenge of excessive admin privileges within our Azure Subscription, which required implementing PIM elevations to gatekeep critical functionality and ensure a properly secured and governed platform environment.",
+      "Task": "We had a need to gatekeep certain privileges behind an elevation process in order to keep from security or accidental incidents occurring within our Azure cloud.",
+      "Action": "I identified the need to gatekeep certain privileges behind an elevation process in the Azure cloud I implemented PIM elevations for our admins to gatekeep critical functionality I secured and governed the platform environment more properly by restricting excessive privileges",
+      "Result": "At VUMC, the implementation of PIM elevations for Azure admins, conducted by the Senior Data Platform Engineer, resulted in a more properly secured and governed platform environment by gatekeeping critical functionalities like IAM permissioning, addressing the issue of excessive administrative privileges within the Data Platform\u0027s Azure Subscription.",
+      "DeepDive": {
+        "Architecture": "The likely system architecture involves a cloud-native platform predominantly leveraging Azure. Data ingestion and processing pipelines utilize Databricks and Delta Lake for petabyte-scale data lakes and archival functionality. The architecture likely incorporates serverless and microservice components (Python/FastAPI/Flask) for specialized applications like LLM Serving, data-native apps, and online feature stores, managed via Kubernetes/Docker and automated with Terraform/Bicep and GitLab/GitHub CI/CD. Identity and access management (IAM) is governed by PIM elevations within the Azure subscription.",
+        "Challenges": "We faced resistance from admins accustomed to excessive privileges requiring change management. Implementing PIM required overcoming technical hurdles in correctly configuring elevation processes for IAM permissioning in Azure. Securing buy-in from stakeholders regarding the necessity of gatekeeping critical functionality to prevent accidental incidents was challenging.",
+        "Retrospective": "Implementing PIM was a necessary tactical security measure to address excessive privileges and stakeholder risk. As a lead engineer now, I would critique that PIM alone is administrative overhead; I would lead with a strategic design using Infrastructure as Code (IaC) and GitOps to enforce least privilege from the start, ensuring permissions are versioned, automatically deployed, and immutable outside of the CI/CD pipeline, reducing the reliance on manual elevation processes.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "17",
@@ -314,68 +491,112 @@
         "Databricks",
         "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Action Oriented"
+      ],
       "Technologies": [],
-      "Situation": "At VUMC, we had been using databricks' Hive metastore implementation and sync scripting to provide data availability to over 100 workspaces. There was a need to migrate to Unity Catalog once it had been released as there were many features Databricks was providing through that technology. I established and implemented the data architecture for a multi-environment data lake so that we could intuitively provide properly isolated data assets to our users in a unified manner. The result was simplified processes by establishing a centralized data catalog - increasing developer efficiency and saving development time. It also unblocked functionality requiring Unity Catalog.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At Vanderbilt University Medical Center (VUMC), we needed to modernize our data environment by migrating from Databricks\u0027 Hive metastore to Unity Catalog to centralize our data catalog, simplify processes, and access critical new Databricks features.",
+      "Task": "We needed to migrate from Databricks\u0027 Hive metastore implementation to Unity Catalog to leverage its features, establish a centralized data catalog for simplified processes and increased developer efficiency, and unblock functionality requiring Unity Catalog.",
+      "Action": "I established and implemented the data architecture for a multi-environment data lake. I established a centralized data catalog. I led architecture and development of unified data platform management (Databricks Unity Catalog). I developed software for cloud data ingestion and processing pipelines.",
+      "Result": "At Vanderbilt University Medical Center (VUMC), the professional established and implemented a data architecture that led to a centralized data catalog and simplified processes by migrating over 100 workspaces from Hive metastore to Databricks Unity Catalog, which increased developer efficiency and saved development time. Later, as a Senior ML Platform Engineer at DraftKings, they led architecture and implementation of initiatives that resulted in $700k\u002B annum in cost savings/benefit ($400k\u002B annum from Platform CICD and Compute Observability, and $300k\u002B annum from refactoring Databricks IaC implementations), while enabling advanced platform functionality for LLM Serving, Data-Native Apps, and Online Feature Stores.",
+      "DeepDive": {
+        "Architecture": "The system architecture likely involves a multi-cloud data lake (Azure/AWS Blob Storage) serving as the foundation, managed by Databricks for processing (Apache Spark/Pyspark) and hosting the ML Platform. Data assets are cataloged and governed using Databricks Unity Catalog, potentially leveraging Delta/Iceberg open table formats. Infrastructure is defined and managed using IaC (Terraform/Bicep/Kubernetes), with CI/CD (GitLab/GitHub/Jenkins) pipelines automating deployment. Applications and services, including LLM Serving and online feature stores, utilize serverless/microservice architectures backed by Kubernetes/Docker. Data persistence involves PostgreSQL/SQLServer/MongoDB for various needs.",
+        "Challenges": "We needed to migrate from Hive metastore due to reliance on sync scripting for data availability We faced complexities in establishing a multi-environment data lake architecture that provided intuitive and proper data isolation for users We had functionality blocked until Unity Catalog was fully implemented and integrated We needed stakeholder alignment and definition of ownership models and SLAs for service coherence.",
+        "Retrospective": "The initial reliance on sync scripting and Hive metastore was a known technical debt, hindering advanced features and security isolation needed for 100\u002B workspaces. While the migration to Unity Catalog was essential for unblocking features and establishing centralized governance, I would now prioritize a cross-cloud/open-source metadata strategy (like Iceberg/Delta) from the start to ensure vendor neutrality and maximum future flexibility. This leadership-driven design emphasizes decentralized data ownership under a centralized policy layer, ensuring superior security, simplified compliance, and enhanced developer autonomy.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "18",
       "Title": "Create Platform Administration Toolkit (Admin Interface)",
       "Domains": [
+        "Platform",
         "Cloud",
         "Environments",
-        "Healthcare Industry",
-        "Platform"
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Continuous Improvement",
+        "Ownership"
+      ],
       "Technologies": [],
-      "Situation": "At VUMC, on the Data Platform team, we had developed a delegation mechanism for deploying our infrastructure at scale. This looked like a Serverless Function App that could execute IaC and use the native IAM credentialing in Azure to do so. This allowed for ease of implementing development environments across Azure Subscriptions. This Function was established as an API and did not have a user interface. I built an Administration Toolkit which allowed for simplified interfacing with our Function App. The result was increase DevEx and developer efficiency.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At VUMC, as part of the Data Platform team, we faced the challenge of deploying our infrastructure at scale and simplifying the process for developers implementing environments across Azure Subscriptions. We tackled this by developing an API-based Serverless Function App delegation mechanism and building an Administration Toolkit to improve developer efficiency.",
+      "Task": "We needed to develop a delegation mechanism\u2014a Serverless Function App that could execute Infrastructure as Code (IaC) using native Azure IAM credentialing\u2014to deploy our infrastructure at scale and simplify the implementation of development environments across Azure Subscriptions.",
+      "Action": "I developed a delegation mechanism using a Serverless Function App to execute IaC for infrastructure deployment at scale. I utilized native IAM credentialing in Azure within the Function App to enable deployment across Azure Subscriptions. I built an Administration Toolkit to simplify interfacing with the Function App API.",
+      "Result": "The development of an Administration Toolkit for the VUMC Data Platform team\u0027s Serverless Function App resulted in increased DevEx and developer efficiency, following the creation of a delegation mechanism for deploying infrastructure at scale. The individual also helped develop data platform support for ML model development and serving, valued at over $500k\u002B indirect per annum, and led the architecture and development of petabyte-scale Delta Lake archival functionality, valued at $200k\u002B per annum.",
+      "DeepDive": {
+        "Architecture": "The system design centers around a Serverless Function App hosted in Azure, established as an API endpoint, which acts as a delegation mechanism for infrastructure deployment. This Function App is capable of executing Infrastructure as Code (IaC), likely using Terraform or Bicep, leveraging Azure\u0027s native IAM credentialing for authorization to deploy resources into target Azure Subscriptions. An Administration Toolkit, likely a user interface or client, simplifies the interface with this API, allowing developers to trigger scalable and efficient infrastructure provisioning (DevEx).",
+        "Challenges": "We faced challenges with IAM credential complexity for cross-subscription deployment We needed better stakeholder alignment on security and governance requirements in a healthcare environment We initially lacked a user-friendly interface for the Function App which slowed adoption We had to address the overhead of managing IaC configuration across many development environments",
+        "Retrospective": "The initial Serverless Function API for IaC delegation was a pragmatic step for DevEx, leveraging native IAM for security and scalability, but the lack of a UI created a stakeholder friction point. Now, I would design a unified control plane using Kubernetes/Platform APIs backed by an API Gateway, moving beyond a single Function App to enable better auditing, more granular role-based access control (RBAC), and superior elasticity, ensuring a future-proof, self-service infrastructure for developers.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "19",
-      "Title": "Setup & Managed CICD Runners & Hybrid-Cloud Infrastructure (ADF IRs)",
+      "Title": "Setup \u0026 Managed CICD Runners \u0026 Hybrid-Cloud Infrastructure (ADF IRs)",
       "Domains": [
+        "Servers",
         "CICD",
         "ELT",
-        "Healthcare Industry",
-        "Servers"
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Continuous Improvement"
+      ],
       "Technologies": [],
-      "Situation": "At VUMC, Data Platform managed its own on-prem VMs GitLab CICD runners as well Azure Data Factory Integration Runtimes. We had a need to upgrade our docker version on our CICD Runners due to build compatability issues with newer images. There was high levels of complexity in doing this because our runners operated on RHEL7 and could not upgrade to newer versions of docker. The solution I implemented was upgrading the system to RHEL9 and aliasing Podman as docker for plug-and-play containerization compatability. RHEL stopped supporting docker as its container tool, so we needed to migrate to the supported Podman tooling. I also toubleshot and fixed complex container engine networking on the host VMs because of incompatible default firewalls that were installed on the VMs by VUMC IT. This resulted in CICD runners that could effectively build and deploy the containers we needed on the platform that supported newer versions of python, databricks runtimes, and thus enhanced application sourcecode.  ",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At Vanderbilt University Medical Center, we managed our own on-prem VMs for GitLab CICD runners, but faced a challenge upgrading our containerization tooling due to RHEL7 incompatibility, requiring migration from Docker to Podman on RHEL9 systems.",
+      "Task": "Our objective was to upgrade the docker version on our CICD Runners to resolve build compatibility issues with newer images, which required migrating the system from RHEL7 to RHEL9 and aliasing Podman as docker for containerization compatibility, as well as fixing complex container engine networking issues.",
+      "Action": "I implemented the solution by upgrading the system to RHEL9.\nI aliased Podman as docker for plug-and-play containerization compatibility.\nI troubleshot and fixed complex container engine networking on the host VMs.",
+      "Result": "The upgrade of the Data Platform\u0027s on-prem VMs from RHEL7 to RHEL9 and the migration from Docker to Podman, along with fixing container engine networking issues, resulted in CICD runners capable of effectively building and deploying containers on a platform supporting newer versions of Python and Databricks runtimes, thereby enhancing application sourcecode. This work contributed to the data platform support for ML model development and serving, valued at over $500k\u002B indirect annum at Vanderbilt University Medical Center.",
+      "DeepDive": {
+        "Architecture": "The system likely uses an Azure cloud infrastructure provisioned via Infrastructure as Code (Terraform/Bicep). The core data platform centers around Databricks (Azure Databricks Platform Architect certification mentioned) utilizing a Delta Lakehouse architecture for data ingestion and processing, orchestrated by technologies like Azure Data Factory or Databricks workflows/Orchestration. CICD pipelines (GitLab, GitOps) manage deployment of containers (Podman/Docker aliasing) and application source code, leveraging cloud resources and virtual machines (VMs/RHEL) for runners/runtimes. Data is persisted in distributed storage (Blob Storage) and databases (PostgreSQL/SQLServer/MongoDB) with observability via BI monitoring and analytics tools.",
+        "Challenges": "We faced build incompatibility issues due to the outdated Docker version on RHEL7. We encountered high complexity migrating container tooling as RHEL deprecated Docker, requiring a switch to Podman with aliasing for compatibility. We struggled with unexpected host VM networking complexities caused by VUMC IT\u0027s incompatible default firewalls.",
+        "Retrospective": "The migration from RHEL7/Docker to RHEL9/Podman was a necessary, pragmatic fix for compatibility, but the dependency on specific OS versions indicates a lack of abstraction and forward planning for container runtime changes. Today, I would implement a fully containerized CI/CD system (e.g., Kubernetes or managed FaaS runners) abstracted from the underlying host OS to ensure better security isolation, inherent scalability, and greater flexibility for stakeholders using diverse runtimes. The initial firewall troubleshooting suggests insufficient infrastructure standardization, which I would address by pushing for immutable infrastructure-as-code principles.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "20",
       "Title": "Researched and Developed Spatial Geocoding Engine",
       "Domains": [
+        "SQL",
         "Analytics",
         "Architecture",
-        "Healthcare Industry",
-        "SQL"
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Data Driven",
+        "Ownership"
+      ],
       "Technologies": [],
-      "Situation": "At VUMC, clinical researchers were attempting to leverage geolocation data in order to draw correlations between illnesses as well as provide other customer-facing functionality like clinic spatial recommendations. As opposed to implementing a turn-key solution for this, which would have been very expensive, we had the need to come up with a method of geocoding addresses with an in-house developed solution. I architected and implemented a spatial geocoding engine built on top of SparkSQL and leveraged string distance algorithms like Levenstein in order to provide this functionality for little cost to our organization. The result was a geocoding engine that had over 90% exactly-correct accuracy on geocoding results (which is not far off from most other productionalized solutions). This greatly reduced the cost to geocode addreses across the organization and provide capability to offer geospatial services to our platform users and customers. ",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At Vanderbilt University Medical Center, we worked in a clinical research environment that needed to leverage geolocation data but faced the high cost of implementing a turn-key solution, requiring us to architect an in-house spatial geocoding engine.",
+      "Task": "We needed to develop an in-house solution to geocode addresses using geolocation data to draw correlations between illnesses and offer customer-facing functionality like clinic spatial recommendations, avoiding the high cost of a turn-key solution.",
+      "Action": "I architected a spatial geocoding engine.\nI implemented the geocoding engine built on top of SparkSQL.\nI leveraged string distance algorithms like Levenstein for geocoding functionality.",
+      "Result": "The spatial geocoding engine, built on SparkSQL and string distance algorithms, achieved over 90% exactly-correct accuracy, significantly reducing the organization\u0027s cost for geocoding addresses and enabling the provision of geospatial services to platform users and customers.",
+      "DeepDive": {
+        "Architecture": "The system is likely a distributed data processing architecture on a cloud platform (AWS or Azure). It uses a data lake (Blob Storage) for raw address data ingestion. The core processing component is Apache Spark/SparkSQL (Pyspark) to run the geocoding engine, leveraging string distance algorithms (Levenstein) for matching and validation. The results are stored in a relational database (PostgreSQL/SQLServer) for providing customer-facing geospatial services via an application (Flask/FastAPI/ASP.NET) potentially deployed using containers (Docker/Kubernetes).",
+        "Challenges": "We faced the technical challenge of optimizing SparkSQL performance for complex spatial joins and string distance calculations. Stakeholder resistance arose regarding the adoption of an in-house geocoding engine versus purchasing an established commercial solution. We struggled with data quality and standardization of address inputs across various sources inherent to the healthcare industry. Ensuring the privacy and compliance of using geolocation data for correlation studies in a regulated environment was a blocker. Integrating the geocoding engine\u0027s results into existing clinical research platforms presented technical and architectural hurdles.",
+        "Retrospective": "The past solution was an effective, low-cost approach to a critical stakeholder need (geocoding). However, by limiting the solution to SparkSQL, they traded off flexibility for cost. Today, I would architect a scalable, serverless microservice using an Online Feature Store (or dedicated geocoding service like Azure Maps/AWS Location Service) and IaC/Kubernetes for consistent deployment, enabling better security integration and higher availability for customer-facing functionality.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "21",
@@ -383,54 +604,87 @@
       "Domains": [
         "Architecture",
         "Databricks",
-        "DevOps",
-        "Healthcare Industry",
         "ML",
-        "Platform"
+        "DevOps",
+        "Platform",
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Data Driven"
+      ],
       "Technologies": [],
-      "Situation": "At VUMC, we had strong foundations of a Data Platform built on top of Azure Databricks. Our platform was very mature data warehousing solution that supported BI and ML solutions. However, there was a need to provide MLOps services for our customer base as we had several researches who had developed models that were projected to integrate with enterprise applications and save millions of dollars. An example project was one that was designed to reduce unnessecary blood testing pre-surgery that would cut down on lab spending and increase lab efficiency. I designed and implemented our MLOps offering at VUMC. This allowed our user base to promote ML models to Platform-supported serving solutions and unlocked immediately millions of dollars of savings with potential for magnitudes more.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At VUMC, we had a mature data warehousing solution supporting BI and ML, but we faced the challenge of needing to provide robust MLOps services so our researchers could promote their models, like the one reducing unnecessary pre-surgery blood testing, into platform-supported serving solutions.",
+      "Task": "We needed to provide MLOps services for our customer base, enabling them to promote ML models to Platform-supported serving solutions to unlock significant savings.",
+      "Action": "I designed and implemented our MLOps offering at VUMC.\nI developed data platform support for ML model development and serving.\nI led architecture and development of petabyte-scale Delta Lake archival functionality.\nI led architecture and development of unified data platform management (Databricks Unity Catalog).",
+      "Result": "The implementation of an MLOps offering at Vanderbilt University Medical Center (VUMC) successfully unlocked immediate savings in the millions of dollars by enabling the promotion of machine learning models to platform-supported serving solutions, including a project aimed at reducing unnecessary pre-surgery blood testing. Furthermore, the development of data platform support for ML model development and serving resulted in over $500k in indirect annual savings.",
+      "DeepDive": {
+        "Architecture": "The system architecture likely involves a cloud platform (Azure/AWS) utilizing Databricks as the core ML Platform environment for data ingestion/processing (Apache Spark, Pyspark), model development (Databricks ML, scikit-learn, TensorFlow), and data persistence (Delta/Iceberg, PostgreSQL). Model deployment and serving are achieved via Kubernetes/Docker (IaC using Terraform/Bicep) with serverless compute architecture for LLM Serving and online feature stores, managed by CI/CD pipelines (GitLab/GitHub). Applications and APIs (FastAPI/Flask/C#/Go) interact with the platform, and monitoring/observability are handled by Datadog/CloudZero.",
+        "Challenges": "We faced challenges integrating new MLOps services into the existing mature data platform architecture We struggled with securing buy-in from various research stakeholders for standardized model deployment processes We encountered difficulties maintaining compliance and data governance standards (HIPAA in healthcare) while moving models to production We had to overcome technical hurdles in setting up reliable and scalable serving solutions for enterprise-integrated models",
+        "Retrospective": "The past reliance on a single-vendor (Azure Databricks) MLOps platform, while fast to implement, potentially created vendor lock-in and limited flexibility for diverse stakeholder needs. Today, I would prioritize a decoupled, multi-cloud-ready MLOps architecture using Kubernetes and open-source components like MLflow for greater scalability and security flexibility. This approach supports a wider range of ML models and serving solutions, future-proofing the platform.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "22",
       "Title": "Implemented Azure Function Infrastructure Health Monitoring and Alerting",
       "Domains": [
         "Cloud",
-        "Healthcare Industry",
+        "Serverless",
         "Monitoring",
-        "Serverless"
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Ownership",
+        "Results Oriented",
+        "Adaptability"
+      ],
       "Technologies": [],
-      "Situation": "At VUMC, we leveraged Azure Function Apps for several use cases - platform state managment, alerting, monitoring, data integrations, etc. Because these services provided platform monitoring and alerting, we needed to be able to implement infrastructure monitoring and alerting on the applications themselves. We had preciously had an instance in which our alerting service was unavailable and incapable of notifying team members of other pipeline failures on the platform. I implemented Azure-native alerting on these systems. It resulted in the capability for Data Platform to quickly respond to outages that might be occuring in scenerios where we might not know an outage was occuring, which ultimately drives platform stability and UX.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At VUMC, we implemented Azure-native alerting because our platform monitoring environment previously experienced service unavailability, preventing us from notifying team members of critical pipeline failures and outages.",
+      "Task": "We needed to implement infrastructure monitoring and alerting on the applications themselves, specifically Azure Function Apps, to ensure platform stability and a better user experience, especially after experiencing an outage where our existing alerting service failed to notify team members of other pipeline failures.",
+      "Action": "I leveraged Azure Function Apps for platform state management alerting monitoring and data integrations\nI implemented Azure-native alerting on these systems\nI enabled Data Platform to quickly respond to outages",
+      "Result": "At VUMC, the implementation of Azure-native alerting on Azure Function Apps resulted in Data Platform gaining the capability to quickly respond to outages that might otherwise have gone unnoticed, ultimately driving platform stability and improved user experience. This work was performed during the employee\u0027s tenure as Senior Data Platform Engineer and Data Platform Engineer, during which they also developed data platform support for ML model development and serving ($500k\u002B indirect annum) and led petabyte-scale Delta Lake archival functionality development ($200k\u002B annum).",
+      "DeepDive": {
+        "Architecture": "The system likely used an Azure-based serverless architecture, primarily leveraging Azure Function Apps for event-driven computing tasks like platform state management, data integrations, and monitoring. This architecture included Azure-native monitoring and alerting services to provide infrastructure observability, ensuring rapid response to service unavailability or pipeline failures to maintain system stability and enhance user experience.",
+        "Challenges": "We needed to overcome challenges related to the unreliability of the existing alerting service. Integrating new Azure-native alerting required addressing potential technical debt and compatibility issues. Stakeholder alignment was necessary to ensure timely response protocols for the new alerting system.",
+        "Retrospective": "The past reliance on a single internal alerting service for critical pipeline failures posed a significant single point of failure, risking platform stability and stakeholder trust during outages. Today, I would enforce a highly decoupled, multi-channel alerting strategy using Datadog (per skills list) alongside Azure-native solutions to ensure redundancy and comprehensive infrastructure-level observability. This approach enhances scalability, security through isolation, and guarantees reliable notification delivery to meet stringent SLA needs.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "23",
       "Title": "Developed Geospatial Analytics Tools (Floorplan Analytics)",
       "Domains": [
+        "SQL",
         "Analytics",
-        "Healthcare Industry",
-        "SQL"
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Ownership",
+        "Results Oriented",
+        "Adaptability"
+      ],
       "Technologies": [],
-      "Situation": "At VUMC, floorspace is critical. This is because floorspace can determine the number of beds and by association number of patients that we can care for. We had a department dedicated to analyzing and evaluating space utilization for beds and researchers consistently. We had the need to ingest CAD data into our data lake and provide geospatial capabilities to Spark in order for our user base to properly perform their tasks. I implemented a custom distributed processing for data integration of geospatial data using GeoPandas technology. I also provided support for Apache Sedona on our Databricks compute clusters in order for this data to be viably usable. The result enabled increased efficiency and utilization of VUMCs space for domains such as bed capacity as well as research lab utilization.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At VUMC as Data Platform Engineers, we faced the critical business challenge of needing to ingest complex CAD data and integrate geospatial capabilities to accurately analyze and increase the utilization efficiency of VUMC\u0027s limited floorspace for beds and research labs.",
+      "Task": "The objective was to ingest CAD data into our data lake and provide geospatial capabilities to Spark so that our user base could properly perform their tasks related to analyzing and evaluating space utilization for beds and researchers.",
+      "Action": "I implemented a custom distributed processing for data integration of geospatial data using GeoPandas technology.\nI provided support for Apache Sedona on our Databricks compute clusters.",
+      "Result": "The implementation of custom distributed processing for geospatial data integration using GeoPandas and support for Apache Sedona at VUMC enabled increased efficiency and utilization of VUMC\u0027s space for domains including bed capacity and research lab utilization.",
+      "DeepDive": {
+        "Architecture": "A cloud-based data lakehouse architecture utilizing Databricks Delta Lakehouse for data storage and processing. Data ingestion and processing pipelines are developed using Spark/Pyspark on Databricks compute clusters. Geospatial data processing involves custom distributed solutions using GeoPandas and Apache Sedona, integrated within the Spark ecosystem. The system includes an Enterprise Data Warehouse (EDW) for BI monitoring and analytics, supported by Platform Orchestration and custom Internal/External SDKs and APIs/Web Apps for platform administration and external data consumption. Cloud services (Azure/AWS) are utilized for underlying infrastructure, storage (Blob Storage), and compute.",
+        "Challenges": "We needed to integrate complex proprietary CAD data formats into our standard data lake We encountered challenges providing robust geospatial capabilities to Spark for self-service analysis We had to secure organizational buy-in for new distributed processing and visualization technologies like GeoPandas and Apache Sedona Our data volume and complexity strained existing infrastructure requiring us to optimize performance",
+        "Retrospective": "Critiquing the VUMC work, the use of GeoPandas for distributed processing may have introduced complexity and maintenance overhead compared to native Spark geospatial libraries. For better security, scalability, and stakeholder flexibility now, I would prioritize a fully managed, cloud-native geospatial solution like Databricks Geospatial functions (leveraging my expertise with Databricks and Delta/Iceberg). This shift centralizes data governance via Unity Catalog and offers superior performance and integration for business intelligence and advanced research analytics.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "24",
@@ -440,74 +694,118 @@
         "ELT",
         "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Ownership",
+        "Results Oriented",
+        "Adaptability"
+      ],
       "Technologies": [],
-      "Situation": "On the Data Platform at VUMC, we developed and managed data integrations to over one hundred source systems. We had the need to ingest data from Workday, which in order to have full functionality - required integration with our Workday SOAP API. Because of the deeply-nested and complex structures of this data, performing schema development of these data structures would be best suited progromatically. I developed a WSDL to SparkSchema interpreter that could convert the SOAP API data structures to Delta-compatible SparkSchemas at runtime. This functionality resulted in the enablement of processing SOAP API data sources and vastly increased developer efficiency by doing so progromatically.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At Vanderbilt University Medical Center (VUMC), we managed complex data integrations for over one hundred source systems and faced the challenge of programmatically ingesting deeply-nested data structures from the Workday SOAP API. We developed a WSDL to SparkSchema interpreter to process this data efficiently and increase developer productivity.",
+      "Task": "On the Data Platform at VUMC, we needed to ingest data from Workday, which required integration with the Workday SOAP API to have full functionality.",
+      "Action": "I developed and managed data integrations to over one hundred source systems. I developed a WSDL to SparkSchema interpreter to convert SOAP API data structures to Delta-compatible SparkSchemas at runtime. I enabled the processing of SOAP API data sources programmatically.",
+      "Result": "The programmatic development of a WSDL to SparkSchema interpreter enabled the processing of SOAP API data sources, vastly increasing developer efficiency. This outcome is set within a career history that includes leading initiatives resulting in annual savings or value generation, such as $400k\u002B in annum savings/value from Platform CICD/Automation and Compute Observability initiatives, $300k\u002B in annum savings from refactoring Databricks IaC implementations, and data platform support projects valued at $500k\u002B and $200k\u002B indirect annum respectively.",
+      "DeepDive": {
+        "Architecture": "Cloud-native platform leveraging AWS/Azure for infrastructure. Data ingestion and processing pipelines utilize Apache Spark/PySpark running on Databricks Delta Lakehouse for petabyte-scale data persistence, using Delta/Iceberg open table formats. APIs and web applications are built with Python/FastAPI/Flask/C#/.NET, containerized via Docker/Kubernetes, and managed using Terraform/Bicep for Infrastructure as Code (IaC). CI/CD is implemented via GitLab/GitHub/Jenkins/Bamboo, supporting multi-architecture deployments. Distributed systems and microservices are used for elastic scaling, backed by PostgreSQL/SQLServer/MongoDB for data persistence and Etcd for distributed coordination. AI/ML platforms use Databricks ML/Azure ML/scikit-learn with serverless compute architectures for LLM Serving and Online Feature Stores.",
+        "Challenges": "We faced the technical challenge of managing the complexity and deeply nested structures inherent in the Workday SOAP API data. Integrating a legacy SOAP API into a modern Delta Lakehouse architecture presented schema compatibility blockers at runtime. In the healthcare setting, we likely encountered stakeholder resistance or strict governance procedures related to processing sensitive source system data. Securing buy-in for a programmatic solution like the WSDL interpreter, which fundamentally changed schema development processes, required navigating internal stakeholder approvals.",
+        "Retrospective": "The programmatic WSDL-to-SparkSchema interpreter was a solid decision for immediate developer efficiency with complex SOAP data structures. However, for true flexibility and scalability, I would now prioritize an event-driven or streaming architecture, publishing raw API data (potentially via an API gateway/message broker) to a structured landing zone. This approach separates ingestion from schema definition, providing greater security control and allowing multiple downstream consumers to derive necessary schemas (like Delta/Iceberg) without tightly coupling the interpreter to the ETL pipeline.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "25",
       "Title": "Developed Entire Platform Infrastructure - IaC",
       "Domains": [
         "Architecture",
-        "Cloud",
-        "Environments",
-        "Healthcare Industry",
         "IaC",
-        "Platform"
+        "Environments",
+        "Cloud",
+        "Platform",
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Continuous Improvement"
+      ],
       "Technologies": [],
-      "Situation": "The Data Platform at VUMC was a effectively a Databricks Delta Lakehouse implementation with backend services that operated on Azure. The platform consisted of well over thirty thousand cloud resources across various data environments and over a hundred workspaces. Managing this infrastructure manually was not feasible. I implemented IaC as Azure Bicep in order to manage this infrastructure. The result was scalably managed resources that provided platform stability, developer efficiency, enhanced security and reduced costs through management. This implementation was later converted to Terraform due to the extendable nature of Terraform Providers, allowing management of not only cloud resources but also Data Assets and Databricks infrastructure.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At Vanderbilt University Medical Center, we faced the challenge of manually managing over thirty thousand cloud resources across numerous data environments and workspaces for the Data Platform, which was an impossible task without automation. Our environment required implementing Infrastructure as Code (IaC) to achieve scalable management, stability, efficiency, enhanced security, and reduced costs.",
+      "Task": "As a team, we were tasked with managing over thirty thousand cloud resources across various data environments and a hundred workspaces by implementing IaC (initially Azure Bicep, later Terraform) to ensure scalably managed resources that provided platform stability, developer efficiency, enhanced security, and reduced costs.",
+      "Action": "I implemented IaC as Azure Bicep to manage infrastructure\nI converted the IaC implementation to Terraform\nI managed over thirty thousand cloud resources across various data environments and over a hundred workspaces\nI provided platform stability developer efficiency enhanced security and reduced costs through management",
+      "Result": "The implementation of Infrastructure as Code (IaC), initially Azure Bicep and later Terraform, for the VUMC Data Platform, which spanned over thirty thousand cloud resources, resulted in platform stability, enhanced security, developer efficiency, and reduced costs through scalable resource management. In subsequent roles, the individual led initiatives that resulted in $700k\u002B in estimated annual cost savings/indirect revenue at DraftKings (via Platform CICD/Automation, Compute Observability, and refactoring Databricks IaC) and $700k\u002B in estimated annual cost savings/indirect revenue at VUMC (via ML platform support and Delta Lake archival functionality). Key architectural achievements included designing and implementing Databricks ML Platform architecture for various domains at DraftKings and leading the development of petabyte-scale Delta Lake archival functionality and unified data platform management at VUMC.",
+      "DeepDive": {
+        "Architecture": "The system architecture centers on a Databricks Delta Lakehouse hosted on Azure. Infrastructure management employs Infrastructure as Code (IaC) using Terraform for cloud resources (Azure/AWS) and Databricks assets. Data ingestion and processing utilize Apache Spark/Pyspark running on Databricks clusters, writing data into Delta/Iceberg tables for persistence and leveraging Databricks Unity Catalog for unified data management. Serverless compute architectures support advanced functionalities like LLM Serving, Data-Native Apps, and Online Feature Stores. CI/CD pipelines, managed by tools like GitLab/GitHub/Jenkins, enable continuous deployment of the multi-architecture DevOps. Monitoring and observability are implemented using CloudZero and Datadog.",
+        "Challenges": "We encountered a lack of scalability due to manual management of over thirty thousand cloud resources. Converting the IaC implementation from Bicep to Terraform required significant effort and stakeholder alignment on the new tooling and processes. Managing data assets and Databricks infrastructure within the initial IaC solution was a blocker, necessitating the move to Terraform. Security and compliance requirements in the healthcare industry likely presented hurdles for platform deployment and configuration. Ensuring platform stability and developer efficiency across numerous environments and workspaces required continuous effort and coordination.",
+        "Retrospective": "The initial use of Azure Bicep, while effective for Azure resource management, limited scalability and extensibility beyond the cloud provider. Now, leveraging the extensive experience with Terraform, I would immediately start with Terraform and a GitOps model for improved multi-cloud/multi-asset management and enhanced security policy enforcement across all environments and stakeholders. This shift allows for centralized definition and deployment of complex data assets alongside cloud resources, prioritizing a flexible, holistic platform design.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "26",
       "Title": "Implemented End-to-End Platform Cost Management Analytics",
       "Domains": [
-        "Analytics",
-        "Healthcare Industry",
         "Improved Cost Savings",
-        "Platform"
+        "Analytics",
+        "Platform",
+        "Healthcare Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Data Driven",
+        "Ownership"
+      ],
       "Technologies": [],
-      "Situation": "On the Data Platform at VUMC, we integrated and managed over one hundred source systems and over eigth thousand data assets. The cost to manage these assets varied heavily depending on integration services and data availability required. It was possible that these data assets were also not utilized heavily, or were not utilized as much anymore, resulting in unnessecary costs to platform. I developed an end-to-end cost management analytics solution in Databricks in order to quantify the costs of individual data assets. The result permitted data platform to better regulate the management, such as versions available and integration strategy, for cost optimization for underutilized assets. Total cost savings is unknown, but ranged easily in the tens of thousands of dollars.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At Vanderbilt University Medical Center, as Data Platform Engineers, we faced the challenge of optimizing platform costs associated with managing over eight thousand data assets, many of which were underutilized. We addressed this by developing an end-to-end cost management analytics solution in Databricks to quantify individual asset costs.",
+      "Task": "Our objective was to integrate and manage over one hundred source systems and eight thousand data assets on the Data Platform at VUMC, and subsequently develop an end-to-end cost management analytics solution in Databricks to quantify the costs of individual data assets for cost optimization of underutilized assets.",
+      "Action": "I integrated and managed over one hundred source systems and over eight thousand data assets\nI developed an end-to-end cost management analytics solution in Databricks\nI quantified the costs of individual data assets\nI permitted data platform to better regulate the management for cost optimization",
+      "Result": "The development of an end-to-end cost management analytics solution for individual data assets on the Data Platform at VUMC allowed the platform to optimize management strategies for underutilized assets, resulting in cost savings that ranged in the tens of thousands of dollars. This effort aligns with the individual\u0027s contributions to the organization, including leading petabyte-scale Delta Lake archival functionality which generated over $200,000\u002B per annum in savings.",
+      "DeepDive": {
+        "Architecture": "Cloud-based Data Lakehouse Architecture using Azure or AWS Databricks for ingestion processing and transformation of data into a Delta Lakehouse layer supporting petabyte-scale storage. Platform Orchestration manages data pipelines built with Python/Pyspark. Data APIs and Web Apps (using frameworks like FastAPI/Flask and .NET/Blazor WASM) facilitate internal/external SDKs and platform administration. Monitoring and analytics are handled using BI tools integrating with the Enterprise Data Warehouse. Infrastructure is managed via IaC (Terraform/Bicep) and containerization (Docker/Kubernetes).",
+        "Challenges": "We encountered challenges integrating over one hundred diverse source systems into the cost analysis platform. Difficulty defining clear ownership models for thousands of data assets complicated accountability for cost reduction efforts. Securing stakeholder agreement on decommissioning or modifying management for underutilized but potentially critical data in a healthcare context presented a significant hurdle. Technical complexities arose ensuring accurate, real-time cost quantification across varied integration services and data availability requirements in the Databricks environment.",
+        "Retrospective": "While developing the cost management solution in Databricks was a necessary step for cost optimization, the lack of known total savings suggests limited stakeholder visibility into the ROI. Today, I would implement this solution with granular, real-time cost feedback integrated directly into development workflows (like IaC deployments) to enforce accountability and enable self-service governance, ensuring scalability and security are addressed through platform-level standards. This leadership-driven design emphasizes decentralized cost management and immediate value realization across the platform.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "27",
-      "Title": "Architected & Developed ML Platform CICD Processes and Library",
+      "Title": "Architected \u0026 Developed ML Platform CICD Processes and Library",
       "Domains": [
         "Architecture",
-        "CICD",
         "Databricks",
-        "DevOps",
         "IaC",
-        "Internet Industry",
+        "DevOps",
+        "CICD",
+        "Platform",
         "ML",
-        "Platform"
+        "Internet Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Collaborative"
+      ],
       "Technologies": [],
-      "Situation": "On the ML Platform at DraftKings, we were utilizing various technologies (Bamboo, Artifactory, Bamboo, GitOps Jenkins Framework) to orchestrate and execute our CICD automation for our infrastructure projects - both Terraform and Databricks DABs. We also had many data science teams that were also deploying their own resources onto our infrastructure in the form of DABs. We had the need to standardize our deployment processes across platform and our user base to enforce platform ideologies and technical design. I architected and implemented a Jenkins Shared Library that acted as a delegated deployment process for Terraform and DABs deployments which allowed any platform user to securely implement platform resources in a standardized manner. This was a organizational-wide effort that spanned across the entirety of engineering at DraftKings. For MLP, it enabled deoupling of code and CICD systems, secured deployments via centralized authentication mechanisms, extended capabilities by offering extensible, modularized services, and enabled users to self-serve automation. This ultimately increased developer efficiency and DevEx across all platform users by allowing them to focus on platform context as opposed to deployment MLOps processes.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At DraftKings, as Senior ML Platform Engineers, we operated within the ML Platform environment utilizing diverse CICD technologies, facing the challenge of standardizing deployment processes across platform and user base to enforce technical design and platform ideologies.",
+      "Task": "We needed to standardize our deployment processes across the platform and our user base to enforce platform ideologies and technical design.",
+      "Action": "I architected and implemented a Jenkins Shared Library to delegate and standardize deployment processes for Terraform and Databricks DABs.\nI implemented centralized authentication mechanisms within the shared library to secure deployments.\nI enabled decoupling of code and CICD systems through the new deployment process.\nI extended platform capabilities by offering extensible modularized services via the shared library.",
+      "Result": "The implementation of a Jenkins Shared Library standardized deployment processes for Terraform and Databricks DABs across DraftKings engineering, decoupling code from CICD systems and securing deployments. This initiative increased developer efficiency and DevEx for all platform users, aligning with efforts that led to $400k\u002B per annum in value created through new architecture and compute observability, and an additional $300k\u002B per annum in system scalability and reliability enhancements by refactoring IaC implementations.",
+      "DeepDive": {
+        "Architecture": "The system utilizes Databricks as the core ML Platform running on AWS or Azure infrastructure managed via Terraform and Bicep (IaC). CI/CD automation for both infrastructure (IaC) and ML workflows (Databricks DABs) is standardized using Jenkins Shared Libraries and GitOps principles. Containerization (Kubernetes/Docker) is likely used for deploying and scaling components like LLM Serving, MCP Servers, and Data-Native Apps. Data persistence and feature serving leverage Delta/Iceberg formats, Databricks Unity Catalog for governance, and Online Feature Stores. Observability is handled through Datadog and CloudZero.",
+        "Challenges": "We encountered resistance from data science teams who preferred existing deployment methods. Standardizing authentication mechanisms for centralized security required integration across disparate systems. Decoupling existing codebases from legacy CICD systems proved complex and time-consuming. Securing platform resource deployments for all users while maintaining self-service autonomy was a constant balancing act.",
+        "Retrospective": "While centralizing deployments via a Jenkins Shared Library addresses standardization and initial security through delegated auth, relying heavily on Jenkins for mission-critical IaC and DAB orchestration presents potential scalability and vendor lock-in risks. Now, I would shift the core responsibility to a modern GitOps flow (like Argo CD/Flux) paired with centralized secrets management (Vault/AWS Secrets Manager), making the CI system merely a trigger, thereby enhancing security, scalability, and enabling greater decoupling and self-service.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "28",
@@ -515,125 +813,191 @@
       "Domains": [
         "Architecture",
         "CICD",
-        "Containers",
         "DevOps",
         "Environments",
-        "Improved Developer Efficiency",
+        "Containers",
         "Improved DevEx",
         "Improved Reliability",
+        "Improved Developer Efficiency",
         "Internet Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Continuous Improvement",
+        "Ownership"
+      ],
       "Technologies": [],
-      "Situation": "At DraftKings, we had several environments in which we executed python - local machine for development, CICD for testing and deployment, and databricks runtime. We had regular issues where developers would have variance between these environments, which would cause bugs that varied between local development to production runtime. We needed a method to stabilize our runtime environments in order to minimize this variance. I developed and implemented a strategy that mirrored official Databricks Runtimes in in devcontainers and implement package pinning. CICD pipelines would then leverage these project devcontainers to perform static analysis, testing, and deployment operations. The result of these improvements were consistent development environments which mirrored production runtimes, allowing us to take advantage of the production runtimes that Databricks manages on our behalf and have consistency in development and CICD. The devcontainers also improved DevEx for local development, and reliability of the python applications.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At DraftKings, as Senior ML Platform Engineers, we encountered regular variance between our development, testing, and production Python runtime environments, which caused frustrating bugs that hindered our release cadence. We needed a method to stabilize our runtime environments across local development, CICD, and Databricks to minimize this variance and improve reliability.",
+      "Task": "We needed a method to stabilize our runtime environments in order to minimize variance between local development, CICD, and production runtime.",
+      "Action": "I developed and implemented a strategy that mirrored official Databricks Runtimes in devcontainers.\nI implemented package pinning within the devcontainers.\nI ensured CICD pipelines leveraged these project devcontainers to perform static analysis, testing, and deployment operations.",
+      "Result": "The implementation of a devcontainer and package pinning strategy at DraftKings stabilized Python runtime environments, resolving variance issues between development and production. This initiative resulted in consistent development environments mirroring production runtimes, leading to improved developer experience (DevEx), enhanced reliability of Python applications, and contributed to efforts that enhanced system scalability and reliability, yielding $300k\u002B in estimated annual savings.",
+      "DeepDive": {
+        "Architecture": "The system likely utilizes a cloud environment, either AWS or Azure, with Databricks serving as the core ML Platform and data processing environment. Infrastructure is provisioned and managed using Terraform and containerized via Docker and Kubernetes for consistent deployment. Python applications are developed in local devcontainers mirroring Databricks Runtimes and deployed via CI/CD pipelines (GitLab/GitHub/Jenkins) which perform static analysis and testing. Data persistence relies on Delta/Iceberg formats and PostgreSQL/SQLServer. Serverless compute architectures support advanced platform functionality like LLM Serving and Online Feature Stores.",
+        "Challenges": "We faced environment variance between local development CICD and production Databricks runtimes leading to inconsistent behavior. Dependency management across disparate environments was a recurring challenge causing bugs. Maintaining parity between our development containers and the managed production runtimes required ongoing effort and coordination.",
+        "Retrospective": "The decision to mirror official Databricks Runtimes in devcontainers and implement package pinning was a necessary tactical fix for consistency and improved DevEx. However, from a security and scalability perspective, I would now decouple the environment stabilization from rigid package pinning and instead adopt a centralized, multi-stage artifact repository strategy for all dependencies. This ensures faster updates, better vulnerability management, and allows greater flexibility while still guaranteeing reproducible, secure runtimes across all environments.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "29",
       "Title": "Consulted on Platform Team Project Management Processes",
       "Domains": [
+        "Leadership",
         "Improved Developer Efficiency",
         "Improved DevEx",
-        "Internet Industry",
-        "Leadership"
+        "Internet Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Ownership",
+        "Results Oriented",
+        "Continuous Improvement"
+      ],
       "Technologies": [],
-      "Situation": "At DraftKings, the ML Platform team was newly formed when I joined. We had inherited project management processes and tools from a Data Engineering team. These processes and toold, while useful, were not fully effective on our team as our work and team members operated in different manner from Data Engineering. This had impacts on process complexity and significant reduction in developer efficiency - leading to more time talking about work than doing work. I consulted team leadership on changes to these processes and tools in order to allow our team to self-organize. Specifically, recommendations I made included - reduction in Scrum standup ceremonies, initiative ownership/single point of authority, kanban process mirroring, backlog task prioritization, issue templates, democratized story pointing, ideation saga, and ticket tagging. This resulted in much greater efficiency by our developers as well as reduced frustration from increased clarity & communication, taking ideas from Kanban, Scrum, and Waterfall.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At DraftKings, we were a newly formed ML Platform team that inherited project management processes and tools which significantly reduced our developer efficiency and led to more time discussing work than executing it.",
+      "Task": "As Senior ML Platform Engineers, our objective was to change inherited project management processes and tools so we could self-organize and increase our developer efficiency, clarity, and communication.",
+      "Action": "I consulted team leadership on changes to inherited project management processes and tools.\nI recommended specific process changes including reduction in Scrum standup ceremonies, initiative ownership/single point of authority, and kanban process mirroring.\nI recommended specific tool changes including backlog task prioritization, issue templates, democratized story pointing, ideation saga, and ticket tagging.\nI implemented changes taking ideas from Kanban, Scrum, and Waterfall to allow the team to self-organize.",
+      "Result": "Consulting team leadership on process and tool changes, which included reducing Scrum standup ceremonies, implementing initiative ownership, kanban mirroring, and other changes, resulted in much greater developer efficiency, reduced frustration from increased clarity and communication, and supported initiatives at DraftKings that led to architecture and implementation savings of over $700k\u002B annually.",
+      "DeepDive": {
+        "Architecture": "A cloud-based Machine Learning (ML) Platform utilizes Databricks on either AWS or Azure as the core ML environment, managed via Infrastructure as Code (IaC) using Terraform. Kubernetes or serverless compute architectures enable the serving of ML models and Large Language Models (LLMs). Data is stored and processed using open table formats like Delta/Iceberg, leveraging Apache Spark/Pyspark within Databricks for distributed systems tasks. Online Feature Stores provide low-latency data access for inference. The entire environment is managed by robust CI/CD and DevOps practices including GitLab/GitHub, ensuring automated deployment and observability via tools like Datadog.",
+        "Challenges": "We inherited project management processes that didn\u0027t align with our ML Platform team\u0027s work style. The significant reduction in developer efficiency was a major technical and process blocker. Stakeholder alignment was challenging due to the lack of clarity and communication from inherited tools and processes. We faced resistance to change when proposing new ways of working, like reduction in Scrum ceremonies. The initial tools and processes caused confusion, making it hard to prioritize the backlog effectively.",
+        "Retrospective": "The initial process inheritance was necessary but quickly bottlenecked developer efficiency due to misaligned work styles. Critiquing this, I see that while stability was achieved, the lack of immediate adaptation harmed stakeholder productivity. Today, I would implement a rapid-feedback cycle via continuous stakeholder check-ins and use metrics to prove the need for autonomous, streamlined processes (like Kanban/Scrum hybrid) from day one, fostering self-organization and security ownership within the team.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "30",
       "Title": "Refactored Platform IaC Implementation",
       "Domains": [
         "Architecture",
-        "Cloud",
+        "Platform",
         "Databricks",
+        "Cloud",
         "IaC",
         "Improved Developer Efficiency",
         "Improved DevEx",
         "Improved Flexibility",
-        "Internet Industry",
-        "Platform"
+        "Internet Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Continuous Improvement",
+        "Action Oriented",
+        "Innovative",
+        "Ownership"
+      ],
       "Technologies": [],
-      "Situation": "At DraftKings, the ML Platform team is responsible for a variety of infrastructure - including various AWS (storage, IAM, networking, secrets, etc.) and Databricks (UC Securable Objects, Workspaces, SPs, Cluster Policies, Metastores, etc.) resources. Our IaC we inherited on team creation was sparse and not well engineered. It had high levels of complexity and anti-pattern implementations. We needed to be able to cleanup our Terraform source code to better align with the actual Platform infrastructure we deployed as it was becoming un-maintainable. I developed a Tech Plan that outlined the refactoring architecture and practices that would implement our infrastructure. This included modularization of Terraform source, resource grouping by application - driven by business, as well as best practices. Effectively this looked like higherarchical deployments like - Cloud Account Infrastructure Seed, Data Lake Services, Databricks Workspaces, and Platform Data Assets. This resulted in better maintainability and scalibility our of source code and infrastructure. It also vastly improved DevEx and Developer Efficiency.   MLPIP:Terraform - includes Improving Code Architecture (TF Configuration Architecture, Repository Structure), Supporting Development Environments (Architecture for Platform Dev Environments), Improving Code Quality (Resource Modularization, Branching Strategy, Environment Management, Environment/Resource/Tagging/IaC Address Conventions, Static Analysis Automation), Supporting Local Development (IAM Permissions, Source Code Auth, and Dev Containers), and Standardizing AI Tooling [for various AI Assisted Development tools]",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At DraftKings, we manage a variety of infrastructure as the ML Platform team, but we inherited sparse and unmaintainable IaC with high complexity that required a complete refactoring to ensure better scalability and efficiency.",
+      "Task": "We needed to be able to cleanup our Terraform source code to better align with the actual Platform infrastructure we deployed as it was becoming un-maintainable.",
+      "Action": "I developed a Tech Plan that outlined the refactoring architecture and practices.\nI implemented infrastructure refactoring practices including modularization of Terraform source.\nI implemented resource grouping by application driven by business.\nI implemented higherarchical deployments such as Cloud Account Infrastructure Seed Data Lake Services Databricks Workspaces and Platform Data Assets.",
+      "Result": "The refactoring of the existing Databricks IaC implementations resulted in better maintainability and scalability of source code and infrastructure, vastly improving DevEx and Developer Efficiency. This enhancement is associated with an estimated annual savings of over $300,000.",
+      "DeepDive": {
+        "Architecture": "The ML Platform architecture utilizes AWS cloud infrastructure managed by Terraform IaC for foundational services like storage, IAM, and networking. Databricks serves as the core ML Platform environment for model development, with Unity Catalog managing data assets (Delta/Iceberg formats). LLM Serving, data-native apps, and online feature stores are enabled via serverless compute/microservice architectures (potentially leveraging Python/FastAPI/Flask and technologies like Kubernetes/Docker for deployment, managed through GitLab/GitHub CI/CD).",
+        "Challenges": "We faced challenges with cleaning up highly complex and anti-pattern inherited IaC code We encountered stakeholder resistance when implementing new modularization and resource grouping standards We needed to overcome technical debt and integration issues arising from sparse and poorly engineered infrastructure We dealt with complex IAM and networking challenges when structuring hierarchical cloud account and platform deployments We navigated coordination difficulties when aligning IaC refactoring with existing platform infrastructure deployments",
+        "Retrospective": "The inherited IaC was correctly identified as unmaintainable, necessitating the refactoring plan for complexity reduction. Critiquing the initial \u0022sparse and not well engineered\u0022 IaC, I see significant security and scalability risks due to anti-patterns. Now, I would start with a GitOps-based, multi-repository architecture using Bicep/Terraform modules, enforcing strict policy-as-code and integrated compliance checks from day one to ensure security and agility across business-driven resource groups.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "31",
       "Title": "Engaged Stakeholders through ML Platform User Series",
       "Domains": [
+        "Leadership",
+        "Platform",
         "Databricks",
         "Improved UX",
-        "Internet Industry",
-        "Leadership",
-        "Platform"
+        "Internet Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Customer Focus",
+        "Continuous Improvement",
+        "Innovative",
+        "Ownership"
+      ],
       "Technologies": [],
-      "Situation": "At DraftKings, ML Platform users primarily connects with Platform Engineers through a public Slack channel. This was primarily used to make inquires about issues on the platform. There was a need to have another means of communication that would engage stakeholders on other platform domains. I worked alongside other engineers and team leadership to implement an ML Platform User Series, ML@DK, in which we discussed various topics - such as Roadmap, Feature Updates, Architecture, Q&A and Feedback. This resulted in improved user experience by engaging and informing users as well as providing an open forum for platform improvements.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At DraftKings, we are ML Platform Engineers who primarily connected with users through a public Slack channel, but we faced the challenge of needing a more engaging communication means to involve stakeholders across different platform domains. We implemented an ML Platform User Series, ML@DK, to discuss topics like Roadmap, Feature Updates, and Architecture, resulting in improved user experience.",
+      "Task": "As Senior ML Platform Engineers, we needed to create an additional communication channel to engage stakeholders on platform domains beyond the public Slack channel, resulting in the implementation of the ML Platform User Series (ML@DK) to improve user experience by engaging and informing users and providing an open forum for platform improvements.",
+      "Action": "I led architecture and implementation of various organization-wide initiatives such as Platform CICD and Automation Framework as well as Compute Observability.\nI designed and implemented architecture of Databricks implementation as ML Platform for various domains.\nI enabled advanced platform functionality via serverless compute architecture backing LLM Serving, MCP Servers, Data-Native Apps, and Online Feature Stores.\nI enhanced system scalability and reliability by refactoring existing Databricks IaC implementations to adopt new, more efficient architectures.",
+      "Result": "The implementation of the ML Platform User Series, ML@DK, resulted in improved user experience by engaging and informing platform users and providing an open forum for improvements, supporting initiatives that led to $700k\u002B in estimated annual savings through refactoring and framework implementation.",
+      "DeepDive": {
+        "Architecture": "The system architecture likely centers on a cloud-based ML Platform utilizing Databricks for workspace, compute, and data cataloging, implemented across AWS and Azure. Infrastructure is provisioned using Terraform and Bicep, with Databricks clusters running on a Kubernetes/Docker containerization layer for efficient, scalable compute, supporting CI/CD via GitLab/GitHub. Data storage leverages Delta/Iceberg formats in Blob Storage for a scalable data lakehouse, managed by Databricks Unity Catalog. Serverless/Microservice Architectures, potentially using FastAPI/Flask/Python, enable advanced functionality like LLM Serving and Online Feature Stores, providing an elastic, performant environment for model development and serving.",
+        "Challenges": "We initially struggled with low engagement from platform users outside the existing Slack channel. Integrating new communication methods like ML@DK required overcoming internal resistance to change. We faced technical hurdles in providing a consistent open forum for platform improvements across various domains. Securing dedicated time and resources for non-urgent communication initiatives like the User Series was a challenge.",
+        "Retrospective": "The move from solely relying on Slack to implementing the ML@DK User Series successfully addressed a crucial stakeholder need for engagement and communication beyond immediate platform issues, improving UX. Critically, the initial reliance on ad-hoc communication likely lacked structured feedback and roadmap alignment, potentially hindering scalability and security discussions. Now, I would integrate this communication channel with formal governance, ensuring features and architecture\u2014especially concerning security and scalability\u2014are transparently reviewed with stakeholders before implementation, using my experience in IaC/Databricks architecture to drive a well-architected platform design.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "32",
       "Title": "Consulted on ML Platform Architectures",
       "Domains": [
-        "Architecture",
-        "Databricks",
-        "DevOps",
-        "Improved Flexibility",
-        "Improved Reliability",
-        "Improved Security",
-        "Improved UX",
-        "Internet Industry",
         "Leadership",
-        "Platform"
+        "Architecture",
+        "Platform",
+        "Databricks",
+        "Improved Reliability",
+        "Improved Flexibility",
+        "Improved Security",
+        "DevOps",
+        "Improved UX",
+        "Internet Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Ownership",
+        "Results Oriented",
+        "Collaborative"
+      ],
       "Technologies": [],
-      "Situation": "At Draftkings, ML Platform was not exclusively an owner of all dependant infrastructure and technologies. We worked alongside Global Architecture, Site Reliability, Platform Services, Data Platform, as well as other stakeholders. We needed to improve various aspects of our platform as the architecture was porrly maintainable or scalable when the Platform team as inaugerated. With over 5 years of Databricks implementaiton experience, I consulted on various domains in which lend to a scalable platform that implement platform engineering philosophies, such as - network topology and security, workspace and data environments, data catalog architecture, and data asset structure and lifecycle. This enabled our platform to develop a better vision for ML Platform solutions and increased stakeholder engagement and user experience.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At DraftKings, as part of the ML Platform team, we collaborated with Global Architecture and other stakeholders to address the challenge of a poorly maintainable and unscalable platform architecture. We focused on implementing platform engineering philosophies to improve reliability, flexibility, security, and user experience.",
+      "Task": "We needed to improve various aspects of our platform because the existing architecture was poorly maintainable or scalable.",
+      "Action": "I led architecture and implementation of Platform CICD and Automation Framework. I designed and implemented architecture of Databricks implementation as ML Platform for various domains including networking, workspace, environment and data catalog architecture. I enabled advanced platform functionality via serverless compute architecture backing LLM Serving, MCP Servers, Data-Native Apps, and Online Feature Stores. I enhanced system scalability and reliability by refactoring existing Databricks IaC implementations to adopt new, more efficient architectures.",
+      "Result": "The professional\u0027s efforts at DraftKings resulted in over $700k\u002B in estimated annual savings through the architecture and implementation of initiatives like the Platform CI/CD and Automation Framework ($400k\u002B annum) and refactoring existing Databricks IaC implementations ($300k\u002B annum), alongside increased development efficiency and enhanced system scalability. At Vanderbilt University Medical Center, contributions included developing data platform support for ML model development and serving ($500k\u002B indirect annum) and leading the architecture and development of petabyte-scale Delta Lake archival functionality ($200k\u002B annum).",
+      "DeepDive": {
+        "Architecture": "Cloud-based elastic scaling ML Platform leveraging Databricks for core machine learning workflows and data processing using Apache Spark and Delta/Iceberg data persistence. Infrastructure as Code (Terraform/Bicep) manages cloud resources (AWS/Azure) and containerization (Kubernetes/Docker) supports microservices and serverless compute architectures for advanced features like LLM Serving and Online Feature Stores, with Python (FastAPI/Flask) as a primary language for application development. CI/CD pipelines (GitLab/GitHub/Jenkins) ensure automated deployment and observability (Datadog/CloudZero) monitors the distributed system.",
+        "Challenges": "We faced challenges with the existing architecture being poorly maintainable and scalable We encountered friction coordinating platform dependencies across Global Architecture Site Reliability and Data Platform teams We struggled with refactoring existing IaC implementations to adopt more efficient architectures We needed to increase stakeholder engagement and improve the user experience for platform solutions",
+        "Retrospective": "The initial architecture, being poorly maintainable and scalable, likely lacked strong foundational principles and foresight into modern platform engineering. Critically, security, scalability, and UX suffered, necessitating major refactoring. Today, I would prioritize a modular, API-first platform built on GitOps, leveraging Databricks Unity Catalog from day one for unified governance and security, while driving solutions via clear ownership models and SLAs to ensure stakeholder alignment and platform coherence.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "33",
       "Title": "Consulted on Platform Team Charter",
       "Domains": [
+        "Leadership",
+        "Platform",
         "Improved DevEx",
         "Improved UX",
-        "Internet Industry",
-        "Leadership",
-        "Platform"
+        "Internet Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Continuous Improvement"
+      ],
       "Technologies": [],
-      "Situation": "At DraftKings, the ML Platform team was newly inaugerated when I and another engineer joined. Since this team was new, there was a need to clarify what the purpose of the team was and how it operated within the context of DraftKings. With over 5 years experience in platform engineering and technical leadership, I consulted team leadership on platform team scope and SLAs using various tools such as RACI charts and platform engineering philosophies. This resulted in increased user experience as well as developer experience by clarifying the shared responsibility model implemented by the platform team.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At DraftKings, as Senior ML Platform Engineers, we joined a newly inaugurated team and faced the challenge of clarifying our purpose, scope, and operational model within the organization.",
+      "Task": "As Senior ML Platform Engineers, our objective was to clarify the purpose of the newly inaugurated ML Platform team and define how we would operate within DraftKings.",
+      "Action": "I consulted team leadership on platform team scope and SLAs using various tools such as RACI charts and platform engineering philosophies.\nI clarified the shared responsibility model implemented by the platform team.",
+      "Result": "At DraftKings, the engineer led architecture and implementation initiatives resulting in approximately $700k\u002B in annualized savings through Platform CICD/Automation Framework, Compute Observability, and refactoring Databricks IaC implementations. At Vanderbilt University Medical Center, the engineer developed data platform support and led architecture/development of Delta Lake archival functionality and unified data platform management, resulting in approximately $700k\u002B in indirect annualized support and savings.",
+      "DeepDive": {
+        "Architecture": "A cloud-based (AWS/Azure) ML Platform leveraging Databricks for machine learning lifecycle management. The architecture includes a data layer utilizing Delta/Iceberg formats and Blob Storage, with processing handled by Apache Spark and Databricks. ML model serving, including LLMs, is accomplished via Serverless/Microservice Architectures (FastAPI/Flask) containerized with Docker/Kubernetes and deployed using IaC (Terraform) and GitOps CI/CD (GitLab/Jenkins). Monitoring and observability utilize Datadog.",
+        "Challenges": "We initially struggled to align on clear team scope and shared responsibility models across stakeholders which delayed platform adoption. The initial Databricks IaC implementations were inefficient and required significant refactoring for scalability. Integrating the newly formed ML Platform with existing organizational CICD and automation frameworks posed technical integration challenges. We faced difficulty in defining Service Level Agreements (SLAs) that satisfied both the platform team\u0027s capacity and the developer\u0027s needs for performance and reliability. Securing appropriate networking and environment architecture for the new Databricks ML Platform across various domains required overcoming internal security and infrastructure hurdles.",
+        "Retrospective": "The initial focus on RACI and SLAs was critical for a new ML Platform team, but may have lacked immediate technical deep-dive into long-term architectural debt or advanced security governance. Now, I would prioritize establishing a flexible, secure baseline architecture (leveraging Databricks/Azure/AWS expertise) alongside the RACI/SLA work, ensuring early stakeholder alignment on modular design to avoid costly refactoring later. I would embed security and cost observability from day one, not as separate initiatives, to ensure compliance and scalability are inherent platform properties.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "34",
@@ -643,185 +1007,156 @@
         "DevOps",
         "Improved Flexibility",
         "Improved Reliability",
-        "Internet Industry",
-        "Leadership"
+        "Leadership",
+        "Internet Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Continuous Improvement",
+        "Innovative",
+        "Ownership",
+        "Results Oriented"
+      ],
       "Technologies": [],
-      "Situation": "At Draftkings, the ML Platform team was leveraging Bamboo and Octo for build-release systems. These were being deprecated by our Platform Services team and were no longer being supported for new deployment mechanisms. We had the need to stand up ML Platform development environments, and thus needed to migrate from these legacy systems to newly supported technologies in order to unblock that development. I led the migration process from Octo/Bamboo to an interally built GitOps Jenkins Framework, developed by our Platform Services team. This resulted in increased flexibility and reliability for deployments by using managed deployment frameworks that were supported by interal development. ",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At DraftKings, as Senior ML Platform Engineers, we faced a critical challenge: our existing build-release systems, Bamboo and Octo, were being deprecated, requiring us to migrate to a new GitOps Jenkins Framework to unblock ML Platform development environments.",
+      "Task": "We needed to migrate from the legacy Octo and Bamboo build-release systems to newly supported technologies in order to unblock ML Platform development environment standup.",
+      "Action": "I led the migration process from Octo/Bamboo to an internally built GitOps Jenkins Framework I drove the move to newly supported technologies to stand up ML Platform development environments I ensured the migration used managed deployment frameworks that provided increased flexibility and reliability for deployments I unblocked development by migrating from legacy Octo/Bamboo systems",
+      "Result": "The migration from Octo/Bamboo to an internally built GitOps Jenkins Framework resulted in increased flexibility and reliability for ML Platform deployments, contributing to the overall enhancement of system scalability and reliability, which led to an estimated $300k\u002B annual enhancement in the efficiency of existing Databricks IaC implementations.",
+      "DeepDive": {
+        "Architecture": "A Kubernetes-based microservice architecture leveraging Azure/AWS cloud infrastructure managed by Terraform. CI/CD pipelines use Jenkins and GitOps for automated deployment of Docker containers to Kubernetes clusters. Databricks serves as the core ML platform environment, integrated with cloud storage (Blob Storage/Delta Lake/Iceberg) for data persistence. Monitoring and observability are handled by Datadog.",
+        "Challenges": "We needed to overcome the challenge of unsupported legacy build-release systems. We faced initial blocking of ML Platform development environments due to the need for a new deployment mechanism. We had to ensure stakeholder buy-in and training for adopting the internally developed GitOps Jenkins Framework. We needed to manage the technical complexity of migrating existing configurations and pipelines from Octo/Bamboo to Jenkins. We encountered challenges in integrating the new managed deployment framework with existing internal development processes.",
+        "Retrospective": "The decision to migrate from deprecated Octo/Bamboo to an internal GitOps Jenkins framework was necessary for unblocking development and improving reliability, addressing immediate stakeholder needs. Now, I would prioritize a fully managed, cloud-native CI/CD solution (like GitLab CI/CD or GitHub Actions with Terraform) over a self-managed Jenkins setup, ensuring tighter security controls and higher scalability through ephemeral runners. This shift moves towards a more modern, flexible platform leveraging my experience with Kubernetes and IaC for a truly unified GitOps deployment strategy across all environments.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "35",
       "Title": "Led Interviews of Lead Engineering for Technical and Leadership Capability",
       "Domains": [
+        "Leadership",
         "Improved Efficiency",
-        "Internet Industry",
-        "Leadership"
+        "Internet Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Continuous Improvement"
+      ],
       "Technologies": [],
-      "Situation": "The ML Platform at DraftKings started as 2 individuals, including myself. We had the need to expand to more contributors in order to keep up with growing enterprise demand and diversify technical expertise. I assisted in a democratic hiring process for lead engineering roles on our team by interviewing candidates for technical and leadership capabilities. This resulted in applicant quality assurance and increased our team's efficiency through elevated bandwidth.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At DraftKings as Senior ML Platform Engineers, we started as a small team of two, needing to rapidly expand our contributors to keep pace with growing enterprise demand and to diversify our technical expertise.",
+      "Task": "As the ML Platform at DraftKings grew, we needed to expand our team to include more contributors to keep up with growing enterprise demand and diversify our technical expertise.",
+      "Action": "I led architecture and implementation of organization-wide initiatives like Platform CICD and Automation Framework as well as Compute Observability. I designed and implemented the architecture of the Databricks ML Platform including networking, workspace, environment, and data catalog architecture. I enabled advanced platform functionality via serverless compute architecture backing LLM Serving, MCP Servers, Data-Native Apps, and Online Feature Stores. I refactored existing Databricks IaC implementations to adopt new, more efficient architectures to enhance system scalability and reliability.",
+      "Result": "The engineer assisted in a democratic hiring process for lead engineering roles, ensuring applicant quality assurance and increasing the two-person ML Platform team\u0027s efficiency through elevated bandwidth, which aligns with their contributions leading organization-wide initiatives that resulted in over $700k in combined annual cost savings for the company.",
+      "DeepDive": {
+        "Architecture": "The system likely utilizes a cloud environment (Azure/AWS) centered around Databricks as the core ML Platform and data lakehouse (Delta/Iceberg). Infrastructure deployment is managed through Infrastructure as Code (IaC) using Terraform/Bicep and containerized applications are run on Kubernetes/Docker, orchestrated via CI/CD pipelines (GitLab/GitHub/Bamboo/Jenkins). Serverless compute and microservices (FastAPI/Flask/.NET) are employed for advanced functionalities like LLM Serving, Data-Native Apps, and Online Feature Stores, with Datadog providing observability and monitoring. PostgreSQL/SQLServer/MongoDB handle data persistence and Etcd/CP Serverless/Microservice Architectures manage distributed systems coordination and state.",
+        "Challenges": "We faced growing enterprise demand for the ML platform requiring rapid scaling and diversifying technical expertise. We needed to overcome initial limited bandwidth and attract qualified lead engineers through a democratic hiring process. We encountered challenges in designing and implementing robust Databricks architecture across various domains including networking and data cataloging. We worked through enhancing system scalability and reliability by refactoring existing Databricks IaC implementations. We managed stakeholder expectations and defined ownership models to improve development efficiency.",
+        "Retrospective": "The initial focus on a \u0022democratic hiring process for lead engineering roles\u0022 prioritizing quality assurance was solid for immediate bandwidth. However, a pure hiring approach, while addressing stakeholder demand, might have neglected preemptive architectural scalability planning and security-by-design for the expanding ML Platform. Now, I would focus first on defining a clear technical roadmap and ownership model (leveraging IaC like Terraform/Bicep and Databricks architecture expertise) before hiring, ensuring new team members onboard into a secure, highly scalable, and well-governed distributed system. This flexible, architecture-first approach guarantees long-term success over short-term efficiency gains.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "36",
       "Title": "Designed and Implemented Tagging Enforcement Strategy for Platform Resource Management and Cost Attribution",
       "Domains": [
+        "Internet Industry",
+        "Platform",
         "CICD",
-        "Cloud",
         "Databricks",
+        "Cloud",
         "IaC",
         "Improved Cost Savings",
         "Improved DevEx",
-        "Improved UX",
-        "Internet Industry",
-        "Platform"
+        "Improved UX"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Data Driven"
+      ],
       "Technologies": [],
-      "Situation": "At Draftkings, many teams and hundreds of users developed on the ML Platform. The team had trouble determing which resources belonged to which teams and also struggled to analyze and allocate costs incured on the platform. I designed a tag enforcement strategies for a variety of platform objects, such as Databricks compute and AWS Networking. These strategies included, native enforcement via cluster policies and serverless budget polcies as well as framework approaches via CICD delegation and interface modularization for DABs and Terraform. Tagged resource data was integrated with CloudZero to enable cost analysis and monitoring. This enabled the platform team to properly allocate costs for thousands of resources and provide proper cost analysis and savings. ",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At DraftKings, as Senior ML Platform Engineers, we supported hundreds of users developing on the ML Platform, but we struggled to determine resource ownership and accurately analyze and allocate the incurred costs.",
+      "Task": "As Senior ML Platform Engineers, our objective was to design and implement a tag enforcement strategy to enable us to properly allocate costs for thousands of resources and provide accurate cost analysis and savings, addressing the struggle to determine resource ownership and analyze/allocate platform costs.",
+      "Action": "I designed a tag enforcement strategies for a variety of platform objects such as Databricks compute and AWS Networking\nI implemented native enforcement via cluster policies and serverless budget polcies as well as framework approaches via CICD delegation and interface modularization for DABs and Terraform\nI integrated tagged resource data with CloudZero to enable cost analysis and monitoring",
+      "Result": "The implementation of tag enforcement strategies at DraftKings enabled the platform team to properly allocate costs for thousands of resources and provide cost analysis and savings. In the Senior ML Platform Engineer role, the individual led initiatives resulting in $400k\u002B annum for the Platform CICD and Automation Framework/Compute Observability and enhanced system scalability and reliability resulting in $300k\u002B annum savings.",
+      "DeepDive": {
+        "Architecture": "The ML Platform likely uses AWS and Azure cloud infrastructure, provisioned and managed via Terraform for Infrastructure as Code. Databricks serves as the core ML Platform utilizing Apache Spark and PySpark for distributed data processing and machine learning workflows, potentially with Delta/Iceberg as the data persistence layer. CI/CD for platform components is handled via GitLab/GitHub, Bamboo, or Jenkins. Serverless/Microservice Architectures are employed for advanced functionality like LLM Serving and Online Feature Stores, potentially leveraging FastAPI/Flask and Python. CloudZero and Datadog are used for cost analysis, monitoring, and observability.",
+        "Challenges": "We struggled to accurately allocate costs across teams due to lack of resource tagging We faced resistance in enforcing new tagging policies across diverse platform users and objects We had difficulty integrating tagged resource data from various platform objects into a unified cost analysis and monitoring system",
+        "Retrospective": "The past focus on tag enforcement via native policies and framework approaches successfully addressed immediate cost allocation/analysis (stakeholder needs). Now, I would prioritize a centralized, secure data governance layer (e.g., Unity Catalog/Iceberg for security/scalability) alongside fine-grained IAM/RBAC. This design ensures greater development autonomy while scaling governance, reducing reliance on varied IaC delegation methods.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "37",
       "Title": "Designed and implemented platform compute infrastructure and management strategy (clusters, instance pools, serverless)",
       "Domains": [
+        "Platform",
+        "Serverless",
         "Clusters",
         "Improved Cost Savings",
-        "Improved Developer Efficiency",
         "Improved DevEx",
-        "Improved Flexibility",
         "Improved UX",
-        "Internet Industry",
-        "Platform",
-        "Serverless"
+        "Improved Developer Efficiency",
+        "Improved Flexibility",
+        "Internet Industry"
       ],
-      "Principles": [],
+      "Principles": [
+        "Innovative",
+        "Ownership",
+        "Results Oriented",
+        "Adaptability"
+      ],
       "Technologies": [],
-      "Situation": "The ML Platform at DraftKings leveraged Databricks as it's core platform service. Users needed the flexibility to create their own compute on the platform for elastic organizational needs. Managing this compute in the for of clusters, instance pools, and serverless proved to be challenging, difficult to maintain, and inconsistent across teams and environments. I designed and implemented a platform compute infrastructure strategy that details how we organize and implement each of these compute resources via technologies such as cluster/serverless policies, permission grants. This resulted in more maintainable compute resources as well as an improved user experience by reduced complexity.",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "At DraftKings, as Senior ML Platform Engineers, we faced the challenge of managing inconsistent and difficult-to-maintain compute resources (clusters, instance pools, and serverless) that users required for flexible organizational needs on our core Databricks platform.",
+      "Task": "We needed to design and implement a platform compute infrastructure strategy that details how we organize and implement compute resources via technologies such as cluster/serverless policies and permission grants, resulting in more maintainable compute resources and an improved user experience by reduced complexity.",
+      "Action": "I designed and implemented a platform compute infrastructure strategy detailing how compute resources are organized and implemented via technologies such as cluster/serverless policies and permission grants\nI leveraged technologies such as cluster/serverless policies and permission grants to implement the strategy",
+      "Result": "The platform compute infrastructure strategy implemented at DraftKings resulted in more maintainable compute resources and an improved user experience by reducing complexity. Additionally, platform initiatives led by this engineer resulted in estimated annual savings and cost avoidances, including over $700k combined from enhanced system scalability/reliability refactoring and compute observability/CI/CD initiatives. Development efficiency was further increased via team project and stakeholder management, ownership model definitions, and Service Level Agreements.",
+      "DeepDive": {
+        "Architecture": "The core architecture is built on Databricks as the ML Platform service, running on either Azure or AWS cloud infrastructure, utilizing serverless/microservice architectures for elasticity and LLM Serving. Data persistence leverages Open Table Formats like Delta/Iceberg on Blob Storage, managed through Unity Catalog for data governance. Compute resources are provisioned and managed via Infrastructure as Code (IaC) using Terraform/Bicep and Kubernetes/Docker for containerization. CI/CD pipelines are automated using GitLab/GitHub/Bamboo/Jenkins for efficient deployment (GitOps). Python and associated ML frameworks (FastAPI, Flask, Pyspark, TensorFlow) are used for application and model development.",
+        "Challenges": "We struggled with inconsistent compute management across teams and environments making maintenance difficult. Achieving consensus on standardized cluster and serverless policies among various stakeholders proved challenging. The initial complexity of the compute setup resulted in poor developer experience and adoption.",
+        "Retrospective": "The initial strategy addressed inconsistency and maintenance issues by using policies and permission grants, which improved UX and maintainability. Critically, I would ensure the policies are dynamic and version-controlled from the start, decoupling the infrastructure logic from the individual compute setup. Now, I would implement a unified compute abstraction layer (e.g., via internal SDK/API) to enforce security and cost governance centrally, offering elastic flexibility to domains without direct cluster management, which enhances scalability and reduces developer friction.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     },
     {
       "Id": "38",
       "Title": "Implemented Platform Monitoring and Alerting Solutions",
       "Domains": [
-        "Internet Industry"
+        "Internet Industry",
+        "Improved Reliability",
+        "Improved Efficiency",
+        "Platform",
+        "Databricks",
+        "Monitoring",
+        "Improved Cost Savings"
       ],
-      "Principles": [],
-      "Technologies": [],
-      "Situation": "Implemented Databricks Model Serving Endpoint Monitoring via Datadog Integration  - Developed streaming job that worked as data integration to dump data to s3 for DataDog to consume, monitor and alert on  Implemented Platform Adminsitration Alerting via Notification Destinations - Developed databricks administration job notifications by implementing notification destinations ",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
-    },
-    {
-      "Id": "39",
-      "Title": "Implemented ML Platform Data Masking Solution",
-      "Domains": [
-        "Internet Industry"
+      "Principles": [
+        "Innovative",
+        "Results Oriented",
+        "Ownership",
+        "Continuous Improvement"
       ],
-      "Principles": [],
       "Technologies": [],
-      "Situation": "Developed databricks jobs that implemented statically defined masking policies on catalog objects - permitting self serve masking functionality",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
-    },
-    {
-      "Id": "40",
-      "Title": "Consulted on and Implemented Platform Development and Test environments",
-      "Domains": [
-        "Internet Industry"
-      ],
-      "Principles": [],
-      "Technologies": [],
-      "Situation": "",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
-    },
-    {
-      "Id": "41",
-      "Title": "Enablement for Serverless Compute",
-      "Domains": [
-        "Internet Industry"
-      ],
-      "Principles": [],
-      "Technologies": [],
-      "Situation": "architected and implemented databricks serverless compute - had a need to leverage serverless compute on databricks for various technologies - including databricks app, mcp, and online feature stores. the result highly leveraged databricks native solutions due to the isolated domain of serverless; included security and access components(NCCs, private endpoint rules, and network policies), cost and governance(budget policies), usability tools(service creds, secret scopes), and observability tools (usage dashboads and budget policies alerts)",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
-    },
-    {
-      "Id": "42",
-      "Title": "Implemented Standardized Platform Compute Tagging",
-      "Domains": [
-        "Internet Industry"
-      ],
-      "Principles": [],
-      "Technologies": [],
-      "Situation": "implemented via Datadog cluster init scripts - users were having trouble finding their compute metrics in datadog, i enabled standard tag capture and extensible tagging",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
-    },
-    {
-      "Id": "43",
-      "Title": "Jenkins CICD Tech Plan - automation framework/library, Terraform, Python, dabs, model hosting etc",
-      "Domains": [
-        "Internet Industry"
-      ],
-      "Principles": [],
-      "Technologies": [],
-      "Situation": "",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
-    },
-    {
-      "Id": "44",
-      "Title": "Analytics Ops Tech Plan -   Databricks Workflow Template Repository  How can we assist teams on-boarding to Databricks and increase efficiency in standing up new projects / workloads?  ML Platform SharedLibrary DAB Deployment  How do we enable Databricks Deployments for users? How can we scale to Data Science and Data Engineering?  ML Platform SharedLibrary Observability  How do we monitor usage/errors of our SharedLibrary across our users?  ML Platfom Authentication Scopes  How do we enable platform-wide Identity and Access Management?   How does this implement across various systems such as Jenkins, Databricks, and Snowflake?  Databricks Job Observability  How do we enable Databricks Job observability for topics such as cost, performance, and reliability?",
-      "Domains": [
-        "General"
-      ],
-      "Principles": [],
-      "Technologies": [],
-      "Situation": "",
-      "Task": "Under refinement",
-      "Action": "Under refinement",
-      "Result": "Under refinement",
-      "DeepDive": null,
-      "Pin": false
+      "Situation": "As Senior ML Platform Engineers at DraftKings, we faced the challenge of lacking standardized, generic workload monitoring and alerting for our Databricks services, which led us to implement a cohesive platform monitoring service.",
+      "Task": "We needed standardized and generic workload monitoring and alerting for various Databricks services.",
+      "Action": "I implemented monitoring for various Databricks services such as Model Serving and Worflows.\nI developed a streaming job for data integration to dump data to s3 for DataDog consumption.\nI established and configured Datadog Native Databricks integrations and customized platform cluster init scripts for standardized tag capture.\nI implemented Platform Adminsitration Alerting via Notification Destinations.",
+      "Result": "The implementation of standardized and generic workload monitoring and alerting for Databricks services resulted in a cohesive and simple platform monitoring service. This enabled users to receive standardized features and extend them for their own needs, leading to unexpected cost savings from improved job performance observability, and a reduction in Mean Time to Resolution during outages. Furthermore, the individual led initiatives that resulted in a $400k\u002B annual benefit from Platform CICD and Compute Observability, and enhanced system scalability and reliability resulting in a $300k\u002B annual benefit.",
+      "DeepDive": {
+        "Architecture": "Cloud-based ML Platform utilizing Databricks for compute, ML workflow execution, and data catalog management (Unity Catalog/Delta Lake) hosted on AWS or Azure. Infrastructure is managed via IaC (Terraform/Bicep) and containerized with Docker/Kubernetes. Observability and monitoring are handled by Datadog integration with custom streaming jobs for data ingestion. The platform supports Serverless/Microservice Architectures for advanced functionality like LLM Serving and Online Feature Stores, likely using FastAPI/Flask and Python/Go.",
+        "Challenges": "We needed to integrate disparate data sources for centralized monitoring We faced challenges in standardizing monitoring across various Databricks services and user needs We had to manage expectations and secure buy-in from various teams for a unified platform monitoring solution We encountered issues optimizing Databricks IaC implementations for better scalability and cost efficiency",
+        "Retrospective": "The decision to rely on a streaming job dumping data to S3 for a third-party (DataDog) integration introduces potential security/compliance and latency issues, and requires maintenance of custom integration code. With my current knowledge, I would prioritize establishing a robust, event-driven architecture using native Databricks/Datadog integrations or a standardized metrics pipeline to improve real-time observability, reduce coupling, and leverage platform-native security features for a more scalable and reliable solution that better meets stakeholder needs for faster incident resolution.",
+        "Diagram": null
+      },
+      "Pin": false,
+      "AI": true
     }
   ]
 }

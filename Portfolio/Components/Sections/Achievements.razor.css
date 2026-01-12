@@ -4,32 +4,7 @@
     transition: background-color 0.3s ease;
 }
 
-.construction-indicator {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-top: 2rem;
-    padding: 0.75rem 1.5rem;
-    background-color: #ffb86c;
-    /* vibrant orange */
-    border-radius: 9999px;
-    color: #282a36;
-    /* dark text for contrast */
-    font-size: 1rem;
-    font-weight: 700;
-    box-shadow: 0 4px 6px rgba(255, 184, 108, 0.25);
-    letter-spacing: 0.025em;
-    transform: scale(1);
-    transition: transform 0.2s;
-}
 
-.construction-indicator:hover {
-    transform: scale(1.02);
-}
-
-.construction-icon {
-    color: currentColor;
-}
 
 .filters-container {
     margin-bottom: 3rem;
@@ -129,6 +104,8 @@
     transition: all 0.3s;
     cursor: pointer;
     text-align: left;
+    display: flex;
+    flex-direction: column;
 }
 
 .story-card:hover {
@@ -151,9 +128,20 @@
     font-weight: 600;
 }
 
+.card-footer {
+    display: flex;
+    align-items: center;
+    margin-top: auto;
+    /* Pushes footer to bottom if card height grows */
+    gap: 1rem;
+}
+
 .arrow-icon-wrapper {
     color: var(--text-tertiary);
     transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    margin-left: auto;
 }
 
 .story-card:hover .arrow-icon-wrapper {
@@ -175,7 +163,8 @@
 
 .card-result {
     color: var(--text-primary);
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
+    /* Give some space before footer */
     display: -webkit-box;
     line-clamp: 2;
     -webkit-line-clamp: 2;
@@ -449,4 +438,62 @@
     display: flex;
     align-items: center;
     gap: 0.5rem;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.ai-indicator,
+.ai-indicator-large {
+    position: relative;
+    /* Container for tooltip positioning */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s;
+}
+
+.ai-indicator:hover,
+.ai-indicator-large:hover {
+    transform: scale(1.1);
+}
+
+.tooltip {
+    visibility: hidden;
+    width: 120px;
+    background-color: var(--bg-secondary);
+    /* Match card background or make it contrasting */
+    color: var(--text-primary);
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    /* Position above */
+    left: 50%;
+    margin-left: -60px;
+    /* Center tooltip */
+    opacity: 0;
+    transition: opacity 0s;
+    /* Instant appearance */
+    border: 1px solid var(--border-color);
+    font-size: 0.75rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ai-indicator:hover .tooltip,
+.ai-indicator-large:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+}
+
+.modal-title-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
 }
