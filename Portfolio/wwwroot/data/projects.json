@@ -133,7 +133,7 @@
             ],
             "codeUrl": "https://github.com/armckinney/design-patterns",
             "image": "images/design-patterns.png",
-            "pin": true
+            "pin": false
         },
         {
             "id": "8",
@@ -384,6 +384,25 @@
             "codeUrl": "https://github.com/armckinney/west-end-financial",
             "demoUrl": "https://westendfinancial.armckinney.dev",
             "image": "images/west-end-financial.png",
+            "pin": true
+        },
+        {
+            "id": "21",
+            "title": "Verge",
+            "domain": "DevOps",
+            "description": "A deterministic, fast version generation CLI explicitly designed for pipelines and automation scenarios.",
+            "technologies": [
+                "Semantic Versioning",
+                "CLI",
+                "CI/CD"
+            ],
+            "highlights": [
+                "Deterministic version generation",
+                "Supports standard ecosystems (SemVer, PEP440)",
+                "Integrates with Git Tags, GHCR, and GitHub Releases"
+            ],
+            "codeUrl": "https://github.com/armckinney/verge",
+            "image": "images/verge.png",
             "pin": true
         }
     ]
