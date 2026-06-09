@@ -5,7 +5,4 @@ services:
       context: ..
     volumes:
       - ..:/workspaces/armckinneygithubio:cached
-      - ~/.gitconfig:/root/.gitconfig:ro
-      # ai tool persistence
-      - ~/.gemini:/root/.gemini:rw
     command: sleep infinity

@@ -93,7 +93,7 @@
                 "Secure storage"
             ],
             "codeUrl": "https://github.com/armckinney/containers",
-            "demoUrl": "https://hub.docker.com/u/armck",
+            "demoUrl": "https://github.com/armckinney?tab=packages&repo_name=containers",
             "image": "images/containers.png",
             "pin": true
         },
