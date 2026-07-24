@@ -2,42 +2,41 @@
     "projects": [
         {
             "id": "1",
-            "title": "armckinney.github.io",
-            "domain": "Portfolio",
-            "description": "Definitely not a template format. My personal portfolio website showcasing my projects and skills.",
+            "title": "Gyrus",
+            "domain": "AI & Systems",
+            "description": "Unified Context Control Plane & Memory Engine for software development teams and AI agents.",
             "technologies": [
-                "Blazor WebAssembly",
-                "C#",
-                "HTML/CSS"
+                "Go",
+                "AI Agents",
+                "MCP"
             ],
             "highlights": [
-                "Custom aesthetic design",
-                "Responsive layout",
-                "Data-driven content loading"
+                "Unified context control plane for teams & AI tools",
+                "Governed knowledge creation framework & state machine",
+                "Open Knowledge Format (OKF) & zero-dependency Go SDK"
             ],
-            "codeUrl": "https://github.com/armckinney/armckinney.github.io",
-            "demoUrl": "https://armckinney.dev",
-            "image": "images/armckinneygithubio.png",
-            "pin": false
+            "codeUrl": "https://github.com/armckinney/gyrus",
+            "image": "images/gyrus.png",
+            "pin": true
         },
         {
             "id": "2",
-            "title": "BestBot",
-            "domain": "Automation",
-            "description": "Get a GPU! A bot designed to help automate tasks, potentially for securing hardware inventories.",
+            "title": "Verge",
+            "domain": "DevOps",
+            "description": "A deterministic, fast version generation CLI explicitly designed for pipelines and automation scenarios.",
             "technologies": [
-                "Python",
-                "Automation",
-                "Bot"
+                "Semantic Versioning",
+                "CLI",
+                "CI/CD"
             ],
             "highlights": [
-                "Automated inventory checking",
-                "Real-time alerts",
-                "Configurable targets"
+                "Deterministic version generation",
+                "Supports standard ecosystems (SemVer, PEP440)",
+                "Integrates with Git Tags, GHCR, and GitHub Releases"
             ],
-            "codeUrl": "https://github.com/armckinney/bestbot",
-            "image": "images/bestbot.png",
-            "pin": false
+            "codeUrl": "https://github.com/armckinney/verge",
+            "image": "images/verge.png",
+            "pin": true
         },
         {
             "id": "3",
@@ -60,314 +59,6 @@
         },
         {
             "id": "4",
-            "title": "Climate Endpoint",
-            "domain": "Sustainability",
-            "description": "Enabling the search for a better future. A project focused on climate data access or API endpoints.",
-            "technologies": [
-                "API",
-                "Climate Data",
-                "Sustainability"
-            ],
-            "highlights": [
-                "Data aggregation",
-                "Accessible endpoints",
-                "Future-focused goals"
-            ],
-            "codeUrl": "https://github.com/armckinney/climate-endpoint",
-            "image": "images/climate-endpoint.png",
-            "pin": false
-        },
-        {
-            "id": "5",
-            "title": "Containers",
-            "domain": "Infrastructure",
-            "description": "A layered image vault. Repository for managing and storing container images or definitions.",
-            "technologies": [
-                "Docker",
-                "Containerization",
-                "DevOps"
-            ],
-            "highlights": [
-                "Layered architecture",
-                "Image management",
-                "Secure storage"
-            ],
-            "codeUrl": "https://github.com/armckinney/containers",
-            "demoUrl": "https://github.com/armckinney?tab=packages&repo_name=containers",
-            "image": "images/containers.png",
-            "pin": true
-        },
-        {
-            "id": "6",
-            "title": "Data Structures & Algorithms",
-            "domain": "Computer Science",
-            "description": "Data Structures and Algorithms in Python. A collection of implementations for learning and reference.",
-            "technologies": [
-                "Python",
-                "Algorithms",
-                "Data Structures"
-            ],
-            "highlights": [
-                "Standard algorithm implementations",
-                "Data structure explanations",
-                "Educational resources"
-            ],
-            "codeUrl": "https://github.com/armckinney/data-structures-and-algorithms",
-            "image": "images/data-structures-and-algorithms.png",
-            "pin": false
-        },
-        {
-            "id": "7",
-            "title": "Design Patterns",
-            "domain": "Software Engineering",
-            "description": "Template Design Patterns in Python. Examples and implementations of common software design patterns.",
-            "technologies": [
-                "Python",
-                "Design Patterns",
-                "OOP"
-            ],
-            "highlights": [
-                "Clean code examples",
-                "Structural patterns",
-                "Behavioral patterns"
-            ],
-            "codeUrl": "https://github.com/armckinney/design-patterns",
-            "image": "images/design-patterns.png",
-            "pin": false
-        },
-        {
-            "id": "8",
-            "title": "Epicentered",
-            "domain": "Visualization",
-            "description": "Cool-epicentered-tagline. Likely a project involving map-centric data or seismic activity visualization.",
-            "technologies": [
-                "Data Visualization",
-                "Mapping",
-                "Frontend"
-            ],
-            "highlights": [
-                "Dynamic mapping",
-                "Data overlay",
-                "User interaction"
-            ],
-            "codeUrl": "https://github.com/armckinney/epicentered",
-            "demoUrl": "https://epicentered.armckinney.dev",
-            "image": "images/epicentered.png",
-            "pin": false
-        },
-        {
-            "id": "9",
-            "title": "GeoHops",
-            "domain": "Geospatial",
-            "description": "Hops On Point! Mapping or geospatial project, possibly related to brewery locations or hopping points.",
-            "technologies": [
-                "GIS",
-                "Mapping",
-                "Location Services"
-            ],
-            "highlights": [
-                "Location tracking",
-                "Geospatial analysis",
-                "Point of interest mapping"
-            ],
-            "codeUrl": "https://github.com/armckinney/geohops",
-            "demoUrl": "https://geohops.armckinney.dev",
-            "image": "images/geohops.png",
-            "pin": false
-        },
-        {
-            "id": "10",
-            "title": "Mail To Me",
-            "domain": "Web Services",
-            "description": "Webpage Form Handler. A service to handle contact forms and forward emails.",
-            "technologies": [
-                "Email API",
-                "Backend",
-                "Form Handling"
-            ],
-            "highlights": [
-                "Secure form submission",
-                "Email forwarding",
-                "Spam protection"
-            ],
-            "codeUrl": "https://github.com/armckinney/mail-to-me",
-            "demoUrl": "https://mailtome.armckinney.dev",
-            "image": "images/mail-to-me.png",
-            "pin": true
-        },
-        {
-            "id": "11",
-            "title": "Mission To Mars",
-            "domain": "Web Development",
-            "description": "The front page of Mars. A web scraping or data display project featuring Mars mission data.",
-            "technologies": [
-                "Web Scraping",
-                "HTML/CSS",
-                "Python"
-            ],
-            "highlights": [
-                "Mars weather data",
-                "NASA image feeds",
-                "Latest news aggregation"
-            ],
-            "codeUrl": "https://github.com/armckinney/mission-to-mars",
-            "image": "images/mission-to-mars.png",
-            "pin": false
-        },
-        {
-            "id": "12",
-            "title": "POptArts",
-            "domain": "Scripting",
-            "description": "PowerShell Option Arguments. Template code bringing the functionality of PowerShell's Opt Args to shell scripts.",
-            "technologies": [
-                "PowerShell",
-                "Shell Scripting",
-                "CLI"
-            ],
-            "highlights": [
-                "Argument parsing",
-                "Help function generation",
-                "Easy integration"
-            ],
-            "codeUrl": "https://github.com/armckinney/ten-second-tools/tree/master/src/poptarts",
-            "image": "images/poptarts.png",
-            "pin": false
-        },
-        {
-            "id": "13",
-            "title": "Psyncronous",
-            "domain": "Concurrency",
-            "description": "Asyncronous python pool executor module. Includes AsyncProcessExecutor and AsyncThreadedExecutor.",
-            "technologies": [
-                "Python",
-                "Multiprocessing",
-                "Threading"
-            ],
-            "highlights": [
-                "Async execution pool",
-                "Process & Thread support",
-                "Queue management"
-            ],
-            "codeUrl": "https://github.com/armckinney/ten-second-tools/tree/master/src/psyncronous",
-            "image": "images/psyncronous.png",
-            "pin": false
-        },
-        {
-            "id": "14",
-            "title": "Template Dotnet",
-            "domain": "Templates",
-            "description": "Standard .NET project template. Provides a starting point for new C#/.NET applications.",
-            "technologies": [
-                "C#",
-                ".NET",
-                "Boilerplate"
-            ],
-            "highlights": [
-                "Pre-configured setup",
-                "Best practices structure",
-                "Ready to build"
-            ],
-            "codeUrl": "https://github.com/armckinney/template-dotnet",
-            "image": "images/template-dotnet.png",
-            "pin": false
-        },
-        {
-            "id": "15",
-            "title": "Template Go",
-            "domain": "Templates",
-            "description": "Go API Template. Standard directory structure including HTTP server and PostgreSQL connection.",
-            "technologies": [
-                "Go",
-                "PostgreSQL",
-                "Docker"
-            ],
-            "highlights": [
-                "Standard project layout",
-                "Database integration",
-                "Docker support"
-            ],
-            "codeUrl": "https://github.com/armckinney/template-go",
-            "image": "images/template-go.png",
-            "pin": false
-        },
-        {
-            "id": "16",
-            "title": "Template Java",
-            "domain": "Templates",
-            "description": "Standard Java project template. Starter kit for Java applications.",
-            "technologies": [
-                "Java",
-                "Maven/Gradle",
-                "Boilerplate"
-            ],
-            "highlights": [
-                "Standard directory structure",
-                "Build configuration",
-                "Dependency management"
-            ],
-            "codeUrl": "https://github.com/armckinney/template-java",
-            "image": "images/template-java.png",
-            "pin": false
-        },
-        {
-            "id": "17",
-            "title": "Template PySpark",
-            "domain": "Templates",
-            "description": "PySpark project template. Boilerplate for Big Data processing jobs using PySpark.",
-            "technologies": [
-                "Python",
-                "PySpark",
-                "Big Data"
-            ],
-            "highlights": [
-                "Spark context setup",
-                "Job structure",
-                "Data processing examples"
-            ],
-            "codeUrl": "https://github.com/armckinney/template-pyspark",
-            "image": "images/template-pyspark.png",
-            "pin": true
-        },
-        {
-            "id": "18",
-            "title": "Template Python",
-            "domain": "Templates",
-            "description": "Standard Python project template. Includes structure for modules, tests, and configuration.",
-            "technologies": [
-                "Python",
-                "Pytest",
-                "Boilerplate"
-            ],
-            "highlights": [
-                "Module structure",
-                "Testing setup",
-                "Requirement management"
-            ],
-            "codeUrl": "https://github.com/armckinney/template-python",
-            "image": "images/template-python.png",
-            "pin": false
-        },
-        {
-            "id": "19",
-            "title": "Template Ubuntu",
-            "domain": "Templates",
-            "description": "Ubuntu environment template. Setup scripts or configurations for a standard Ubuntu dev environment.",
-            "technologies": [
-                "Bash",
-                "Linux",
-                "Ubuntu"
-            ],
-            "highlights": [
-                "Environment configuration",
-                "Package installation",
-                "Shell customization"
-            ],
-            "codeUrl": "https://github.com/armckinney/template-ubuntu",
-            "image": "images/template-ubuntu.png",
-            "pin": false
-        },
-        {
-            "id": "20",
             "title": "West End Financial",
             "domain": "Finance",
             "description": "Credit Crunch by West End Financial. Financial analysis or credit tracking tool.",
@@ -387,23 +78,351 @@
             "pin": true
         },
         {
-            "id": "21",
-            "title": "Verge",
-            "domain": "DevOps",
-            "description": "A deterministic, fast version generation CLI explicitly designed for pipelines and automation scenarios.",
+            "id": "5",
+            "title": "Mail To Me",
+            "domain": "Web Services",
+            "description": "Webpage Form Handler. A service to handle contact forms and forward emails.",
             "technologies": [
-                "Semantic Versioning",
-                "CLI",
-                "CI/CD"
+                "Email API",
+                "Backend",
+                "Form Handling"
             ],
             "highlights": [
-                "Deterministic version generation",
-                "Supports standard ecosystems (SemVer, PEP440)",
-                "Integrates with Git Tags, GHCR, and GitHub Releases"
+                "Secure form submission",
+                "Email forwarding",
+                "Spam protection"
             ],
-            "codeUrl": "https://github.com/armckinney/verge",
-            "image": "images/verge.png",
+            "codeUrl": "https://github.com/armckinney/mail-to-me",
+            "demoUrl": "https://mailtome.armckinney.dev",
+            "image": "images/mail-to-me.png",
             "pin": true
+        },
+        {
+            "id": "6",
+            "title": "Containers",
+            "domain": "Infrastructure",
+            "description": "A layered image vault. Repository for managing and storing container images or definitions.",
+            "technologies": [
+                "Docker",
+                "Containerization",
+                "DevOps"
+            ],
+            "highlights": [
+                "Layered architecture",
+                "Image management",
+                "Secure storage"
+            ],
+            "codeUrl": "https://github.com/armckinney/containers",
+            "demoUrl": "https://github.com/armckinney?tab=packages&repo_name=containers",
+            "image": "images/containers.png",
+            "pin": true
+        },
+        {
+            "id": "7",
+            "title": "armckinney.github.io",
+            "domain": "Portfolio",
+            "description": "Definitely not a template format. My personal portfolio website showcasing my projects and skills.",
+            "technologies": [
+                "Blazor WebAssembly",
+                "C#",
+                "HTML/CSS"
+            ],
+            "highlights": [
+                "Custom aesthetic design",
+                "Responsive layout",
+                "Data-driven content loading"
+            ],
+            "codeUrl": "https://github.com/armckinney/armckinney.github.io",
+            "demoUrl": "https://armckinney.dev",
+            "image": "images/armckinneygithubio.png",
+            "pin": false
+        },
+        {
+            "id": "8",
+            "title": "BestBot",
+            "domain": "Automation",
+            "description": "Get a GPU! A bot designed to help automate tasks, potentially for securing hardware inventories.",
+            "technologies": [
+                "Python",
+                "Automation",
+                "Bot"
+            ],
+            "highlights": [
+                "Automated inventory checking",
+                "Real-time alerts",
+                "Configurable targets"
+            ],
+            "codeUrl": "https://github.com/armckinney/bestbot",
+            "image": "images/bestbot.png",
+            "pin": false
+        },
+        {
+            "id": "9",
+            "title": "Climate Endpoint",
+            "domain": "Sustainability",
+            "description": "Enabling the search for a better future. A project focused on climate data access or API endpoints.",
+            "technologies": [
+                "API",
+                "Climate Data",
+                "Sustainability"
+            ],
+            "highlights": [
+                "Data aggregation",
+                "Accessible endpoints",
+                "Future-focused goals"
+            ],
+            "codeUrl": "https://github.com/armckinney/climate-endpoint",
+            "image": "images/climate-endpoint.png",
+            "pin": false
+        },
+        {
+            "id": "10",
+            "title": "Data Structures & Algorithms",
+            "domain": "Computer Science",
+            "description": "Data Structures and Algorithms in Python. A collection of implementations for learning and reference.",
+            "technologies": [
+                "Python",
+                "Algorithms",
+                "Data Structures"
+            ],
+            "highlights": [
+                "Standard algorithm implementations",
+                "Data structure explanations",
+                "Educational resources"
+            ],
+            "codeUrl": "https://github.com/armckinney/data-structures-and-algorithms",
+            "image": "images/data-structures-and-algorithms.png",
+            "pin": false
+        },
+        {
+            "id": "11",
+            "title": "Design Patterns",
+            "domain": "Software Engineering",
+            "description": "Template Design Patterns in Python. Examples and implementations of common software design patterns.",
+            "technologies": [
+                "Python",
+                "Design Patterns",
+                "OOP"
+            ],
+            "highlights": [
+                "Clean code examples",
+                "Structural patterns",
+                "Behavioral patterns"
+            ],
+            "codeUrl": "https://github.com/armckinney/design-patterns",
+            "image": "images/design-patterns.png",
+            "pin": false
+        },
+        {
+            "id": "12",
+            "title": "Epicentered",
+            "domain": "Visualization",
+            "description": "Cool-epicentered-tagline. Likely a project involving map-centric data or seismic activity visualization.",
+            "technologies": [
+                "Data Visualization",
+                "Mapping",
+                "Frontend"
+            ],
+            "highlights": [
+                "Dynamic mapping",
+                "Data overlay",
+                "User interaction"
+            ],
+            "codeUrl": "https://github.com/armckinney/epicentered",
+            "demoUrl": "https://epicentered.armckinney.dev",
+            "image": "images/epicentered.png",
+            "pin": false
+        },
+        {
+            "id": "13",
+            "title": "GeoHops",
+            "domain": "Geospatial",
+            "description": "Hops On Point! Mapping or geospatial project, possibly related to brewery locations or hopping points.",
+            "technologies": [
+                "GIS",
+                "Mapping",
+                "Location Services"
+            ],
+            "highlights": [
+                "Location tracking",
+                "Geospatial analysis",
+                "Point of interest mapping"
+            ],
+            "codeUrl": "https://github.com/armckinney/geohops",
+            "demoUrl": "https://geohops.armckinney.dev",
+            "image": "images/geohops.png",
+            "pin": false
+        },
+        {
+            "id": "14",
+            "title": "Mission To Mars",
+            "domain": "Web Development",
+            "description": "The front page of Mars. A web scraping or data display project featuring Mars mission data.",
+            "technologies": [
+                "Web Scraping",
+                "HTML/CSS",
+                "Python"
+            ],
+            "highlights": [
+                "Mars weather data",
+                "NASA image feeds",
+                "Latest news aggregation"
+            ],
+            "codeUrl": "https://github.com/armckinney/mission-to-mars",
+            "image": "images/mission-to-mars.png",
+            "pin": false
+        },
+        {
+            "id": "15",
+            "title": "POptArts",
+            "domain": "Scripting",
+            "description": "PowerShell Option Arguments. Template code bringing the functionality of PowerShell's Opt Args to shell scripts.",
+            "technologies": [
+                "PowerShell",
+                "Shell Scripting",
+                "CLI"
+            ],
+            "highlights": [
+                "Argument parsing",
+                "Help function generation",
+                "Easy integration"
+            ],
+            "codeUrl": "https://github.com/armckinney/ten-second-tools/tree/master/src/poptarts",
+            "image": "images/poptarts.png",
+            "pin": false
+        },
+        {
+            "id": "16",
+            "title": "Psyncronous",
+            "domain": "Concurrency",
+            "description": "Asyncronous python pool executor module. Includes AsyncProcessExecutor and AsyncThreadedExecutor.",
+            "technologies": [
+                "Python",
+                "Multiprocessing",
+                "Threading"
+            ],
+            "highlights": [
+                "Async execution pool",
+                "Process & Thread support",
+                "Queue management"
+            ],
+            "codeUrl": "https://github.com/armckinney/ten-second-tools/tree/master/src/psyncronous",
+            "image": "images/psyncronous.png",
+            "pin": false
+        },
+        {
+            "id": "17",
+            "title": "Template Dotnet",
+            "domain": "Templates",
+            "description": "Standard .NET project template. Provides a starting point for new C#/.NET applications.",
+            "technologies": [
+                "C#",
+                ".NET",
+                "Boilerplate"
+            ],
+            "highlights": [
+                "Pre-configured setup",
+                "Best practices structure",
+                "Ready to build"
+            ],
+            "codeUrl": "https://github.com/armckinney/template-dotnet",
+            "image": "images/template-dotnet.png",
+            "pin": false
+        },
+        {
+            "id": "18",
+            "title": "Template Go",
+            "domain": "Templates",
+            "description": "Go API Template. Standard directory structure including HTTP server and PostgreSQL connection.",
+            "technologies": [
+                "Go",
+                "PostgreSQL",
+                "Docker"
+            ],
+            "highlights": [
+                "Standard project layout",
+                "Database integration",
+                "Docker support"
+            ],
+            "codeUrl": "https://github.com/armckinney/template-go",
+            "image": "images/template-go.png",
+            "pin": false
+        },
+        {
+            "id": "19",
+            "title": "Template Java",
+            "domain": "Templates",
+            "description": "Standard Java project template. Starter kit for Java applications.",
+            "technologies": [
+                "Java",
+                "Maven/Gradle",
+                "Boilerplate"
+            ],
+            "highlights": [
+                "Standard directory structure",
+                "Build configuration",
+                "Dependency management"
+            ],
+            "codeUrl": "https://github.com/armckinney/template-java",
+            "image": "images/template-java.png",
+            "pin": false
+        },
+        {
+            "id": "20",
+            "title": "Template PySpark",
+            "domain": "Templates",
+            "description": "PySpark project template. Boilerplate for Big Data processing jobs using PySpark.",
+            "technologies": [
+                "Python",
+                "PySpark",
+                "Big Data"
+            ],
+            "highlights": [
+                "Spark context setup",
+                "Job structure",
+                "Data processing examples"
+            ],
+            "codeUrl": "https://github.com/armckinney/template-pyspark",
+            "image": "images/template-pyspark.png",
+            "pin": false
+        },
+        {
+            "id": "21",
+            "title": "Template Python",
+            "domain": "Templates",
+            "description": "Standard Python project template. Includes structure for modules, tests, and configuration.",
+            "technologies": [
+                "Python",
+                "Pytest",
+                "Boilerplate"
+            ],
+            "highlights": [
+                "Module structure",
+                "Testing setup",
+                "Requirement management"
+            ],
+            "codeUrl": "https://github.com/armckinney/template-python",
+            "image": "images/template-python.png",
+            "pin": false
+        },
+        {
+            "id": "22",
+            "title": "Template Ubuntu",
+            "domain": "Templates",
+            "description": "Ubuntu environment template. Setup scripts or configurations for a standard Ubuntu dev environment.",
+            "technologies": [
+                "Bash",
+                "Linux",
+                "Ubuntu"
+            ],
+            "highlights": [
+                "Environment configuration",
+                "Package installation",
+                "Shell customization"
+            ],
+            "codeUrl": "https://github.com/armckinney/template-ubuntu",
+            "image": "images/template-ubuntu.png",
+            "pin": false
         }
     ]
 }
