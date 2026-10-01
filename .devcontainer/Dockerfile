@@ -1,4 +1,4 @@
-FROM armck/dotnet:8.0
+FROM ghcr.io/armckinney/dotnet:8.0
 
 LABEL   deployable="false" \
     description="Development container for portfolio"
