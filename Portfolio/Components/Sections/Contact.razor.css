@@ -10,15 +10,9 @@
     gap: 1.5rem;
 }
 
-@media (min-width: 40rem) {
+@media (min-width: 48rem) {
     .contact-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-}
-
-@media (min-width: 64rem) {
-    .contact-grid {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 

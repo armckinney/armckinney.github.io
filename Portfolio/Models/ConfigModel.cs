@@ -11,5 +11,4 @@ public class SocialsModel
     public string Github { get; set; } = "";
     public string Linkedin { get; set; } = "";
     public string Email { get; set; } = "";
-    public string Docker { get; set; } = "";
 }

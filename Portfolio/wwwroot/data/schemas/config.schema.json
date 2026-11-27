@@ -17,10 +17,6 @@
                 "email": {
                     "type": "string",
                     "format": "email"
-                },
-                "docker": {
-                    "type": "string",
-                    "format": "uri"
                 }
             },
             "required": [
