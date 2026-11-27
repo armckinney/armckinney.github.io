@@ -39,6 +39,25 @@
             "pin": true
         },
         {
+            "id": "23",
+            "title": "AI Marketplace",
+            "domain": "AI & Systems",
+            "description": "Personal AI Marketplace for plugins, skills, rules, subagents, hooks, and MCP servers across Codex, Antigravity, Copilot, and Claude Code CLIs.",
+            "technologies": [
+                "AI Agents",
+                "MCP",
+                "CLI Plugins"
+            ],
+            "highlights": [
+                "Cross-harness plugin distribution for Codex, Antigravity, Copilot, and Claude Code",
+                "Hosts modular plugins including gyrus, dev-essentials, and career-kit",
+                "Automated plugin scaffolding and multi-catalog manifest validation"
+            ],
+            "codeUrl": "https://github.com/armckinney/ai-marketplace",
+            "image": "images/ai-marketplace.png",
+            "pin": true
+        },
+        {
             "id": "3",
             "title": "CICD Workflows",
             "domain": "DevOps",
@@ -95,7 +114,7 @@
             "codeUrl": "https://github.com/armckinney/mail-to-me",
             "demoUrl": "https://mailtome.armckinney.dev",
             "image": "images/mail-to-me.png",
-            "pin": true
+            "pin": false
         },
         {
             "id": "6",
