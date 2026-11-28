@@ -1,46 +1,13 @@
-/* CSS Variables for Theming */
+/* CSS Variables for Theming — Default: One Dark Pro */
 :root {
-  /* Dracula Palette */
-  --bg-primary: #282a36;
-  --bg-secondary: #44475a;
-  --text-primary: #f8f8f2;
-  /* White */
-  --text-secondary: #8be9fd;
-  /* Cyan */
-  --text-tertiary: #bd93f9;
-  /* Purple */
-
-  --accent-color: #ff79c6;
-  /* Pink */
-  --accent-hover: #ffb86c;
-  /* Orange */
-  --accent-light: rgba(255, 121, 198, 0.15);
-  --accent-text: #ff79c6;
-
-  --border-color: #6272a4;
-  --card-bg: #282a36;
-  --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
-
-  /* Component Specific Defaults */
-  --header-bg: rgba(40, 42, 54, 0.95);
-  --toggle-active-bg: #ff79c6;
-  --toggle-active-text: #282a36;
-}
-
-/* Dark Mode Variables (One Dark Pro) */
-html.dark {
   --bg-primary: #282c34;
   --bg-secondary: #21252b;
   --text-primary: #abb2bf;
   --text-secondary: #d19a66;
-  /* Purple */
   --text-tertiary: #56b6c2;
-  /* Cyan */
 
   --accent-color: #61afef;
-  /* Blue */
   --accent-hover: #c678dd;
-  /* Orange */
   --accent-light: rgba(97, 175, 239, 0.15);
   --accent-text: #61afef;
 
@@ -48,10 +15,49 @@ html.dark {
   --card-bg: #282c34;
   --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
 
-  /* Component Specific Overrides */
+  /* Component Specific Defaults */
   --header-bg: rgba(40, 44, 52, 0.9);
   --toggle-active-bg: #61afef;
   --toggle-active-text: #282c34;
+
+  /* CAR Section Accents */
+  --challenge-bg: rgba(97, 175, 239, 0.12);
+  --challenge-border: rgba(97, 175, 239, 0.3);
+  --challenge-title: #61afef;
+  --result-bg: rgba(152, 195, 121, 0.12);
+  --result-border: rgba(152, 195, 121, 0.3);
+  --result-title: #98c379;
+}
+
+/* Dracula Palette */
+html[data-theme="dracula"] {
+  --bg-primary: #282a36;
+  --bg-secondary: #44475a;
+  --text-primary: #f8f8f2;
+  --text-secondary: #8be9fd;
+  --text-tertiary: #bd93f9;
+
+  --accent-color: #ff79c6;
+  --accent-hover: #ffb86c;
+  --accent-light: rgba(255, 121, 198, 0.15);
+  --accent-text: #ff79c6;
+
+  --border-color: #6272a4;
+  --card-bg: #282a36;
+  --card-hover-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+
+  /* Component Specific Overrides */
+  --header-bg: rgba(40, 42, 54, 0.95);
+  --toggle-active-bg: #ff79c6;
+  --toggle-active-text: #282a36;
+
+  /* CAR Section Accents */
+  --challenge-bg: rgba(255, 121, 198, 0.12);
+  --challenge-border: rgba(255, 121, 198, 0.3);
+  --challenge-title: #ff79c6;
+  --result-bg: rgba(80, 250, 123, 0.12);
+  --result-border: rgba(80, 250, 123, 0.3);
+  --result-title: #50fa7b;
 }
 
 *,

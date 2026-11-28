@@ -11,6 +11,15 @@
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="manifest" href="favicon/site.webmanifest">
+    <script>
+        (function () {
+            var saved = localStorage.getItem('portfolio-theme');
+            document.documentElement.setAttribute(
+                'data-theme',
+                saved === 'dracula' ? 'dracula' : 'one-dark-pro'
+            );
+        })();
+    </script>
     <link href="css/app.css" rel="stylesheet" />
     <link href="css/blazor-error-ui.css" rel="stylesheet" />
     <link href="Portfolio.styles.css" rel="stylesheet" />

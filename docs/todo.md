@@ -1,6 +1,12 @@
 # TODO
 
-1. add about me section
-   1. consider adding values
-2. add blog
-3. add ai chatbot
+
+## Now:
+- figure out how to make a good UI for project on GitHub
+- how can i host CAR stories better on LinkedIn
+
+- remove story TDD
+- disable recruiter/eng switch
+- update stories & add new / technologies
+- consider redesign
+

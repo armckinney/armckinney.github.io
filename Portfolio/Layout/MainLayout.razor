@@ -1,4 +1,4 @@
-﻿@inherits LayoutComponentBase
+@inherits LayoutComponentBase
 @inject Portfolio.Services.LayoutState LayoutState
 @inject IJSRuntime JS
 @implements IDisposable
@@ -12,6 +12,8 @@
 </div>
 
 @code {
+    private string? _lastAppliedTheme;
+
     protected override void OnInitialized()
     {
         LayoutState.OnChange += OnStateChanged;
@@ -21,16 +23,20 @@
     {
         if (firstRender)
         {
-            // Set initial theme
+            var savedTheme = await JS.InvokeAsync<string>("getTheme");
+            _lastAppliedTheme = savedTheme;
+            LayoutState.SetTheme(savedTheme);
             await JS.InvokeVoidAsync("setTheme", LayoutState.Theme);
         }
     }
 
     private void OnStateChanged()
     {
-        // We only care about theme changes for JS hook, but LayoutState notifies for audience too.
-        // It's cheap to call setTheme idempotent-ish-ly (it adds/removes class).
-        _ = JS.InvokeVoidAsync("setTheme", LayoutState.Theme);
+        if (_lastAppliedTheme != LayoutState.Theme)
+        {
+            _lastAppliedTheme = LayoutState.Theme;
+            _ = JS.InvokeVoidAsync("setTheme", LayoutState.Theme);
+        }
         StateHasChanged();
     }
 

@@ -16,9 +16,7 @@
         @if (IsHomePage)
         {
             <nav class="nav-desktop">
-                <button @onclick='() => ScrollTo("achievements")' class="nav-link">
-                    @(LayoutState.Audience == "engineer" ? "Case Studies" : "Achievements")
-                </button>
+                <button @onclick='() => ScrollTo("achievements")' class="nav-link">Achievements</button>
                 <button @onclick='() => ScrollTo("projects")' class="nav-link">Projects</button>
                 <button @onclick='() => ScrollTo("technologies")' class="nav-link">Technologies</button>
                 <button @onclick='() => ScrollTo("contact")' class="nav-link">Contact</button>
@@ -27,15 +25,21 @@
 
         <!-- Right Side Controls -->
         <div class="controls-group">
-            <!-- Audience Toggle -->
-            <div class="audience-toggle">
-                <button @onclick='() => SetAudience("recruiter")' 
-                        class="audience-btn @(LayoutState.Audience == "recruiter" ? "active" : "")">
-                    Recruiter
+            <!-- Theme Toggle -->
+            <div class="theme-toggle" role="group" aria-label="Color theme">
+                <button @onclick='() => SetTheme(LayoutState.OneDarkProTheme)'
+                        title="One Dark Pro"
+                        aria-label="One Dark Pro theme"
+                        aria-pressed="@(LayoutState.Theme == LayoutState.OneDarkProTheme)"
+                        class="theme-btn @(LayoutState.Theme == LayoutState.OneDarkProTheme ? "active" : "")">
+                    <Icon Name="one-dark-pro" Class="w-5 h-5" />
                 </button>
-                <button @onclick='() => SetAudience("engineer")' 
-                        class="audience-btn @(LayoutState.Audience == "engineer" ? "active" : "")">
-                    Engineer
+                <button @onclick='() => SetTheme(LayoutState.DraculaTheme)'
+                        title="Dracula"
+                        aria-label="Dracula theme"
+                        aria-pressed="@(LayoutState.Theme == LayoutState.DraculaTheme)"
+                        class="theme-btn @(LayoutState.Theme == LayoutState.DraculaTheme ? "active" : "")">
+                    <Icon Name="vampire" Class="w-5 h-5" />
                 </button>
             </div>
         </div>
@@ -60,13 +64,10 @@
     @if (IsMobileMenuOpen && IsHomePage)
     {
         <div class="mobile-menu">
-            <button @onclick='() => ScrollTo("achievements")' class="mobile-nav-link">
-                @(LayoutState.Audience == "engineer" ? "Case Studies" : "Achievements")
-            </button>
+            <button @onclick='() => ScrollTo("achievements")' class="mobile-nav-link">Achievements</button>
             <button @onclick='() => ScrollTo("projects")' class="mobile-nav-link">Projects</button>
             <button @onclick='() => ScrollTo("technologies")' class="mobile-nav-link">Technologies</button>
             <button @onclick='() => ScrollTo("contact")' class="mobile-nav-link">Contact</button>
-            
         </div>
     }
 </header>
@@ -97,9 +98,9 @@
         IsMobileMenuOpen = !IsMobileMenuOpen;
     }
 
-    private void SetAudience(string audience)
+    private void SetTheme(string theme)
     {
-        LayoutState.SetAudience(audience);
+        LayoutState.SetTheme(theme);
     }
 
     private async Task ScrollTo(string id)

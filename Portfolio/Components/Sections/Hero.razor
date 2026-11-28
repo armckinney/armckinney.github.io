@@ -1,10 +1,8 @@
 @using Portfolio.Services
 @using Portfolio.Models
 @using Portfolio.Components.Common
-@inject LayoutState LayoutState
 @inject PortfolioService PortfolioService
 @inject IJSRuntime JS
-@implements IDisposable
 
 <section id="hero" class="hero-section">
     <div class="hero-content">
@@ -13,24 +11,10 @@
                 Andrew McKinney
             </h1>
             <p class="hero-subtitle">
-                @if (LayoutState.Audience == "engineer")
-                {
-                    <text>Technical Lead | Distributed Systems & Core Infrastructure</text>
-                }
-                else
-                {
-                    <text>Technical Lead & Platform Architect</text>
-                }
+                Technical Lead | Distributed Systems &amp; Platform Architecture
             </p>
             <p class="hero-description">
-                @if (LayoutState.Audience == "engineer")
-                {
-                    <text>Specializing in cloud-native architecture, N-scaling data platforms, and developer experience. Dedicated to improving the end-to-end engineering lifecycle through robust core infrastructure.</text>
-                }
-                else
-                {
-                    <text>Driving organizational impact through scalable data platforms and strategic technical leadership. Focused on building high-performance distributed systems and core infrastructure that accelerate developer velocity.</text>
-                }
+                Driving organizational impact through cloud-native data &amp; ML platforms, scalable core infrastructure, and developer experience. Focused on building high-performance distributed systems that accelerate engineering velocity.
             </p>
         </div>
 
@@ -69,13 +53,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        LayoutState.OnChange += StateHasChanged;
         Config = await PortfolioService.GetConfigAsync();
-    }
-
-    public void Dispose()
-    {
-        LayoutState.OnChange -= StateHasChanged;
     }
 
     private async Task ScrollTo(string id)
