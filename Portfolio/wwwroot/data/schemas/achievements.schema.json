@@ -14,6 +14,15 @@
                     "Title": {
                         "type": "string"
                     },
+                    "Company": {
+                        "type": "string"
+                    },
+                    "Role": {
+                        "type": "string"
+                    },
+                    "Timeframe": {
+                        "type": "string"
+                    },
                     "Domains": {
                         "type": "array",
                         "items": {
@@ -32,10 +41,7 @@
                             "type": "string"
                         }
                     },
-                    "Situation": {
-                        "type": "string"
-                    },
-                    "Task": {
+                    "Challenge": {
                         "type": "string"
                     },
                     "Action": {
@@ -44,52 +50,25 @@
                     "Result": {
                         "type": "string"
                     },
-                    "DeepDive": {
-                        "type": [
-                            "object",
-                            "null"
-                        ],
-                        "properties": {
-                            "Architecture": {
-                                "type": "string"
-                            },
-                            "Challenges": {
-                                "type": "string"
-                            },
-                            "Retrospective": {
-                                "type": "string"
-                            },
-                            "Diagram": {
-                                "type": [
-                                    "object",
-                                    "null"
-                                ],
-                                "properties": {
-                                    "Description": {
-                                        "type": "string"
-                                    },
-                                    "Url": {
-                                        "type": "string"
-                                    }
-                                },
-                                "required": [
-                                    "Description"
-                                ]
-                            }
-                        },
-                        "additionalProperties": false
+                    "Pin": {
+                        "type": "boolean"
                     }
                 },
                 "required": [
                     "Id",
                     "Title",
+                    "Company",
+                    "Role",
+                    "Timeframe",
                     "Domains",
+                    "Principles",
                     "Technologies",
-                    "Situation",
-                    "Task",
+                    "Challenge",
                     "Action",
-                    "Result"
-                ]
+                    "Result",
+                    "Pin"
+                ],
+                "additionalProperties": false
             }
         }
     },

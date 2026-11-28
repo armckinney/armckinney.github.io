@@ -4,27 +4,19 @@ namespace Portfolio.Services
 {
     public class LayoutState
     {
-        public string Audience { get; private set; } = "recruiter";
-        public string Theme { get; private set; } = "light"; // Default for recruiter
+        public const string OneDarkProTheme = "one-dark-pro";
+        public const string DraculaTheme = "dracula";
+
+        public string Theme { get; private set; } = OneDarkProTheme;
 
         public event Action? OnChange;
 
-        public void SetAudience(string audience)
-        {
-            if (Audience != audience)
-            {
-                Audience = audience;
-                // Engineer -> Dark Mode, Recruiter -> Light Mode
-                Theme = Audience == "engineer" ? "dark" : "light";
-                NotifyStateChanged();
-            }
-        }
-
         public void SetTheme(string theme)
         {
-             if (Theme != theme)
+            var normalized = theme == DraculaTheme ? DraculaTheme : OneDarkProTheme;
+            if (Theme != normalized)
             {
-                Theme = theme;
+                Theme = normalized;
                 NotifyStateChanged();
             }
         }

@@ -5,10 +5,13 @@ window.scrollToSection = (id) => {
     }
 };
 
+window.getTheme = () => {
+    const saved = localStorage.getItem('portfolio-theme');
+    return saved === 'dracula' ? 'dracula' : 'one-dark-pro';
+};
+
 window.setTheme = (theme) => {
-    if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
-    } else {
-        document.documentElement.classList.remove('dark');
-    }
+    const normalized = theme === 'dracula' ? 'dracula' : 'one-dark-pro';
+    document.documentElement.setAttribute('data-theme', normalized);
+    localStorage.setItem('portfolio-theme', normalized);
 };

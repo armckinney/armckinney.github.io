@@ -52,6 +52,11 @@
       "url": "https://groovy-lang.org/"
     },
     {
+      "name": "SQL",
+      "category": "Language",
+      "url": "https://en.wikipedia.org/wiki/SQL"
+    },
+    {
       "name": "T-SQL",
       "category": "Language",
       "url": "https://learn.microsoft.com/en-us/sql/t-sql/"
@@ -70,6 +75,16 @@
       "name": "JavaScript",
       "category": "Language",
       "url": "https://developer.mozilla.org/en-US/docs/Web/JavaScript"
+    },
+    {
+      "name": "YAML",
+      "category": "Language",
+      "url": "https://yaml.org/"
+    },
+    {
+      "name": "Markdown",
+      "category": "Language",
+      "url": "https://www.markdownguide.org/"
     },
     {
       "name": "FastAPI",
@@ -102,6 +117,26 @@
       "url": "https://spark.apache.org/docs/latest/api/python/"
     },
     {
+      "name": "Apache Sedona",
+      "category": "Framework",
+      "url": "https://sedona.apache.org/"
+    },
+    {
+      "name": "GeoPandas",
+      "category": "Framework",
+      "url": "https://geopandas.org/"
+    },
+    {
+      "name": "pytest",
+      "category": "Framework",
+      "url": "https://docs.pytest.org/"
+    },
+    {
+      "name": "uv",
+      "category": "Framework",
+      "url": "https://docs.astral.sh/uv/"
+    },
+    {
       "name": "TensorFlow",
       "category": "Framework",
       "url": "https://www.tensorflow.org/"
@@ -115,6 +150,16 @@
       "name": "Apache Iceberg",
       "category": "Database",
       "url": "https://iceberg.apache.org/"
+    },
+    {
+      "name": "Snowflake",
+      "category": "Database",
+      "url": "https://www.snowflake.com/"
+    },
+    {
+      "name": "Azure Data Lake Storage",
+      "category": "Database",
+      "url": "https://azure.microsoft.com/en-us/products/storage/data-lake-storage"
     },
     {
       "name": "PostgreSQL",
@@ -145,6 +190,61 @@
       "name": "Databricks",
       "category": "Cloud",
       "url": "https://www.databricks.com/"
+    },
+    {
+      "name": "AWS PrivateLink",
+      "category": "Cloud",
+      "url": "https://aws.amazon.com/privatelink/"
+    },
+    {
+      "name": "Azure Private Link",
+      "category": "Cloud",
+      "url": "https://azure.microsoft.com/en-us/products/private-link"
+    },
+    {
+      "name": "Azure Functions",
+      "category": "Cloud",
+      "url": "https://azure.microsoft.com/en-us/products/functions"
+    },
+    {
+      "name": "Azure Durable Functions",
+      "category": "Cloud",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-functions/durable/durable-functions-overview"
+    },
+    {
+      "name": "Azure Data Factory",
+      "category": "Cloud",
+      "url": "https://azure.microsoft.com/en-us/products/data-factory"
+    },
+    {
+      "name": "Azure Monitor",
+      "category": "Cloud",
+      "url": "https://azure.microsoft.com/en-us/products/monitor"
+    },
+    {
+      "name": "Application Insights",
+      "category": "Cloud",
+      "url": "https://learn.microsoft.com/en-us/azure/azure-monitor/app/app-insights-overview"
+    },
+    {
+      "name": "Azure PIM",
+      "category": "Cloud",
+      "url": "https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-configure"
+    },
+    {
+      "name": "Entra ID",
+      "category": "Cloud",
+      "url": "https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id"
+    },
+    {
+      "name": "Okta",
+      "category": "Cloud",
+      "url": "https://www.okta.com/"
+    },
+    {
+      "name": "ConductorOne",
+      "category": "Cloud",
+      "url": "https://www.conductorone.com/"
     },
     {
       "name": "CloudZero",
@@ -207,9 +307,59 @@
       "url": "https://docs.docker.com/compose/"
     },
     {
+      "name": "Podman",
+      "category": "DevOps",
+      "url": "https://podman.io/"
+    },
+    {
+      "name": "Dev Containers",
+      "category": "DevOps",
+      "url": "https://containers.dev/"
+    },
+    {
+      "name": "Artifactory",
+      "category": "DevOps",
+      "url": "https://jfrog.com/artifactory/"
+    },
+    {
+      "name": "Git",
+      "category": "DevOps",
+      "url": "https://git-scm.com/"
+    },
+    {
       "name": "libvirt",
       "category": "DevOps",
       "url": "https://libvirt.org/"
+    },
+    {
+      "name": "Linux",
+      "category": "DevOps",
+      "url": "https://www.kernel.org/"
+    },
+    {
+      "name": "RHEL",
+      "category": "DevOps",
+      "url": "https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux"
+    },
+    {
+      "name": "Make",
+      "category": "DevOps",
+      "url": "https://www.gnu.org/software/make/"
+    },
+    {
+      "name": "tflint",
+      "category": "DevOps",
+      "url": "https://github.com/terraform-linters/tflint"
+    },
+    {
+      "name": "terraform-docs",
+      "category": "DevOps",
+      "url": "https://terraform-docs.io/"
+    },
+    {
+      "name": "ty",
+      "category": "DevOps",
+      "url": "https://docs.astral.sh/ty/"
     },
     {
       "name": "Unit Testing",
@@ -242,6 +392,11 @@
       "url": "https://www.atlassian.com/software/bamboo"
     },
     {
+      "name": "Octopus Deploy",
+      "category": "DevOps",
+      "url": "https://octopus.com/"
+    },
+    {
       "name": "Jenkins",
       "category": "DevOps",
       "url": "https://www.jenkins.io/"
@@ -260,6 +415,11 @@
       "name": "Databricks ML",
       "category": "AI/ML",
       "url": "https://www.databricks.com/product/machine-learning"
+    },
+    {
+      "name": "MLflow",
+      "category": "AI/ML",
+      "url": "https://mlflow.org/"
     },
     {
       "name": "Azure ML",
@@ -282,9 +442,24 @@
       "url": "https://github.com/features/copilot"
     },
     {
+      "name": "Claude Code",
+      "category": "AI/ML",
+      "url": "https://docs.anthropic.com/en/docs/claude-code"
+    },
+    {
+      "name": "Codex",
+      "category": "AI/ML",
+      "url": "https://openai.com/codex/"
+    },
+    {
       "name": "Antigravity",
       "category": "AI/ML",
       "url": "https://antigravity.google"
+    },
+    {
+      "name": "Gyrus",
+      "category": "AI/ML",
+      "url": "https://github.com/armckinney/gyrus"
     },
     {
       "name": "MCP",

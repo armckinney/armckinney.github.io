@@ -64,7 +64,7 @@
                         }
 
                         <div>
-                            <h4 class="modal-section-title">Related @(LayoutState.Audience == "engineer" ? "Case Studies" : "Achievements")</h4>
+                            <h4 class="modal-section-title">Related Achievements</h4>
                             @if (relatedAchievements.Any())
                             {
                                 <ul class="related-list">
@@ -79,7 +79,7 @@
                             }
                             else
                             {
-                                <p class="no-related">No @(LayoutState.Audience == "engineer" ? "case studies" : "achievements") using this technology yet</p>
+                                <p class="no-related">No achievements using this technology yet</p>
                             }
                         </div>
 
